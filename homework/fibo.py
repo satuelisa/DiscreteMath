@@ -16,4 +16,4 @@ secuencia = fSecuencia(20) # consultamos veinte elementos
 assert secuencia[-1] == fibo(19) # al final viene F_19 ya que F_0 es primero
 print(secuencia)
 n = int(input("Dame un n: "))
-print(f'F_n vale {fibo(n)}')
+print('F_n vale', fibo(n))

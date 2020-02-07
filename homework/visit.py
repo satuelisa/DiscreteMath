@@ -8,7 +8,11 @@ def dfs_imprime(actual, adj, visitados, orden=None):
         dfs_imprime(vecino, adj, visitados, orden)
     if orden == "post":
         print(actual)
- 
+
+adj = {'a': {'b', 'c'},
+       'b': {'c', 'd'},
+       'c': {'a', 'b'},
+       'd': {'b'}}
 dfs_imprime('a', adj, set(), "pre")
 dfs_imprime('a', adj, set(), "post")
 dfs_imprime('a', adj, set())
