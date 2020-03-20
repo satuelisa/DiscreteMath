@@ -295,12 +295,12 @@ function process(message) {
                       .setImage(url);
                 channel.send(e);
             } else {
-                channel.send('Checa esta p<C3><A1>gina web: ' + url);
+                channel.send('Checa esta página web: ' + url);
             }
             return;
         }
     }
-    channel.send('Lamentablemente no s<C3><A9> nada de eso :frowning2:');
+    channel.send('Lamentablemente no sé nada de eso :frowning2:');
     return;
 }
 client.on("message", (message) => {
