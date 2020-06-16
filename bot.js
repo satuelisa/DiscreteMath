@@ -1,9 +1,13 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const fs = require('fs');
+let servidor = undefined;
+let rolMD = undefined;
 
 client.on("ready", () => {
-    console.log('Math time');
+    servidor = client.guilds.get('458343272520351768');
+    rolMD = servidor.roles.find(role => role.name === "discretas");
+    console.log(servidor.name + ' / ' + rolMD.name);
 });
 
 'use strict';
@@ -110,6 +114,7 @@ const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejem
 	      'examen': 'https://elisa.dyndns-web.com/teaching/mat/discretas/guion/examen.html',
 	      'temas': 'https://elisa.dyndns-web.com/teaching/mat/discretas/temario.html',
 	      'calif': 'https://elisa.dyndns-web.com/teaching/mat/discretas/criterios.html',
+	      'crit': 'https://elisa.dyndns-web.com/teaching/mat/discretas/criterios.html',
 	      'proy': 'https://elisa.dyndns-web.com/teaching/mat/discretas/proyecto.html',
 	      'og': 'https://youtu.be/txpkuyFZRN8',
 	      'oa': 'https://youtu.be/WZPtmiUpLmg',
@@ -245,7 +250,8 @@ function process(message) {
 	    var b = parseInt(text.substring(mid + 1, end));	    
 	    channel.send('El residuo al dividir ' + a + ' entre ' + b + ' vale ' + a % b + '.');
 	} else {
-	    channel.send('Lamentablemente no sé calcular eso, pero con Python deberías lograrlo.\nRevisa los ejemplos en el material de estudio y pide ayuda a los demás si no te sale.');
+	    channel.send('Lamentablemente no sé calcular eso, pero con Python deberías lograrlo.' +
+			 ' Revisa los ejemplos en el material de estudio y pide ayuda a los demás si no te sale.');
 	}
 	return;
     }
@@ -273,29 +279,37 @@ function process(message) {
 }
 
 async function chat(message) {
+    var tag = message.author.tag;
+    if (tag.includes('MathBot')) { // it me, Mario
+	return;
+    }
+    var usuario =  tag.split('#')[0];
     var text = message.content.toLowerCase();
     var digitos = /^\d+$/.test(text);
-    var tag = message.author.tag;
-    var usuario =  tag.split('#')[0];
     if (digitos && text.length == 7) {
+	let m = servidor.member(message.author);
+	if (m.roles.find(role => role.name === 'discretas')) {
+	    console.log('conozco a ' + tag)
+	} else {
+	    console.log(tag + ' es nuevo')
+	    try {
+		m.addRole(rolMD);
+	    } catch(e) {
+		console.log(e);
+	    };
+	}
 	var actuales = fs.readFileSync('matr.dat').toString().trim().split('\n').filter(Boolean);
 	for (var i = 0; i < actuales.length; i++) {
 	    var campos = actuales[i].split(' ');
 	    if (campos[0] == tag) { // ya hay
 		if (text == campos[1]) { // es lo mismo de antes
-		    try {
-			await message.author.send('Ya me la habías dicho antes, pero gracias nuevamente.\n');
-		    } catch(e) {
-			console.log(e);
-		    };
+		    message.author.send('Ya me la habías dicho antes, ' +
+					'pero gracias nuevamente.\n').catch(error => { console.log(tag + ' no me escucha') });
 		    return;
 		} else { // es diferente
 		    actuales[i] = tag + ' ' + text;
-		    try {
-			await message.author.send('Me habías dicho antes que tu matrícula era ' + campos[1] + '. Voy a sustituirla con ' + text + '.\n');
-		    } catch(e) {
-			console.log(e);
-		    };
+		    message.author.send('Me habías dicho que tu matrícula era ' + campos[1] +
+					'. La sustituyo con ' + text + '.\n').catch(error => { console.log(tag + ' no me escucha') });
 		    fs.writeFileSync('matr.dat', actuales.join('\n')  + '\n', (err) => { 
 			if (err) throw err;
 		    });		
@@ -303,21 +317,15 @@ async function chat(message) {
 		}
 	    }
 	} // no estaba incluida
-	fs.appendFileSync(filename(day), tag + ' ' + text + '\n', (err) => {
+	fs.appendFileSync('matr.dat', tag + ' ' + text + '\n', (err) => {
 	    if (err) throw err;
 	});
-	try {
-	    await message.author.send('Gracias, ' + usuario + ", por decirme que tu matrícula es " + text + ". Ahora te puedo tomar asistencia.");
-	} catch(e) {
-	    console.log(e);
-	};
+	message.author.send('Gracias, ' + usuario +
+			    ", por decirme que tu matrícula es " + text +
+			    ". Ahora te puedo tomar asistencia cuando hables en #discretas del servidor Science.").catch(error => { console.log(error) });
     } else {
-	try {
-	    await message.author.send('Hola, ' + usuario + '. Esperaba que me dijeras tu matrícula completa. Es lo único que hago por mensaje privado por el momento.');
-	} catch(e) {
-	    console.log(e);
-	};
-	
+	message.author.send('Hola, ' + usuario + '. Esperaba que me dijeras tu matrícula completa.' +
+			    ' Es lo único que hago por mensaje privado por el momento.').catch(error => { console.log(tag + ' no me escucha')});
     }
     return;
 }
