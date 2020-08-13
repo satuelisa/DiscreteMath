@@ -364,6 +364,11 @@ async function chat(message) {
     return;
 }
 
+async function poll(channel) {
+    channel.send('**Encuesta instantánea**\n\nOcupo saber *qué tan bien entiendes* de qué estamos hablando en clase en este momento.\n\nPor favor **reacciona** a este mensaje\ncon :white_check_mark: si vas bien\ncon :question: si tienes dudas\ncon :confused: si no en realidad entiendes pero tampoco sabes qué preguntar\ncon :sleeping: si no estabas en realidad prestando atención\n...');
+}
+
+
 client.on("message", (message) => {
     if (message.channel instanceof Discord.DMChannel) {
 	chat(message);
@@ -374,7 +379,18 @@ client.on("message", (message) => {
 	    return;
 	}
 	if (text.startsWith('!')) {
-	    process(message);
+	    if (text.startsWith('!poll')) {
+		poll(message.channel);
+	    } else {
+		process(message);
+	    }
+	} else {
+	    if (text.includes('Encuesta instantánea')) {
+		message.react('✅');
+		message.react('😕');
+		message.react('❓');
+		message.react('😴');
+	    }
 	}
         asistencia(message.author.tag);
     }
