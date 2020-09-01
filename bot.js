@@ -11,7 +11,7 @@ let max = undefined;
 client.on("ready", () => {
     servidor = client.guilds.cache.get('458343272520351768');
     rolMD = servidor.roles.cache.find(role => role.name === "discretas");
-    console.log(servidor.name + ' / ' + rolMD.name);
+    console.log(servidor.name + ' / ' + rolMD.name + ' ' + rolMD.members.size);
     let data = fs.readFileSync('cards.json');
     cards = JSON.parse(data);
     max = cards.length;
@@ -47,6 +47,7 @@ const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejem
 	      'binario': 'Conozco los conceptos de *número binario* y *arbol binario*. Pregúntame sobre esos.', 
 	      'octal': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/bases/octal.png',
 	      'decimal': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/bases/decimal.png',
+	      'python': 'https://www.python.org/downloads/',
 	      'hexadecimal': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/bases/hexadecimal.png',
 	      '&': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/logica/bitwise_and.png',
 	      'and': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/logica/bitwise_and.png',
@@ -207,7 +208,9 @@ function process(message) {
 	    var start = text.indexOf("(");
             var end = text.indexOf(")");
             var n = parseInt(text.substring(start + 1, end));
-	    if (n < 0) {
+	    if (isNaN(n)) {
+		channel.send('Se necesita un número entero.');
+	    } else if (n < 0) {
 		channel.send('Negativos no tienen factoriales.');
 	    } else if (n < 2) {
 		channel.send('Factorial de ' + n + ' vale uno.');
@@ -227,7 +230,11 @@ function process(message) {
 	    var end = text.indexOf(")");
 	    var mid = text.indexOf(",");
 	    var n = parseInt(text.substring(start + 1, mid));
-	    var k = parseInt(text.substring(mid + 1, end));	    
+	    var k = parseInt(text.substring(mid + 1, end));
+	    if (isNaN(n) || isNaN(k)) {
+		channel.send('Ocupas definir dos enteros positivos.');
+		return;
+	    }
 	    var arriba = 1;
 	    for (var f = Math.max(k, n - k) + 1; f <= n; f++) {
 		arriba *= f;
@@ -365,7 +372,7 @@ async function chat(message) {
 }
 
 async function poll(channel) {
-    channel.send('**Encuesta instantánea**\n\nOcupo saber *qué tan bien entiendes* de qué estamos hablando en clase en este momento.\n\nPor favor **reacciona** a este mensaje\ncon :white_check_mark: si vas bien\ncon :question: si tienes dudas\ncon :confused: si no en realidad entiendes pero tampoco sabes qué preguntar\ncon :sleeping: si no estabas en realidad prestando atención\n...');
+    channel.send('**Encuesta instantánea**\n\nOcupo saber *qué tan bien entiendes* de qué estamos hablando en clase en este momento.\n\nPor favor **reacciona** a este mensaje\ncon :white_check_mark: si vas bien\ncon :question: si tienes dudas\ncon :confused: si se te hace que no entiendes pero tampoco sabes qué preguntar\ncon :sleeping: si no estabas en realidad prestando atención\n...');
 }
 
 
@@ -375,24 +382,27 @@ client.on("message", (message) => {
     } else {
 	var channel = message.channel;
 	var text = message.content;
-	if (!channel.name.includes('discretas')) { // ignore other channels
+	if (!channel.name.includes('discretas') &&
+	    !channel.name.includes('adaptativos')) { // ignore other channels
 	    return;
 	}
 	if (text.startsWith('!')) {
 	    if (text.startsWith('!poll')) {
 		poll(message.channel);
-	    } else {
+	    } else if (channel.name.includes('discretas')) {
 		process(message);
 	    }
 	} else {
 	    if (text.includes('Encuesta instantánea')) {
 		message.react('✅');
+		message.react('❓');		
 		message.react('😕');
-		message.react('❓');
 		message.react('😴');
 	    }
 	}
-        asistencia(message.author.tag);
+	if (channel.name.includes('discretas')) {	
+            asistencia(message.author.tag);
+	}
     }
 });
 
