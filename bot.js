@@ -23,6 +23,9 @@ const debugMode = true;
 const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/logica/arboles.html',
 	      'video': 'https://www.youtube.com/playlist?list=PLSxaeMB7D949M8LiimQF_XQEGWptVJk5o',
 	      'youtube': 'https://www.youtube.com/playlist?list=PLSxaeMB7D949M8LiimQF_XQEGWptVJk5o',
+	      'twitch': 'https://twitch.tv/satuelisa',
+	      'stream': 'https://twitch.tv/satuelisa',
+	      'clase': 'https://twitch.tv/satuelisa',
 	      't1': 'https://youtu.be/364guooLVX0',
 	      't3': 'https://youtu.be/VzUhE8NVf_s', 
 	      't4': 'https://youtu.be/Qvou3MXscl4',
@@ -45,10 +48,15 @@ const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejem
 	      'mero bin': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/bases/binario.png',
 	      'rbol bin': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/arboles/arboles.html',
 	      'repo': 'https://github.com/satuelisa/DiscreteMath',
-	      'binario': 'Conozco los conceptos de *número binario* y *arbol binario*. Pregúntame sobre esos.', 
+	      'binario': 'Conozco los conceptos de *número binario* y *árbol binario*. Pregúntame sobre esos.', 
 	      'octal': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/bases/octal.png',
 	      'decimal': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/bases/decimal.png',
 	      'python': 'https://www.python.org/downloads/',
+	      'online': 'https://repl.it/@enaard/Python-3',
+	      'enlinea': 'https://repl.it/@enaard/Python-3',
+	      'enlínea': 'https://repl.it/@enaard/Python-3',
+	      'en línea': 'https://repl.it/@enaard/Python-3',
+	      'en linea': 'https://repl.it/@enaard/Python-3',
 	      'hexadecimal': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/bases/hexadecimal.png',
 	      '&': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/logica/bitwise_and.png',
 	      'and': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/logica/bitwise_and.png',
@@ -113,6 +121,7 @@ const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejem
 	      'tarea': 'https://elisa.dyndns-web.com/teaching/mat/discretas/md.html',
 	      'puntos': 'https://elisa.dyndns-web.com/cgi-bin/res.py',
 	      'resultado': 'https://elisa.dyndns-web.com/cgi-bin/res.py',
+	      'registro': 'https://elisa.dyndns-web.com/cgi-bin/res.py',
 	      'viejos': 'https://elisa.dyndns-web.com/teaching/mat/discretas/examenes/',
 	      'tarjetas': 'https://tinycards.duolingo.com/users/satuelisa',
 	      'tiny': 'https://tinycards.duolingo.com/users/satuelisa',
@@ -151,11 +160,17 @@ function sendCard(target) {
 }
 
 function matricula(usuario) {
+    //console.log('buscando', usuario);
     var actuales = fs.readFileSync('matr.dat').toString().trim().split('\n').filter(Boolean);
     for (var i = 0; i < actuales.length; i++) {
 	var campos = actuales[i].split(' ');
-	if (campos[0] == usuario) { // match
-	    return campos[1];
+	let k =  campos.length;
+	let r = (campos.slice(0, k - 1)).join(' ');
+	//console.log('comparando con', r);
+	if (r == usuario) { // match
+	    let m = campos[k - 1];
+	    //console.log(r, 'encontrado como', m);	    
+	    return m;
 	}
     }
     return undefined;
@@ -168,7 +183,7 @@ function timestamp() {
 async function asistencia(usuario) {
     console.log(usuario);
     const matr = matricula(usuario);
-    if (typeof myVar === "undefined") {
+    if (typeof matr === "undefined") {
 	return;
     } else {
 	fs.appendFileSync('asistencia.txt', matr + ' ' + timestamp() + '\n', (err) => {
@@ -178,17 +193,21 @@ async function asistencia(usuario) {
 }
 
 async function mvp(message) {
+    console.log('Buscando matricula para', message.author.tag);
     const recipiente = matricula(message.author.tag);
     if (typeof recipiente === "undefined") {
-	message.channel.send('No me has dicho tu matrícula aún; mándame eso por DM para poder registrar ayudas.');
+	message.channel.send('No me has dicho tu matrícula aún, ' +
+			     message.author.tag +
+			     '; mándame eso por DM para poder registrar ayudas.');
     	return;
     } else {
 	const ayudante = message.mentions.users.first();
-	if (typeof ayudante === "undefined") {
-	    message.channel.send('Esa persona no me ha dicho su matrícula, no le puedo otorgar comisión.');
+	const registro = matricula(ayudante.tag);
+	if (typeof registro === "undefined") {
+	    message.channel.send(ayudante.tag +
+				 ' no me ha dicho su matrícula, no le puedo otorgar comisión.');
     	    return;
 	} else {
-	    const registro = matricula(ayudante.tag);
 	    if (registro == recipiente) {
 		message.channel.send('La auto-ayuda no cuenta para comisiones.');
 		return;
@@ -197,9 +216,11 @@ async function mvp(message) {
 	    fs.appendFileSync('ayudas_elisa.txt', output, (err) => {
 		if (err) throw err;
 	    });
-	    message.channel.send('Gracias por contarme; he registrado la ayuda.');	    
+	    message.channel.send('Gracias por contarme; he registrado la ayuda.');
+	    return;
 	}
     }
+    message.channel.send('Dime por favor quién te ayudó y en qué cosa.');
     return;
 }
 
