@@ -36,6 +36,7 @@ const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejem
 	      't5p3': 'https://youtu.be/lJ0OiPKdcXg',
 	      't5p4': 'https://youtu.be/lJ0OiPKdcXg', 
 	      't5p5': 'https://youtu.be/ZTehJDpaqdU',
+	      'ayuda': 'Para registrar una ayuda, escribe **!mvp**, *menciona* el usuario (con \@) quien te ayudó y en qué cosa',
 	      't2': 'La tarea 2 tiene videos por pregunta; pregúntame por t2p1, por ejemplo.',
 	      't5': 'La tarea 5 tiene videos por pregunta; pregúntame por t5p1, por ejemplo.',
 	      'medio curso': 'https://youtu.be/l9ta-9uycT0',
@@ -108,7 +109,6 @@ const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejem
 	      'ejemplo': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/',
 	      'material': 'https://elisa.dyndns-web.com/teaching/mat/discretas/material.html',
 	      'libro': 'https://books.google.com.mx/books?id=lHqqjoR0b1YC&printsec=frontcover&hl=es&redir_esc=y#v=onepage&q&f=false',
-	      'ayuda': 'https://elisa.dyndns-web.com/teaching/ayudas_elisa.html',
 	      'movil': 'https://elisa.dyndns-web.com/teaching/mat/discretas/movil.html',
 	      'tarea': 'https://elisa.dyndns-web.com/teaching/mat/discretas/md.html',
 	      'puntos': 'https://elisa.dyndns-web.com/cgi-bin/res.py',
@@ -150,19 +150,50 @@ function sendCard(target) {
     }
 }
 
-async function asistencia(usuario) {
-    console.log(usuario);
+function matricula(usuario) {
     var actuales = fs.readFileSync('matr.dat').toString().trim().split('\n').filter(Boolean);
     for (var i = 0; i < actuales.length; i++) {
 	var campos = actuales[i].split(' ');
 	if (campos[0] == usuario) { // match
-	    var matr = campos[1];
-	    fs.appendFileSync('asistencia.txt', matr + ' ' + new Date() + '\n', (err) => {
-		if (err) throw err;
-	    });
-	    return;
+	    return campos[1];
 	}
     }
+    return undefined;
+}
+
+function timestamp() {
+    return '' + new Date();
+}
+
+async function asistencia(usuario) {
+    console.log(usuario);
+    const matr = matricula(usuario);
+    if (typeof myVar === "undefined") {
+	return;
+    } else {
+	fs.appendFileSync('asistencia.txt', matr + ' ' + timestamp() + '\n', (err) => {
+	    if (err) throw err;
+	});
+    }
+}
+
+async function mvp(message) {
+    const recipiente = matricula(message.author.tag);
+    if (typeof recipiente === "undefined") {
+    	return;
+    } else {
+	const ayudante = message.mentions.users.first();
+	if (typeof ayudante === "undefined") {
+    	    return;
+	} else {
+	    const registro = matricula(ayudante.tag);
+	    let output = registro + ' ' + recipiente + ' ' + timestamp() + ' ' + message.content.toLowerCase() + '\n';	    
+	    fs.appendFileSync('ayudas_elisa.txt', output, (err) => {
+		if (err) throw err;
+	    });
+	}
+    }
+    return;
 }
 
 function process(message) {
@@ -171,11 +202,13 @@ function process(message) {
     if (!channel.name.includes('discretas')) { // ignore other channels
 	return;
     }
-    if (text.startsWith('!reto')) {
+    if (text.startsWith('!mvp')) {
+	mvp(message);
+	return;
+    } else if (text.startsWith('!reto')) {
 	sendCard(channel);
 	return;
-    }
-    if (text.startsWith('!calc')) {
+    } else if (text.startsWith('!calc')) {
 	if (text.includes("log")) {
 	    var start = text.indexOf("(");
 	    var end = text.indexOf(")");
@@ -383,7 +416,9 @@ client.on("message", (message) => {
 	var channel = message.channel;
 	var text = message.content;
 	if (!channel.name.includes('discretas') &&
-	    !channel.name.includes('adaptativos')) { // ignore other channels
+	    !channel.name.includes('adaptativos') &&
+	    !channel.name.includes('proba') &&
+	    !channel.name.includes('simula')) { // ignore other channels
 	    return;
 	}
 	if (text.startsWith('!')) {
