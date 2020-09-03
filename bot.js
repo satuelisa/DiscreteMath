@@ -180,17 +180,24 @@ async function asistencia(usuario) {
 async function mvp(message) {
     const recipiente = matricula(message.author.tag);
     if (typeof recipiente === "undefined") {
+	message.channel.send('No me has dicho tu matrícula aún; mándame eso por DM para poder registrar ayudas.');
     	return;
     } else {
 	const ayudante = message.mentions.users.first();
 	if (typeof ayudante === "undefined") {
+	    message.channel.send('Esa persona no me ha dicho su matrícula, no le puedo otorgar comisión.');
     	    return;
 	} else {
 	    const registro = matricula(ayudante.tag);
+	    if (registro == recipiente) {
+		message.channel.send('La auto-ayuda no cuenta para comisiones.');
+		return;
+	    }
 	    let output = registro + ' ' + recipiente + ' ' + timestamp() + ' ' + message.content.toLowerCase() + '\n';	    
 	    fs.appendFileSync('ayudas_elisa.txt', output, (err) => {
 		if (err) throw err;
 	    });
+	    message.channel.send('Gracias por contarme; he registrado la ayuda.');	    
 	}
     }
     return;
