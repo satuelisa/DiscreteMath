@@ -26,7 +26,7 @@ const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejem
 	      'twitch': 'https://twitch.tv/satuelisa',
 	      'stream': 'https://twitch.tv/satuelisa',
 	      'clase': 'https://twitch.tv/satuelisa',
-	      't1': 'https://youtu.be/364guooLVX0',
+	      't1': 'https://youtu.be/N3f9Oingj8I',
 	      't3': 'https://youtu.be/VzUhE8NVf_s', 
 	      't4': 'https://youtu.be/Qvou3MXscl4',
 	      't2p1': 'https://youtu.be/Wsp_N6U8Ds8',
@@ -75,7 +75,9 @@ const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejem
 	      'gcd': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/funciones/gcd.png',
 	      'fibo': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/fibo/fibo.gif',
 	      'pal': 'https://github.com/satuelisa/DiscreteMath/blob/master/homework/palindrome.py',
-	      'primo': 'https://github.com/satuelisa/DiscreteMath/blob/master/homework/prime.py', 
+	      'primo': 'https://github.com/satuelisa/DiscreteMath/blob/master/homework/prime.py',
+	      'primera': 'https://elisa.dyndns-web.com/teaching/mat/discretas/guion/primera.html',
+	      'regular': 'https://elisa.dyndns-web.com/teaching/mat/discretas/guion/regular.html',
 	      'pascal': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/combinat/pascal.png',
 	      'permut': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/combinat/permutaciones.png',
 	      'coef': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/combinat/coef_binomial.png',
@@ -311,6 +313,13 @@ function process(message) {
             var mid = text.indexOf(",");
             var n = text.substring(start + 1, mid);
             var b = parseInt(text.substring(mid + 1, end));
+	    for (var i = 0; i < n.length; i++) {
+		let j = parseInt(n.charAt(i));
+		if (isNaN(j) || j >= b) {
+		    channel.send('La cadena ' + n + ' no es un número valido en base ' + b + '.');
+		    return;
+		}
+	    }
 	    var conv = parseInt(n, b);
 	    if (!isNaN(conv)) {
 		channel.send('El valor decimal de ' + n + ' en base ' + b + ' es ' + conv + '.');
