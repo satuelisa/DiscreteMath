@@ -29,9 +29,9 @@ const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejem
 	      't1': 'https://youtu.be/N3f9Oingj8I',
 	      't3': 'https://youtu.be/VzUhE8NVf_s', 
 	      't4': 'https://youtu.be/Qvou3MXscl4',
-	      't2p1': 'https://youtu.be/Wsp_N6U8Ds8',
-	      't2p2': 'https://youtu.be/Wsp_N6U8Ds8',
-	      't2p3': 'https://youtu.be/LSTc4I5BgJY',
+	      't2p1': 'https://youtu.be/omzBbOf8U34',
+	      't2p2': 'https://youtu.be/omzBbOf8U34',
+	      't2p3': 'https://youtu.be/Hwlezy-BFfc',
 	      't2p4': 'https://youtu.be/BgagDXHco5c',
 	      't2p5': 'https://youtu.be/BgagDXHco5c', 
 	      't5p1': 'https://youtu.be/Dh7YI4u_1AU',
@@ -314,7 +314,7 @@ function process(message) {
             var n = text.substring(start + 1, mid);
             var b = parseInt(text.substring(mid + 1, end));
 	    for (var i = 0; i < n.length; i++) {
-		let j = parseInt(n.charAt(i));
+		let j = parseInt(n.charAt(i), b);
 		if (isNaN(j) || j >= b) {
 		    channel.send('La cadena ' + n + ' no es un número valido en base ' + b + '.');
 		    return;
