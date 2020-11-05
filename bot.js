@@ -1,17 +1,20 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const fs = require('fs');
-let servidor = undefined;
-let rolMD = undefined;
 let cards = undefined;
 let max = undefined;
 
 'use strict';
 
+const rol = 'discretas';
+let servidor = undefined;
+let rID = undefined;
 client.on("ready", () => {
     servidor = client.guilds.cache.get('458343272520351768');
-    rolMD = servidor.roles.cache.find(role => role.name === "discretas");
-    console.log(servidor.name + ' / ' + rolMD.name + ' ' + rolMD.members.size);
+    let rMD = servidor.roles.cache.find(r => r.name === rol);
+    rID = rMD.id;
+    let count = servidor.members.cache.filter(m => m.roles.cache.find(r => r.id === rID)).size; // NO SIRVE, sale cero
+    console.log(servidor.name + ' / ' + rMD.name + ' = ' + rID  + ' ' + count);
     let data = fs.readFileSync('cards.json');
     cards = JSON.parse(data);
     max = cards.length;
@@ -25,7 +28,12 @@ const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejem
 	      'youtube': 'https://www.youtube.com/playlist?list=PLSxaeMB7D949M8LiimQF_XQEGWptVJk5o',
 	      'twitch': 'https://twitch.tv/satuelisa',
 	      'stream': 'https://twitch.tv/satuelisa',
+	      'git': 'https://github.com/satuelisa/DiscreteMath',
 	      'clase': 'https://twitch.tv/satuelisa',
+	      'curso': 'https://elisa.dyndns-web.com/teaching/mat/discretas/',
+	      'agenda': 'https://elisa.dyndns-web.com/teaching/mat/discretas/',
+	      'pagina': 'https://elisa.dyndns-web.com/teaching/mat/discretas/',
+	      'página': 'https://elisa.dyndns-web.com/teaching/mat/discretas/',
 	      't1': 'https://youtu.be/N3f9Oingj8I',
 	      't3': 'https://youtu.be/VzUhE8NVf_s', 
 	      't4': 'https://youtu.be/Qvou3MXscl4',
@@ -42,8 +50,9 @@ const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejem
 	      'ayuda': 'Para registrar una ayuda, escribe **!mvp**, *menciona* el usuario (con \@) quien te ayudó y en qué cosa',
 	      't2': 'La tarea 2 tiene videos por pregunta; pregúntame por t2p1, por ejemplo.',
 	      't5': 'La tarea 5 tiene videos por pregunta; pregúntame por t5p1, por ejemplo.',
-	      'medio curso': 'https://youtu.be/l9ta-9uycT0',
-	      'mc': 'https://youtu.be/l9ta-9uycT0',
+	      'medio curso': 'https://youtu.be/NWah4dKNL0M',
+	      'mediocurso': 'https://youtu.be/NWah4dKNL0M',
+	      'mc': 'https://youtu.be/NWah4dKNL0M',
 	      'ordinario': 'El examen ordinario tiene videos por tema; pregúntame por og (grafos), oa (árboles binarios) o op (problemas)',
 	      'mero bin': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/bases/binario.png',
 	      'rbol bin': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/arboles/arboles.html',
@@ -78,6 +87,9 @@ const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejem
 	      'primo': 'https://github.com/satuelisa/DiscreteMath/blob/master/homework/prime.py',
 	      'primera': 'https://elisa.dyndns-web.com/teaching/mat/discretas/guion/primera.html',
 	      'regular': 'https://elisa.dyndns-web.com/teaching/mat/discretas/guion/regular.html',
+	      'regreso': 'https://elisa.dyndns-web.com/teaching/mat/discretas/guion/regreso.html',
+	      'ultima': 'https://elisa.dyndns-web.com/teaching/mat/discretas/guion/ultima.html',
+	      'última': 'https://elisa.dyndns-web.com/teaching/mat/discretas/guion/ultima.html', 
 	      'pascal': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/combinat/pascal.png',
 	      'permut': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/combinat/permutaciones.png',
 	      'coef': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/combinat/coef_binomial.png',
@@ -136,7 +148,8 @@ const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejem
 	      'proy': 'https://elisa.dyndns-web.com/teaching/mat/discretas/proyecto.html',
 	      'og': 'https://youtu.be/txpkuyFZRN8',
 	      'oa': 'https://youtu.be/WZPtmiUpLmg',
-	      'op': 'https://youtu.be/BXMbnwa7a1c'
+	      'op': 'https://youtu.be/BXMbnwa7a1c',
+	      'encuesta': 'https://elisa.dyndns-web.com/cuestionario.html'
 	     };
 
 const claves = Object.keys(data);
@@ -357,7 +370,7 @@ function process(message) {
 	    var b = parseInt(text.substring(mid + 1, end));	    
 	    channel.send('El residuo al dividir ' + a + ' entre ' + b + ' vale ' + a % b + '.');
 	} else {
-	    channel.send('Lamentablemente no sé calcular eso, pero con Python deberías lograrlo.' +
+~	    channel.send('Lamentablemente no sé calcular eso, pero con Python deberías lograrlo.' +
 			 ' Revisa los ejemplos en el material de estudio y pide ayuda a los demás si no te sale.');
 	}
 	return;
@@ -391,6 +404,7 @@ async function chat(message) {
 	return;
     }
     var usuario =  tag.split('#')[0];
+    message.author.send('¡Hola, ' + usuario + '!');
     var text = message.content.toLowerCase();
     if (text.includes("!reto")) {
 	sendCard(message.author);
@@ -398,17 +412,14 @@ async function chat(message) {
     }
     var digitos = /^\d+$/.test(text);
     if (digitos && text.length == 7) {
-	let m = servidor.member(message.author);
-	if (m.roles.cache.find(role => role.name === 'discretas')) {
-	    console.log('conozco a ' + tag)
-	} else {
-	    console.log(tag + ' es nuevo')
-	    try {
-		m.roles.add(rolMD);
-	    } catch(e) {
-		console.log(e);
-	    };
-	}
+	let member = client.users.cache.find(user => user.username == usuario);
+	console.log(member);
+	try { // asignar rol
+	    console.log('lo de roles no funciona ahora'); 
+	    // member.roles.add(rID); // NO SIRVE roles sale undefined
+	} catch(e) {
+	    console.log(e);
+	};
 	var actuales = fs.readFileSync('matr.dat').toString().trim().split('\n').filter(Boolean);
 	for (var i = 0; i < actuales.length; i++) {
 	    var campos = actuales[i].split(' ');
@@ -436,7 +447,7 @@ async function chat(message) {
 			    ". Ahora te puedo tomar asistencia cuando hables en #discretas del servidor Science.").catch(error => { console.log(error) });
     } else {
 	message.author.send('Hola, ' + usuario + '. Esperaba que me dijeras tu matrícula completa.' +
-			    ' Es lo único que hago por mensaje privado por el momento.').catch(error => { console.log(tag + ' no me escucha')});
+			    ' Eso y **!reto** son todo lo que hago por mensaje privado por el momento.').catch(error => { console.log(tag + ' no me escucha')});
     }
     return;
 }
