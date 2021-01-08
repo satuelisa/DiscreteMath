@@ -1,24 +1,32 @@
 const Discord = require("discord.js");
+
 const client = new Discord.Client();
+
 const fs = require('fs');
 let cards = undefined;
 let max = undefined;
+let sID = '458343272520351768';
+let members = undefined;
 
 'use strict';
 
-const rol = 'discretas';
+const rolD = 'discretas';
+const rolP = 'progra';
+const rolA = 'adaptativos';
 let servidor = undefined;
-let rID = undefined;
+let rMD = undefined;
+
+
 client.on("ready", () => {
-    servidor = client.guilds.cache.get('458343272520351768');
-    let rMD = servidor.roles.cache.find(r => r.name === rol);
-    rID = rMD.id;
-    let count = servidor.members.cache.filter(m => m.roles.cache.find(r => r.id === rID)).size; // NO SIRVE, sale cero
-    console.log(servidor.name + ' / ' + rMD.name + ' = ' + rID  + ' ' + count);
     let data = fs.readFileSync('cards.json');
     cards = JSON.parse(data);
     max = cards.length;
-    console.log(max + ' cards available');
+    console.log(max + ' cards available');    
+    servidor = client.guilds.cache.get(sID);
+    rMD = servidor.roles.cache.find(r => r.name === rolD);
+    rSA = servidor.roles.cache.find(r => r.name === rolA);
+    rPE = servidor.roles.cache.find(r => r.name === rolP);
+    console.log('Ready!');
 });
 
 const debugMode = true;
@@ -26,7 +34,7 @@ const debugMode = true;
 const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/logica/arboles.html',
 	      'video': 'https://www.youtube.com/playlist?list=PLSxaeMB7D949M8LiimQF_XQEGWptVJk5o',
 	      'youtube': 'https://www.youtube.com/playlist?list=PLSxaeMB7D949M8LiimQF_XQEGWptVJk5o',
-	      'twitch': 'https://twitch.tv/satuelisa',
+	      'twi': 'https://twitch.tv/satuelisa',
 	      'stream': 'https://twitch.tv/satuelisa',
 	      'git': 'https://github.com/satuelisa/DiscreteMath',
 	      'clase': 'https://twitch.tv/satuelisa',
@@ -42,8 +50,8 @@ const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejem
 	      't2p3': 'https://youtu.be/Hwlezy-BFfc',
 	      't2p4': 'https://youtu.be/BgagDXHco5c',
 	      't2p5': 'https://youtu.be/BgagDXHco5c', 
-	      't5p1': 'https://youtu.be/Dh7YI4u_1AU',
-	      't5p2': 'https://youtu.be/Dh7YI4u_1AU',
+	      't5p1': 'https://youtu.be/n7OyiyWGi0M',
+	      't5p2': 'https://youtu.be/n7OyiyWGi0M',
 	      't5p3': 'https://youtu.be/lJ0OiPKdcXg',
 	      't5p4': 'https://youtu.be/lJ0OiPKdcXg', 
 	      't5p5': 'https://youtu.be/ZTehJDpaqdU',
@@ -97,7 +105,8 @@ const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejem
 	      'subconjunto': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/combinat/subconjuntos.png',
 	      'binaria': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/arreglos/bbinaria.gif',
 	      'turing': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/logica/tm.gif',
-	      'distancia': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/algoritmos/editdist.gif',
+	      'distancia de edición': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/algoritmos/editdist.gif',
+	      'edici': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/algoritmos/editdist.gif',	      
 	      'complejidad': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/complejidad/complex.png',
 	      'algoritmos': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/complejidad/complex.png',
 	      'problemas': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/complejidad/complex.png',
@@ -195,13 +204,13 @@ function timestamp() {
     return '' + new Date();
 }
 
-async function asistencia(usuario) {
+async function asistencia(usuario, materia) {
     console.log(usuario);
     const matr = matricula(usuario);
     if (typeof matr === "undefined") {
 	return;
     } else {
-	fs.appendFileSync('asistencia.txt', matr + ' ' + timestamp() + '\n', (err) => {
+	fs.appendFileSync('asistencia.txt', matr + ' ' + materia + ' ' + timestamp() + '\n', (err) => {
 	    if (err) throw err;
 	});
     }
@@ -414,12 +423,6 @@ async function chat(message) {
     if (digitos && text.length == 7) {
 	let member = client.users.cache.find(user => user.username == usuario);
 	console.log(member);
-	try { // asignar rol
-	    console.log('lo de roles no funciona ahora'); 
-	    // member.roles.add(rID); // NO SIRVE roles sale undefined
-	} catch(e) {
-	    console.log(e);
-	};
 	var actuales = fs.readFileSync('matr.dat').toString().trim().split('\n').filter(Boolean);
 	for (var i = 0; i < actuales.length; i++) {
 	    var campos = actuales[i].split(' ');
@@ -444,7 +447,7 @@ async function chat(message) {
 	});
 	message.author.send('Gracias, ' + usuario +
 			    ", por decirme que tu matrícula es " + text +
-			    ". Ahora te puedo tomar asistencia cuando hables en #discretas del servidor Science.").catch(error => { console.log(error) });
+			    ". Ahora te puedo tomar asistencia cuando hables en el canal de las unidades en el servidor Science.").catch(error => { console.log(error) });
     } else {
 	message.author.send('Hola, ' + usuario + '. Esperaba que me dijeras tu matrícula completa.' +
 			    ' Eso y **!reto** son todo lo que hago por mensaje privado por el momento.').catch(error => { console.log(tag + ' no me escucha')});
@@ -463,13 +466,34 @@ client.on("message", (message) => {
     } else {
 	var channel = message.channel;
 	var text = message.content;
+	var user = message.author;
 	if (!channel.name.includes('discretas') &&
 	    !channel.name.includes('adaptativos') &&
+	    !channel.name.includes('progra') &&
 	    !channel.name.includes('proba') &&
 	    !channel.name.includes('simula')) { // ignore other channels
 	    return;
 	}
-	if (text.startsWith('!')) {
+	if (channel.name.includes('discretas')) {	
+            asistencia(message.author.tag, channel.name);
+	}
+	if (text.startsWith('!rol')) {
+	    let newRole = undefined;
+	    if (channel.name.includes('discretas')) {
+		newRole = rMD;
+	    } else if (channel.name.includes('adaptativos')) {
+		newRole = rSA;
+	    } else if (channel.name.includes('progra')) {
+		newRole = rPE;
+	    }
+	    console.log(newRole);
+	    if (newRole.id) {
+		message.guild.member(user).roles.add(newRole);
+		message.channel.send('Has sido asignado el rol ' + newRole.name + ', ' + message.author.tag + '.');
+	    } else {
+		message.channel.send('La asignación de roles solamente funciona en los canales de las UA de licenciatura');
+	    }
+	} else if (text.startsWith('!')) {
 	    if (text.startsWith('!poll')) {
 		poll(message.channel);
 	    } else if (channel.name.includes('discretas')) {
@@ -482,9 +506,6 @@ client.on("message", (message) => {
 		message.react('😕');
 		message.react('😴');
 	    }
-	}
-	if (channel.name.includes('discretas')) {	
-            asistencia(message.author.tag);
 	}
     }
 });
