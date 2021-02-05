@@ -40,8 +40,11 @@ const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejem
 	      'clase': 'https://twitch.tv/satuelisa',
 	      'curso': 'https://elisa.dyndns-web.com/teaching/mat/discretas/',
 	      'agenda': 'https://elisa.dyndns-web.com/teaching/mat/discretas/',
-	      'pagina': 'https://elisa.dyndns-web.com/teaching/mat/discretas/',
-	      'página': 'https://elisa.dyndns-web.com/teaching/mat/discretas/',
+	      'web': 'https://elisa.dyndns-web.com/teaching/',	      
+	      'pagina': 'https://elisa.dyndns-web.com/teaching/',
+	      'página': 'https://elisa.dyndns-web.com/teaching//',
+	      'discretas': 'https://elisa.dyndns-web.com/teaching/mat/discretas/',
+	      'progra': 'https://elisa.dyndns-web.com/teaching/prog/ansic/estructurada.html',
 	      't1': 'https://youtu.be/N3f9Oingj8I',
 	      't3': 'https://youtu.be/VzUhE8NVf_s', 
 	      't4': 'https://youtu.be/Qvou3MXscl4',
@@ -158,7 +161,8 @@ const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejem
 	      'og': 'https://youtu.be/txpkuyFZRN8',
 	      'oa': 'https://youtu.be/WZPtmiUpLmg',
 	      'op': 'https://youtu.be/BXMbnwa7a1c',
-	      'encuesta': 'https://elisa.dyndns-web.com/cuestionario.html'
+	      'encuesta': 'https://elisa.dyndns-web.com/cuestionario.html',
+	      'cuestionario': 'https://elisa.dyndns-web.com/cuestionario.html'
 	     };
 
 const claves = Object.keys(data);
@@ -216,7 +220,7 @@ async function asistencia(usuario, materia) {
     }
 }
 
-async function mvp(message) {
+async function mvp(message, topic) {
     console.log('Buscando matricula para', message.author.tag);
     const recipiente = matricula(message.author.tag);
     if (typeof recipiente === "undefined") {
@@ -236,7 +240,7 @@ async function mvp(message) {
 		message.channel.send('La auto-ayuda no cuenta para comisiones.');
 		return;
 	    }
-	    let output = registro + ' ' + recipiente + ' ' + timestamp() + ' ' + message.content.toLowerCase() + '\n';	    
+	    let output = registro + ' ' + recipiente + ' ' + topic + ' ' + timestamp() + ' ' + message.content.toLowerCase() + '\n';	    
 	    fs.appendFileSync('ayudas_elisa.txt', output, (err) => {
 		if (err) throw err;
 	    });
@@ -251,11 +255,11 @@ async function mvp(message) {
 function process(message) {
     var channel = message.channel;
     var text = message.content.toLowerCase();
-    if (!channel.name.includes('discretas')) { // ignore other channels
+    if (!channel.name.includes('discretas') && !channel.name.includes('progra')) { // ignore other channels
 	return;
     }
     if (text.startsWith('!mvp')) {
-	mvp(message);
+	mvp(message, channel.name);
 	return;
     } else if (text.startsWith('!reto')) {
 	sendCard(channel);
@@ -455,8 +459,8 @@ async function chat(message) {
     return;
 }
 
-async function poll(channel) {
-    channel.send('**Encuesta instantánea**\n\nOcupo saber *qué tan bien entiendes* de qué estamos hablando en clase en este momento.\n\nPor favor **reacciona** a este mensaje\ncon :white_check_mark: si vas bien\ncon :question: si tienes dudas\ncon :confused: si se te hace que no entiendes pero tampoco sabes qué preguntar\ncon :sleeping: si no estabas en realidad prestando atención\n...');
+async function poll(channel, title) {
+    channel.send('*Encuesta instantánea*' + title + '\n\nOcupo saber _qué tan bien entiendes_ de qué estamos hablando en el stream de la clase en este momento.\n\nPor favor **reacciona** a este mensaje\ncon :white_check_mark: si vas bien\ncon :question: si tienes dudas (y luego escribe tu pregunta)\ncon :confused: si se te hace que no entiendes pero tampoco sabes qué preguntar\ncon :sleeping: si no estabas en realidad prestando atención\n...');
 }
 
 
@@ -471,6 +475,7 @@ client.on("message", (message) => {
 	    !channel.name.includes('adaptativos') &&
 	    !channel.name.includes('progra') &&
 	    !channel.name.includes('proba') &&
+	    !channel.name.includes('tesis') &&
 	    !channel.name.includes('simula')) { // ignore other channels
 	    return;
 	}
@@ -489,13 +494,17 @@ client.on("message", (message) => {
 	    console.log(newRole);
 	    if (newRole.id) {
 		message.guild.member(user).roles.add(newRole);
-		message.channel.send('Has sido asignado el rol ' + newRole.name + ', ' + message.author.tag + '.');
+		message.channel.send('Has sido asignado el rol **' + newRole.name + '**, ' + message.author.toString() + '.');
 	    } else {
 		message.channel.send('La asignación de roles solamente funciona en los canales de las UA de licenciatura');
 	    }
 	} else if (text.startsWith('!')) {
 	    if (text.startsWith('!poll')) {
-		poll(message.channel);
+		let title = "";
+		if (text.length > 5) {
+		    title = ': **' + text.substring(5) + '**';
+		}
+		poll(message.channel, title);
 	    } else if (channel.name.includes('discretas')) {
 		process(message);
 	    }
