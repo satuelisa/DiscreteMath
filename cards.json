@@ -1,0 +1,2027 @@
+[
+    {
+	"front":"número primo",
+	"back":"entero positivo divisible solamente entre uno y si mismo",
+	"unit":"1"
+    },
+    {
+	"front":"756a4c8fcc05ef21703367ba54428713.jpg",
+	"back":"par",
+	"unit":"1"
+    },
+    {
+	"front":"5695753eced186309be0bf5cdfd574ae.jpg",
+	"back":"impar",
+	"unit":"1"
+    },
+    {
+	"front":"e69e5fef658a24d3e33faba6f5f90d85.jpg",
+	"back":"XOR",
+	"unit":"1"
+    },
+    {
+	"front":"ea1bae9158c41b76bb2e78db30174219.jpg",
+	"back":"NOT",
+	"unit":"1"
+    },
+    {
+	"front":"c98b7ff28de29a4d86788fa4514832f1.jpg",
+	"back":"AND",
+	"unit":"1"
+    },
+    {
+	"front":"14fdcda3a0915b777cd1ddb9d5c4c70c.jpg",
+	"back":"OR",
+	"unit":"1"
+    },
+    {
+	"front":"c525848a2ea336e7aa11031c80fce732.jpg",
+	"back":"implicación",
+	"unit":"1"
+    },
+    {
+	"front":"09737a2ea198f6096c0250c6b8320346.jpg",
+	"back":"equivalencia",
+	"unit":"1"
+    },
+    {
+	"front":"6703c9b00b714090bfd8ce963edba235.jpg",
+	"back":"universo",
+	"unit":"1"
+    },
+    {
+	"front":"277525752dc7bd3a27107b24c62d903e.jpg",
+	"back":"conjunto",
+	"unit":"1"              
+    },
+    {
+	"front":"86d44735c37c978c4131889d9a4fe901.jpg",
+	"back":"complemento de A",
+	"unit":"1"              
+    },
+    {
+	"front":"e99e69032073587537a73a687e8ee3a8.jpg",
+	"back":"complemento de B",
+	"unit":"1"              
+    },
+    {
+	"front":"418fe176502debaf5ec581685e8d3643.jpg",
+	"back":"A ⋂ B",
+	"unit":"1"              
+    },
+    {
+	"front":"504ccc4de7eb1874b7f49c87f4bd3c21.jpg",
+	"back":"A ⋃ B",
+	"unit":"1"              
+    },
+    {
+	"front":"d182735eb2a244e412aa494364bb0f18.jpg",
+	"back":"A \\ B",
+	"unit":"1"              
+    },
+    {
+	"front":"26606620dc3272bae540a93a0e79b0be.jpg",
+	"back":"B \\ A",
+	"unit":"1"              
+    },
+    {
+	"front":"20234dc27260f62139d14ab582506630.jpg",
+	"back":"elemento en posición con índice *i*",
+	"unit":"2"              
+    },
+    {
+	"front":"e573c361676fc337850db4b4e05d576e.jpg",
+	"back":"dos en binario",
+	"unit":"1"              
+    },
+    {
+	"front":"3ba02fd7f0e402c475cd63b12579110b.jpg",
+	"back":"tres en binario",
+	"unit":"1"              
+    },
+    {
+	"front":"7b77f521a47453b44fa75ff7a3a8f083.jpg",
+	"back":"cuatro en binario",
+	"unit":"1"              
+    },
+    {
+	"front":"139cb3a677390730d4d7aa8c965b2580.jpg",
+	"back":"cinco en binario",
+	"unit":"1"              
+    },
+    {
+	"front":"6b221abc66c73d052b3c6f9f680461e2.jpg",
+	"back":"seis en binario",
+	"unit":"1"              
+    },
+    {
+	"front":"4721a894c8a853c59b535bede182d3b3.jpg",
+	"back":"siete en binario",
+	"unit":"1"              
+    },
+    {
+	"front":"dee52b681a368e933d2f0de49a5acf99.jpg",
+	"back":"ocho en binario",
+	"unit":"1"              
+    },
+    {
+	"front":"2f7ba798c9f4f646e7012e3b9e6401a2.jpg",
+	"back":"nueve en binario",
+	"unit":"1"              
+    },
+    {
+	"front":"ab20a7c73f060f3dd1c1d563a34b17a0.jpg",
+	"back":"diez en binario",
+	"unit":"1"                     
+    },
+    {
+	"front":"0d591e3001d3c8b8320216621ab85aa0.jpg",
+	"back":"once en binario",
+	"unit":"1"              
+    },
+    {
+	"front":"adebf4f59e3b415eac34997f44e2c460.jpg",
+	"back":"doce en binario",
+	"unit":"1"              
+    },
+    {
+	"front":"f5a41794a57062527c4d441c64f39b18.jpg",
+	"back":"trece en binario",
+	"unit":"1"              
+    },
+    {
+	"front":"9ffcccba6a450d205cdd971f108c4cd2.jpg",
+	"back":"catorce en binario",
+	"unit":"1"              
+    },
+    {
+	"front":"bf3b06da931235770fd329806aebceec.jpg",
+	"back":"dieciséis en binario",
+	"unit":"1" 
+    },
+    {
+	"front":"9bea5c4dad9d325e7400965990303c1c.jpg",
+	"back":"quince en binario",
+	"unit":"1" 
+    },
+    {
+	"front":"7a6368da5b44c1bdab0e77eb1771532c.jpg",
+	"back":"ocho en octal",
+	"unit":"1" 
+    },
+    {
+	"front":"1b309ccd6354c7a9a98e02829e721358.jpg",
+	"back":"nueve en octal",
+	"unit":"1" 	   
+    },
+    {
+	"front":"975cc83869b7bf2fae1dba8f462175b2.jpg",
+	"back":"diez en octal",
+	"unit":"1"        
+    },
+    {
+	"front":"9c835708da48caccf5a71f3e14e0a05d.jpg",
+	"back":"diez en hexadecimal",
+	"unit":"1" 
+    },
+    {
+	"front":"17e37c1fc3e5e04c2a53acdc9d7ab6c9.jpg",
+	"back":"once en hexadecimal",
+	"unit":"1" 
+    },
+    {
+	"front":"cc14f71a049ef86af2e1f04fd11ffdbb.jpg",
+	"back":"doce en hexadecimal",
+	"unit":"1" 
+    },
+    {
+	"front":"59297983c75ab0180b5bdafec4e915d8.jpg",
+	"back":"trece en hexadecimal",
+	"unit":"1" 
+    },
+    {
+	"front":"6e90b3dc9cc66c6fd6eefe11c0f7ccf2.jpg",
+	"back":"catorce en hexadecimal",
+	"unit":"1" 
+    },
+    {
+	"front":"888749eef670f1855a1311cf16a853dd.jpg",
+	"back":"quince en hexadecimal",
+	"unit":"1" 
+    },
+    {
+	"front":"b946a37fd86aec5b962fb2bb98b43f68.jpg",
+	"back":"dieciséis en hexadecimal",
+	"unit":"1" 
+    },
+    {
+	"front":"4d4a848b5b59aff9e25a65c42e07951b.jpg",
+	"back":"diecisiete en hexadecimal",
+	"unit":"1" 
+    },
+    {
+	"front":"90e81330e866fd848868104e155b2cd3.jpg",
+	"back":"dieciocho en hexadecimal",
+	"unit":"1"        
+    },
+    {
+	"front":"3b6611307eb5cc10cb905cbed5820310.jpg",
+	"back":"diecinueve en hexadecimal",
+	"unit":"1"        
+    },
+    {
+	"front":"b4eee9f9094654acab35ed192ba2cb0f.jpg",
+	"back":"veinte en hexadecimal",
+	"unit":"1"        
+    },
+    {
+	"front":"904b72330cedbb77632a4fbbbed57f7d.jpg",
+	"back":"dieciséis en base veinte",
+	"unit":"1" 
+    },
+    {
+	"front":"a79d37cfa8886421c4a63ab5f749c9cc.jpg",
+	"back":"diecisiete en base veinte",
+	"unit":"1" 
+    },
+    {
+	"front":"5065cf59897ae440f97256b3c6201e63.jpg",
+	"back":"1 como potencia de dos",
+	"unit":"1"        
+    },
+    {
+	"front":"39f430b6d213356ca87605666ce5c2cf.jpg",
+	"back":"2 como potencia de dos",
+	"unit":"1" 
+    },
+    {
+	"front":"c49dc5199a23afbe8278ff07b705618a.jpg",
+	"back":"4 como potencia de dos",
+	"unit":"1" 
+    },
+    {
+	"front":"c3e54df935e8fb75776d8d207ba7bbe6.jpg",
+	"back":"8 como potencia de dos",
+	"unit":"1" 
+    },
+    {
+	"front":"e27a79ad244f7a2aac58177e4df22bf9.jpg",
+	"back":"16 como potencia de dos",
+	"unit":"1" 
+    },
+    {
+	"front":"ab2524ed2c1496c4e1a748349e1d6703.jpg",
+	"back":"32 como potencia de dos",
+	"unit":"1" 
+    },
+    {
+	"front":"94c70dc7888936ca4832d3d70dabb4cb.jpg",
+	"back":"64 como potencia de dos",
+	"unit":"1" 
+    },
+    {
+	"front":"2340dffd5d2a92febfc3293549666921.jpg",
+	"back":"128 como potencia de dos",
+	"unit":"1" 
+    },
+    {
+	"front":"6929b9b53beac58d68f3daedcefd446b.jpg",
+	"back":"256 como potencia de dos",
+	"unit":"1" 
+    },
+    {
+	"front":"eef2b1abe0060964395dd78e767656fc.jpg",
+	"back":"512 como potencia de dos",
+	"unit":"1" 
+    },
+    {
+	"front":"574f15bb51482662e9a4743fbb32509a.jpg",
+	"back":"1024 como potencia de dos",
+	"unit":"1" 
+    },
+    {
+	"front":"9abe806b0ff06454c6ac3edfff5884ad.jpg",
+	"back":"2048 como potencia de dos",
+	"unit":"1" 
+    },
+    {
+	"front":"bf7792d88dc27ebe13d3ad87ceaadf32.jpg",
+	"back":"4096 como potencia de dos",
+	"unit":"1"        
+    },
+    {
+	"front":"#ff0000",
+	"back":"rojo en RGB",
+	"unit":"1" 
+    },
+    {
+	"front":"#00ff00",
+	"back":"verde en RGB",
+	"unit":"1" 
+    },
+    {
+	"front":"#0000ff",
+	"back":"azul en RGB",
+	"unit":"1" 
+    },
+    {
+	"front":"#ffff00",
+	"back":"amarillo en RGB",
+	"unit":"1"        
+    },
+    {
+	"front":"#ff00ff",
+	"back":"magenta en RGB",
+	"unit":"1" 
+    },
+    {
+	"front":"#00ffff",
+	"back":"cian en RGB",
+	"unit":"1" 
+    },
+    {
+	"front":"#000000",
+	"back":"negro en RGB",
+	"unit":"1" 
+    },
+    {
+	"front":"#ffffff",
+	"back":"blanco en RGB",
+	"unit":"1" 
+    },
+    {
+	"front":"#e0e0e0",
+	"back":"gris claro en RGB",
+	"unit":"1" 
+    },
+    {
+	"front":"#606060",
+	"back":"gris oscuro en RGB",
+	"unit":"1" 
+    },
+    {
+	"front":"#6600cc",
+	"back":"morado en RGB",
+	"unit":"1" 
+    },
+    {
+	"front":"#ff9933",
+	"back":"naranja en RGB",
+	"unit":"1" 
+    },
+    {
+	"front":"#663300",
+	"back":"café en RGB",
+	"unit":"1" 
+    },
+    {
+	"front":"#ff99ff",
+	"back":"rosa en RGB",
+	"unit":"1" 
+    },
+    {
+	"front":"precedencia",
+	"back":"orden de evaluación de operadores",
+	"unit":"1" 
+    },
+    {
+	"front":"baec56a4b1b5103c726188ff415e4063.jpg",
+	"back":"árbol de decisión",
+	"unit":"1" 
+    },
+    {
+	"front":"c7a24f1446ff9b7e968efd1318be83f4.jpg",
+	"back":"logaritmo de uno es cero en cualquier base",
+	"unit":"1" 
+    },
+    {
+	"front":"5004ffd57da7630cb9738531afda4be7.jpg",
+	"back":"dos al cúbico es ocho",
+	"unit":"1" 
+    },
+    {
+	"front":"e9edf90a27d32e49156067262e187859.jpg",
+	"back":"tres elevado a cuatro es 81",
+	"unit":"1" 
+    },
+    {
+	"front":"56fd9e902e7c4e49cb47c78426b2281c.jpg",
+	"back":"diez al cuadrado es cien",
+	"unit":"1" 
+    },
+    {
+	"front":"máximo",
+	"back":"no existe ninguno otro que sea mayor",
+	"unit":"1"        
+    },
+    {
+	"front":"mínimo",
+	"back":"no existe ninguno otro que sea menor",
+	"unit":"1"        
+    },
+    {
+	"front":"maximal",
+	"back":"no se le puede agregar elementos",
+	"unit":"3" 
+    },
+    {
+	"front":"minimal",
+	"back":"no se le puede quitar elementos",
+	"unit":"3"        
+    },
+    {
+	"front":"fuente",
+	"back":"vértice inicial de un flujo",
+	"unit":"3" 
+    },
+    {
+	"front":"sumidero",
+	"back":"vértice destino de un flujo",
+	"unit":"3" 
+    },
+    {
+	"front":"bisección",
+	"back":"división en dos partes",
+	"unit":"3" 
+    },
+    {
+	"front":"óptimo",
+	"back":"mejor posible",
+	"unit":"3" 
+    },
+    {
+	"front":"factible",
+	"back":"respeta restricciones",
+	"unit":"3"        
+    },
+    {
+	"front":"búsqueda",
+	"back":"una serie de pasos para determinar la presencia de un elemento",
+	"unit":"3" 
+    },
+    {
+	"front":"recorrido",
+	"back":"una serie de pasos para visitar a todos los elementos",
+	"unit":"3" 
+    },
+    {
+	"front":"distancia de edición",
+	"back":"el costo total para convertir una palabra en otra",
+	"unit":"3" 
+    },
+    {
+	"front":"problema de la mochila",
+	"back":"elegir los objetos de mayor valor total respetando la capacidad",
+	"unit":"3" 
+    },
+    {
+	"front":"805ba2287f8b416017f6cc8fc50f47a7.jpg",
+	"back":"restricción de capacidad",
+	"unit":"3" 
+    },
+    {
+	"front":"9adb393e455b9fa2deaef6ab6381a206.jpg",
+	"back":"densidad",
+	"unit":"3" 
+    },
+    {
+	"front":"32d0e15f9f710ce3ef3a19d5353e352c.jpg",
+	"back":"densidad",
+	"unit":"3" 
+    },
+    {
+	"front":"d0e0d73fd565cf2a507d17673c3cbd68.jpg",
+	"back":"diámetro",
+	"unit":"3" 
+    },
+    {
+	"front":"932a5fa0926ce9e62d5b87d4ddb25938.jpg",
+	"back":"grado promedio",
+	"unit":"3" 
+    },
+    {
+	"front":"89324a2e9fdd7b52738e4e1df34fd042.jpg",
+	"back":"arista no dirigida",
+	"unit":"3" 
+    },
+    {
+	"front":"d930a75ff4f47d570082644f5f9419c6.jpg",
+	"back":"arista dirigida",
+	"unit":"3" 
+    },
+    {
+	"front":"d6901a56c9fd8efde334e4b2d1386e7f.jpg",
+	"back":"vértice",
+	"unit":"3" 
+    },
+    {
+	"front":"bf42ebe64298ed2876ba71eee3e30b0f.jpg",
+	"back":"vecinos",
+	"unit":"3" 
+    },
+    {
+	"front":"bc3cfd3b3d1db3d3bfbc83e1dd4130b7.jpg",
+	"back":"grado",
+	"unit":"3" 
+    },
+    {
+	"front":"4998d6310da68b63a896877ac5664e46.jpg",
+	"back":"grado de entrada",
+	"unit":"3" 
+    },
+    {
+	"front":"7cc01a20d282f1a13d3b00736c81ad08.jpg",
+	"back":"grado de salida",
+	"unit":"3" 
+    },
+    {
+	"front":"0a185dea5d84afe305c24743a375e676.jpg",
+	"back":"matriz de adyacencia",
+	"unit":"3" 
+    },
+    {
+	"front":"9e2d411e50e25ade993b2b1c0f9426ff.jpg",
+	"back":"matriz de distancias",
+	"unit":"3" 
+    },
+    {
+	"front":"9ade5d0af045e75edb775cd7457fe7b5.jpg",
+	"back":"diámetro",
+	"unit":"3" 
+    },
+    {
+	"front":"b2c0d825e07c47574d948398e223b015.jpg",
+	"back":"camino entre dos vértices",
+	"unit":"3" 
+    },
+    {
+	"front":"4b5d96bcdbb807a81385579379277799.jpg",
+	"back":"camino más corto entre dos vértices",
+	"unit":"3"        
+    },
+    {
+	"front":"a583add040e61e14a04b82d854ff783b.jpg",
+	"back":"multigrafo",
+	"unit":"3" 
+    },
+    {
+	"front":"792c9d30dd14972cef5d38ffaead7e8b.jpg",
+	"back":"grafo ponderado",
+	"unit":"3" 
+    },
+    {
+	"front":"d0f966c8c337bd301dfbd7e0f7ca4e46.jpg",
+	"back":"árbol de expansión mínima (MST)",
+	"unit":"3" 
+    },
+    {
+	"front":"dd2d0c1574f9cdbe8f25f2447d5ec072.jpg",
+	"back":"recorrido por profundidad (DFS)",
+	"unit":"3" 
+    },
+    {
+	"front":"16abba457a354c1091eeb6cb255ae57e.jpg",
+	"back":"bucle",
+	"unit":"3" 
+    },
+    {
+	"front":"58f6f54fcb786027359215fb5c44a69a.jpg",
+	"back":"camarilla de dos vértices",
+	"unit":"3" 
+    },
+    {
+	"front":"c86faffc41c1196814782fcdbbd9f13e.jpg",
+	"back":"camarilla de tres vértices",
+	"unit":"3" 
+    },
+    {
+	"front":"cd7f0e13538def7197784562a298e946.jpg",
+	"back":"camarilla de cuatro vértices",
+	"unit":"3" 
+    },
+    {
+	"front":"8942622727c62d0851cc771573111275.jpg",
+	"back":"camarilla de cinco vértices",
+	"unit":"3" 
+    },
+    {
+	"front":"d47bc1e7734358da876dffd402606ddc.jpg",
+	"back":"conjunto independiente de dos vértices",
+	"unit":"3" 
+    },
+    {
+	"front":"13d8b47d85ecb8ae67c59e2c16f0117e.jpg",
+	"back":"conjunto independiente de tres vértices",
+	"unit":"3" 
+    },
+    {
+	"front":"8afc93ca41097bf3b1fc4a1c6fe1daf5.jpg",
+	"back":"subgrafo inducido",
+	"unit":"3" 
+    },
+    {
+	"front":"f389bae644fda88923aee7dcc1dfc822.jpg",
+	"back":"algoritmo",
+	"unit":"3" 
+    },
+    {
+	"front":"73e7f7363eaffd959494c212c0a12da7.jpg",
+	"back":"entrada",
+	"unit":"3" 
+    },
+    {
+	"front":"cb1adf53cff6621efbc28bfaecbc1125.jpg",
+	"back":"salida",
+	"unit":"3" 
+    },
+    {
+	"front":"a083893ab9d6bd4420d7ae98d41d34d2.jpg",
+	"back":"ciclo de largo cuatro",
+	"unit":"3" 
+    },
+    {
+	"front":"d708352ba9edf03296244af396e76d9d.jpg",
+	"back":"desconexo",
+	"unit":"3" 
+    },
+    {
+	"front":"e9057604e3fdcf19501bc3a04eec7d79.jpg",
+	"back":"cubierta de vértices",
+	"unit":"3" 
+    },
+    {
+	"front":"2e58fc7935b79e3ba2b29d021a3b9502.jpg",
+	"back":"cubierta de aristas",
+	"unit":"3" 
+    },
+    {
+	"front":"2126a3f86cdad75104458277ad3eb6f7.jpg",
+	"back":"árbol",
+	"unit":"3"        
+    },
+    {
+	"front":"943e9b7b3faeacf063ece68a843a4260.jpg",
+	"back":"raíz",
+	"unit":"3" 
+    },
+    {
+	"front":"6ae608a1e0cc330c2762eaf054d78838.jpg",
+	"back":"hojas",
+	"unit":"3" 
+    },
+    {
+	"front":"c134d6d4cfba1cb143ff5e57c7dc4069.jpg",
+	"back":"nodos internos",
+	"unit":"3" 
+    },
+    {
+	"front":"2994a3518d21d06e88c729eb07b5e20f.jpg",
+	"back":"altura de cada nodo",
+	"unit":"3" 
+    },
+    {
+	"front":"3d7648a7f6fa5a023c2ab3001149700c.jpg",
+	"back":"profundidad de cada nodo",
+	"unit":"3" 
+    },
+    {
+	"front":"898d9149bea0771f10da746eac7d77b7.jpg",
+	"back":"búsqueda fracasada",
+        "unit":"3" 
+    },
+    {
+	"front":"e32d3cc9052a29d95f1f66308a3afe4e.jpg",
+	"back":"búsqueda exitosa",
+	"unit":"3" 
+    },
+    {
+	"front":"cb400cc9d8a83a43ce416f438b5879bb.jpg",
+	"back":"distancia de edición",
+	"unit":"3" 
+    },
+    {
+	"front":"d799e1670c14a2ef7cb310cf970f5f89.jpg",
+	"back":"problema de la mochila",
+	"unit":"3" 
+    },
+    {
+	"front":"199673bf5fb3c422740d8d71a0e35d9f.jpg",
+	"back":"fuente",
+        "unit":"3" 
+    },
+    {
+	"front":"159dd0226f55fb54d3ef87486e5a137c.jpg",
+	"back":"sumidero",
+	"unit":"3" 
+    },
+    {
+	"front":"e07765414e03a9f3ab4fcbd109604c33.jpg",
+	"back":"flujo factible",
+	"unit":"3" 
+    },
+    {
+	"front":"d627d11644f67cc636df43b6890ba7cb.jpg",
+	"back":"niveles de flujo de las aristas",
+	"unit":"3" 
+    },
+    {
+	"front":"16a78b26f7f7a18a932de7eb98a2b05b.jpg",
+	"back":"capacidades de las aristas",
+	"unit":"3" 
+    },
+    {
+	"front":"árbol",
+	"back":"grafo simple conexo y acíclico",
+	"unit":"3" 
+    },
+    {
+	"front":"bósque",
+	"back":"grafo simple desconexo y acíclico",
+	"unit":"3" 
+    },
+    {
+	"front":"Floyd-Warshall",
+	"back":"algoritmo para calcular distancias",
+	"unit":"3" 
+    },
+    {
+	"front":"distancia",
+	"back":"largo del camino más corto",
+	"unit":"3" 
+    },
+    {
+	"front":"diámetro",
+	"back":"distancia máxima",
+	"unit":"3" 
+    },
+    {
+	"front":"camino",
+	"back":"secuencia de aristas consecutivas entre vértices",
+	"unit":"3" 
+    },
+    {
+	"front":"camino de Hamilton",
+	"back":"un camino que visita cada vértice exactamente una vez",
+	"unit":"3" 
+    },
+    {
+	"front":"ciclo de Hamilton",
+	"back":"un ciclo que visita cada vértice exactamente una vez",
+	"unit":"3" 
+    },
+    {
+	"front":"e435c7306d01256c415e3051379c4bb0.jpg",
+	"back":"ciclo (de Hamilton)",
+	"unit":"3" 
+    },
+    {
+	"front":"c920ac97c42abb471699f5b2c5e7956e.jpg",
+	"back":"lenguaje decidido con TM determinista",
+	"unit":"3" 
+    },
+    {
+	"front":"85104daabee593a7d919f92058c32af5.jpg",
+	"back":"lenguaje decidido con TM no determinista",
+	"unit":"3" 
+    },
+    {
+	"front":"21c3fd81f7bbdef14169505ad7606136.jpg",
+	"back":"lenguajes decididos en tiempo polinomial con TM determinista",
+	"unit":"3" 
+    },
+    {
+	"front":"ba113f607cf4d3bbdc8687639ce1040e.jpg",
+	"back":"lenguajes decididos en tiempo polinomial con TM no determinista",
+	"unit":"3" 
+    },
+    {
+	"front":"3202514b75b4e0b03ccba5d788a1efae.jpg",
+	"back":"ro",
+	"unit":"1" 
+    },
+    {
+	"front":"636a49a35ec25462c7f07dca90b42cd8.jpg",
+	"back":"enteros positivos",
+	"unit":"1" 
+    },
+    {
+	"front":"ccd3566db10ed62502f0ca32a0837fc6.jpg",
+	"back":"asintóticamente iguales",
+	"unit":"1" 
+    },
+    {
+	"front":"674293a92b720177517b85993b5b2d9a.jpg",
+	"back":"theta",
+	"unit":"1" 
+    },
+    {
+	"front":"TSP",
+	"back":"problema del viajante (traveling salesman problem)",
+	"unit":"3"        
+    },
+    {
+	"front":"439a641687f0c80aa7ba1bddc21622d3.jpg",
+	"back":"coloreo",
+	"unit":"3"        
+    },
+    {
+	"front":"KNAPSACK",
+	"back":"problema de la mochila",
+	"unit":"3"        
+    },
+    {
+	"front":"110f31d4b551618367913027602bfb3f.jpg",
+	"back":"camarilla",
+	"unit":"3"        
+    },
+    {
+	"front":"2211b36b63c6da922f76540837a7689e.jpg",
+	"back":"acoplamiento",
+	"unit":"3"        
+    },
+    {
+	"front":"9d4cf91ffdfd45abc5869f58c4ecc54a.jpg",
+	"back":"cubierta",
+	"unit":"3"        
+    },
+    {
+	"front":"Ford-Fulkerson",
+	"back":"algoritmo para flujo máximo",
+	"unit":"3"        
+    },
+    {
+	"front":"Prim & Kruskal",
+	"back":"algoritmos para MST",
+	"unit":"3"        
+    },
+    {
+	"front":"MST",
+	"back":"árbol de expansión mínima (minimum spanning tree)",
+	"unit":"3"        
+    },
+    {
+	"front":"6e3b27bbf303a72305c59481124279e5.jpg",
+	"back":"búsqueda binaria",
+	"unit":"3"        
+    },
+    {
+	"front":"e859f1ff4737e2ebac5d174c74a3192b.jpg",
+	"back":"pila",
+	"unit":"3"        
+    },
+    {
+	"front":"16720186641d4b70d24a3afd6496afdb.jpg",
+	"back":"cola",
+	"unit":"3"        
+    },
+    {
+	"front":"1f375d955eb91dcbc8f06ff944085491.jpg",
+	"back":"árbol binario",
+	"unit":"3"        
+    },
+    {
+	"front":"1662f7823388056b5f2f8638fa07fc90.jpg",
+	"back":"inserción",
+	"unit":"3"        
+    },
+    {
+	"front":"d998986d7293d6cddf386268d1fd3fab.jpg",
+	"back":"eliminación",
+	"unit":"3"        
+    },
+    {
+	"front":"DFS",
+	"back":"búsqueda por profundidad (depth-first search)",
+	"unit":"3"        
+    },
+    {
+	"front":"BFS",
+	"back":"búsqueda por anchura (breadth-first search)",
+	"unit":"3"        
+    },
+    {
+	"front":"hoja",
+	"back":"nodo que no tiene hijos",
+	"unit":"3"        
+    },
+    {
+	"front":"raíz",
+	"back":"nodo acceso de un árbol",
+	"unit":"3"        
+    },
+    {
+	"front":"heurística",
+	"back":"algoritmo no exacto",
+	"unit":"3"        
+    },
+    {
+	"front":"óptimo",
+	"back":"mejor solución posible",
+	"unit":"3"        
+    },
+    {
+	"front":"6a10f9752eee4205a934e2216f46dbed.jpg",
+	"back":"contracción",
+	"unit":"3"        
+    },
+    {
+	"front":"9f428dcf33c9897402b8dd93d96a3884.jpg",
+	"back":"potencia",
+	"unit":"1"        
+    },
+    {
+	"front":"a3c9f848eaf4ddada4f8baba8ff0bb77.jpg",
+	"back":"división entera",
+       	"unit":"1"        
+    },
+    {
+	"front":"51bc1ded6fba35d2d674c62f057a6220.jpg",
+	"back":"módulo",
+	"unit":"1"        
+    },
+    {
+	"front":"919782793a83b70cdb2c98aeeb577618.jpg",
+	"back":"igual",
+	"unit":"1"        
+    },
+    {
+	"front":"140b3aa209c3bc042f4366fe76f4cbe4.jpg",
+	"back":"no igual",
+	"unit":"1"        
+    },
+    {
+	"front":"99a09b599703efb373120ae84743f317.jpg",
+	"back":"cargar rutina",
+	"unit":"1"        
+    },
+    {
+	"front":"964e5c27e4b15beee40cc2f33e0cc66c.jpg",
+	"back":"conjunto",
+	"unit":"1"        
+    },
+    {
+	"front":"cebf17a5cc2c9a309375b9d25b37a74c.jpg",
+	"back":"imprimir",
+	"unit":"1"        
+    },
+    {
+	"front":"2b8f981bdfc597d1490783480bbfdac2.jpg",
+	"back":"cardinalidad",
+	"unit":"1"        
+    },
+    {
+	"front":"77581c3ec468033ac3aef2b1cdc2fa96.jpg",
+	"back":"pertenece",
+	"unit":"1"        
+    },
+    {
+	"front":"5318521d22f844620c103f5b1f9776c3.jpg",
+	"back":"negación",
+	"unit":"1"        
+    },
+    {
+	"front":"7ec075599b937569ab35d75196ccbc29.jpg",
+	"back":"y",
+	"unit":"1"        
+    },
+    {
+	"front":"7295d9d11123817941b06b03b6aa7bdd.jpg",
+	"back":"o",
+	"unit":"1"        
+    },
+    {
+	"front":"6e9358786909e091d2cff2fc94e6e798.jpg",
+	"back":"intersección",
+	"unit":"1"        
+    },
+    {
+	"front":"c1f4d392db08bfa111cd9297b333e6e4.jpg",
+	"back":"unión",
+	"unit":"1"        
+    },
+    {
+	"front":"232748c5fccd3a9c2eab66c50056d263.jpg",
+	"back":"diferencia",
+	"unit":"1"        
+    },
+    {
+	"front":"afc399964e2aaafbb0c6425371d7a306.jpg",
+	"back":"subconjunto",
+	"unit":"1"        
+    },
+    {
+	"front":"b7dcd064a01fb1f1cf2e78a906d53a97.jpg",
+	"back":"superconjunto",
+	"unit":"1"        
+    },
+    {
+	"front":"86d137f8bba2c7135ccc66beb07a6840.jpg",
+	"back":"para todos",
+	"unit":"1"        
+    },
+    {
+	"front":"a2430378506c183207aab8ca480c86c0.jpg",
+	"back":"existe",
+	"unit":"1"        
+    },
+    {
+	"front":"6bc7bfeeec0c8caa1522f17481d75575.jpg",
+	"back":"y por bit",
+	"unit":"1"        
+    },
+    {
+	"front":"52fb2bc8f162baabf615bab531117b6e.jpg",
+	"back":"o por bit",
+	"unit":"1"        
+    },
+    {
+	"front":"f52b76c36d198152969c6ffee9dfc971.jpg",
+	"back":"xor por bit",
+	"unit":"1"        
+    },
+    {
+	"front":"8a9061b01ba925824ce3075a581908de.jpg",
+	"back":"negación por bit",
+	"unit":"1"        
+    },
+    {
+	"front":"7246a556fabd79a84074fb57e4453d55.jpg",
+	"back":"conversión de decimal a binario (base 2)",
+	"unit":"1"        
+    },
+    {
+	"front":"1f7c7226c3ffaa2d68a8a6906d71a65d.jpg",
+	"back":"conversión de decimal a octal (base 8)",
+	"unit":"1"        
+    },
+    {
+	"front":"66c9035d0f7a98593a0dc868fed4d1bb.jpg",
+	"back":"conversión de decimal a hexadecimal (base 16)",
+	"unit":"1"        
+    },
+    {
+	"front":"bcd26b626bc891c8cefdfd1f3356f80b.jpg",
+	"back":"menor o igual",
+	"unit":"1"        
+    },
+    {
+	"front":"8857a61bb3baaa4503ab937b050db459.jpg",
+	"back":"mayor o igual",
+	"unit":"1"        
+    },
+    {
+	"front":"e311b3f7528eefd343c05e177e803ae2.jpg",
+	"back":"subrutina",
+	"unit":"1"        
+    },
+    {
+	"front":"070141fde110c12e4f5aee48dfa29982.jpg",
+	"back":"regresa",
+	"unit":"1"        
+    },
+    {
+	"front":"053596e6feede5249bd2c28e5862c97c.jpg",
+	"back":"modus ponens",
+	"unit":"1"        
+    },
+    {
+	"front":"34108bd691f8e807a8583b2350633f8c.jpg",
+	"back":"modus tollens",
+	"unit":"1"        
+    },
+    {
+	"front":"3b8594c8ffd57ef214080f491233e771.jpg",
+	"back":"silogismo",
+	"unit":"1"        
+    },
+    {
+	"front":"4885edf53cd85de883ab8d27b8ecd06f.jpg",
+	"back":"tautología",
+	"unit":"1"        
+    },
+    {
+	"front":"258f63389a08199c5daa33e05e593589.jpg",
+	"back":"función booleana",
+	"unit":"1"        
+    },
+    {
+	"front":"8e8304a3d95ddc9141739afdbd59fdd9.jpg",
+	"back":"desplazar bits a la izquierda",
+	"unit":"1"        
+    },
+    {
+	"front":"b8098afd943afef2fff23f464bd5bf5f.jpg",
+	"back":"desplazar bits a la derecha",
+	"unit":"1"        
+    },
+    {
+	"front":"981c8cf96ee707a308b6344354238071.jpg",
+	"back":"ciclo sobre secuencia",
+	"unit":"1"        
+    },
+    {
+	"front":"2515801d45702d8824a047af6067a8e5.jpg",
+	"back":"ciclo con condición",
+	"unit":"1"        
+    },
+    {
+	"front":"90dff9d1708f99425fb9bb5df5fca739.jpg",
+	"back":"secuencia de enteros",
+	"unit":"1"        
+    },
+    {
+	"front":"f8bd4ca4750f1fdcbea803c99d510fb1.jpg",
+	"back":"conjunto vacío",
+	"unit":"1"        
+    },
+    {
+	"front":"346a9c42f2bea656d46c42cc008f0a2d.jpg",
+	"back":"lista vacía",
+	"unit":"2"        
+    },
+    {
+	"front":"4bb92c24fe1924390cab5d0567438738.jpg",
+	"back":"lista inicializada",
+	"unit":"2"        
+    },
+    {
+	"front":"3db57334874181c3350c1a4b28027af1.jpg",
+	"back":"asignar múltiple del valor anterior",
+	"unit":"1"        
+    },
+    {
+	"front":"384e3f01aa5101b155497c7b7b383415.jpg",
+	"back":"incremento",
+	"unit":"1"        
+    },
+    {
+	"front":"7c93369f4bd9e0d5a85b4bfec4598260.jpg",
+	"back":"raíz cuadrada",
+	"unit":"1"        
+    },
+    {
+	"front":"4c67f9bab47b6725adfeeafee315b25c.jpg",
+	"back":"primer elemento",
+	"unit":"1"        
+    },
+    {
+	"front":"722174989b98ae26cb1201203e369e41.jpg",
+	"back":"último elemento",
+	"unit":"2"        
+    },
+    {
+	"front":"3515c3a5c0a65de517c0faa550fa6ffb.jpg",
+	"back":"asegurar condición",
+	"unit":"1"               
+    },
+    {
+	"front":"72fe9116c4fd2022618b544c46fdebdc.jpg",
+	"back":"ejecución condicional",
+	"unit":"1"        
+    },
+    {
+	"front":"0f6c367066617a4c838c91830d896f26.jpg",
+	"back":"anexar a una lista",
+	"unit":"2"        
+    },
+    {
+	"front":"7798a821e63c426efe7a2d3964e5823f.jpg",
+	"back":"agregar a un conjunto",
+	"unit":"1"        
+    },
+    {
+	"front":"fdc8cdf2ce3d98275abfad03f514dedc.jpg",
+	"back":"condición secundaria",
+	"unit":"1"        
+    },
+    {
+	"front":"a6ed7c5d5eeebfeedf99822a7518fa57.jpg",
+	"back":"condición de otro caso",
+	"unit":"1"        
+    },
+    {
+	"front":"3561280e6304b5eaad556d8ae1837053.jpg",
+	"back":"sumatoria",
+	"unit":"1"        
+    },
+    {
+	"front":"0c501c1c621be1a6de0475d33d5ea7e5.jpg",
+	"back":"salir",
+	"unit":"1"        
+    },
+    {
+	"front":"74f1ea85adb74485589142ed331b2128.jpg",
+	"back":"mapeo inicializado",
+	"unit":"2"        
+    },
+    {
+	"front":"703029a829b423127de1d11bfdcca3bb.jpg",
+	"back":"mapeo vacío",
+	"unit":"2"        
+    },
+    {
+	"front":"42518db3de5a6c38a12b180d094bbc3b.jpg",
+	"back":"valor absoluto",
+	"unit":"1"        
+    },
+    {
+	"front":"86b9d97e7802f2f8b6e0ea2cdeaf56c5.jpg",
+	"back":"valor absoluto",
+	"unit":"1"        
+    },
+    {
+	"front":"ee25b6f1b7c2f83ad7a0c1f952b81772.jpg",
+	"back":"función exponencial",
+	"unit":"1"        
+    },
+    {
+	"front":"c25dc09ee70c21096e62f453b107aa55.jpg",
+	"back":"logaritmo natural",
+	"unit":"1"        
+    },
+    {
+	"front":"536bc050538efcb0a6fddf51df2ef617.jpg",
+	"back":"logaritmo base dos",
+	"unit":"1"        
+    },
+    {
+	"front":"a9e464e444c6ce922db6dd8e33f952d6.jpg",
+	"back":"piso",
+	"unit":"1"        
+    },
+    {
+	"front":"f3190eaa55dd6a67c9b28d1c581e8f98.jpg",
+	"back":"techo",
+	"unit":"1"        
+    },
+    {
+	"front":"6780717b26e81fb4bb0e784afbff0f3e.jpg",
+	"back":"redondeo",
+	"unit":"1"        
+    },
+    {
+	"front":"4dde28ebf757f9ad5c16835dbed123e5.jpg",
+	"back":"pi",
+	"unit":"1"        
+    },
+    {
+	"front":"01c3e350d753b95688f104f0f3fb08a8.jpg",
+	"back":"e",
+	"unit":"1"        
+    },
+    {
+	"front":"58aa33acc83e868394a38642adc51bd8.jpg",
+	"back":"verdad",
+	"unit":"1"        
+    },
+    {
+	"front":"6698cc6646f401bd163b1857b189f628.jpg",
+	"back":"falso",
+	"unit":"1"        
+    },
+    {
+	"front":"fc15d9e38e59733e876f3cad356ab02c.jpg",
+	"back":"recursión",
+	"unit":"2"        
+    },
+    {
+	"front":"5f16d204e0f46a9f4952b0e6d0a73942.jpg",
+	"back":"función de transición",
+	"unit":"2"        
+    },
+    {
+	"front":"31bcf29458b7d49c8382090954e7574a.jpg",
+	"back":"clase",
+	"unit":"3"        
+    },
+    {
+	"front":"afe86a656b6a6dc359f84fd6a26e1ada.jpg",
+	"back":"autoreferencia",
+	"unit":"3"               
+    },
+    {
+	"front":"b19ca05910f1a8b79cb01b233e89ef00.jpg",
+	"back":"restricción de KNAPSACK",
+	"unit":"3"        
+    },
+    {
+	"front":"f8d4aba2799e8f041b9977677f1c2b72.jpg",
+	"back":"función objetivo de KNAPSACK",
+	"unit":"3"               
+    },
+    {
+	"front":"NP-completo",
+	"back":"problema al cual no se conocen soluciones eficientes en todos los casos",
+	"unit":"3"               
+    },
+    {
+	"front":"fuente",
+	"back":"vértice inicial en un problema de flujo máximo",
+	"unit":"3"        
+    },
+    {
+	"front":"sumidero",
+	"back":"vértice meta en un problema de flujo máximo",
+	"unit":"3"        
+    },
+    {
+	"front":"44be295fa2d1556d25d8855f40a0c2b9.jpg",
+	"back":"complejidad asintótica lineal",
+        "unit":"3"        
+    },
+    {
+	"front":"739622106a804237c167c2e1908acbd5.jpg",
+	"back":"complejidad asintótica logarítmica",
+	"unit":"3"        
+    },
+    {
+	"front":"1e7c9c60f2bfbdeee4a89fbb77039283.jpg",
+	"back":"complejidad asintótica polinomial",
+        "unit":"3"        
+    },
+    {
+	"front":"99615b156406de6728fe92b5b59c0807.jpg",
+	"back":"complejidad asintótica exponencial a base dos",
+	"unit":"3"        
+    },
+    {
+	"front":"5f8295858b400013598da5f8197edf88.jpg",
+	"back":"complejidad asintótica constante",
+	"unit":"3"        
+    },
+    {
+	"front":"altura",
+	"back":"uno para hojas, el máximo de las alturas de los hijos más uno para los demás",
+	"unit":"3"        
+    },
+    {
+	"front":"profundidad",
+	"back":"cero para la raíz, uno mayor a la del padre para los demás",
+	"unit":"3"        
+    },
+    {
+	"front":"hijo",
+	"back":"un nodo dependiente",
+	"unit":"3"        
+    },
+    {
+	"front":"padre",
+	"back":"un nodo del cual se depende",
+	"unit":"3"        
+    },
+    {
+	"front":"árbol balanceado",
+	"back":"diferencia limitada de alturas en los ramos",
+        "unit":"3"        
+    },
+    {
+	"front":"árbol binario lleno",
+	"back":"dos o cero hijos; se permite un nodo con un hijo",
+	"unit":"3"        
+    },
+    {
+	"front":"hoja",
+	"back":"nodo sin hijos",
+        "unit":"3"        
+    },
+    {
+	"front":"raíz",
+	"back":"nodo sin padre",
+        "unit":"3"        
+    },
+    {
+	"front":"montículo",
+	"back":"lista de árboles",
+        "unit":"3"        
+    },
+    {
+	"front":"recorrido",
+	"back":"método que visita a cada vértice",
+        "unit":"3"        
+    },
+    {
+	"front":"búsqueda",
+	"back":"método que encuentra un vértice",
+        "unit":"3"        
+    },
+    {
+	"front":"0d436a0d1b7d958f5aff1b6e72b9c82c.jpg",
+	"back":"componentes fuertemente conexos",
+        "unit":"3"        
+    },
+    {
+	"front":"componente conexo",
+	"back":"subconjunto de vértices con caminos entre todos",
+	"unit":"3"        
+    },
+    {
+	"front":"conexo",
+	"back":"tiene un sólo componente conexo",
+	"unit":"3"        
+    },
+    {
+	"front":"desconexo",
+	"back":"tiene dos o más componentes conexos",
+	"unit":"3"        
+    },
+    {
+	"front":"ciclo",
+	"back":"un camino que regresa a su inicio",
+	"unit":"3"        
+    },
+    {
+	"front":"bucle",
+	"back":"arista reflexiva",
+	"unit":"3"        
+    },
+    {
+	"front":"5471c7c1f4dd1a7ee734c64ab063d988.jpg",
+	"back":"infinito",
+	"unit":"2"        
+    },
+    {
+	"front":"babf71892046eeee9a516cbe4d6bf05d.jpg",
+	"back":"multiplicación",
+	"unit":"1"               
+    },
+    {
+	"front":"bdc716d9282fba1176238c643bc87433.jpg",
+	"back":"cero o más",
+	"unit":"1"               
+    },
+    {
+	"front":"e92967732917a123ad00c5b525052114.jpg",
+	"back":"uno o más",
+	"unit":"1"               
+    },
+    {
+	"front":"76bf896f566180c422ea3f7e54e1a346.jpg",
+	"back":"conjunto (elementos entre llaves)",
+	"unit":"1"               
+    },
+    {
+	"front":"9071b601efe64a8d20147c57b596c1fc.jpg",
+	"back":"vector (minúsculas en negritas)",
+	"unit":"3"               
+    },
+    {
+	"front":"8c4165e4cf777ff100a8b1e79c3b952e.jpg",
+	"back":"matríz (mayúsculas en negritas)",
+	"unit":"3"               
+    },
+    {
+	"front":"f7bf3133ea3e8ffb3e69f1b41fe94c40.jpg",
+	"back":"potencia",
+	"unit":"1"               
+    },
+    {
+	"front":"afc9260b44f81f81b5b5639dcfad8353.jpg",
+	"back":"conjunto potencia",
+	"unit":"2"               
+    },
+    {
+	"front":"4763dcdd590458c48fdcebbb00b0166f.jpg",
+	"back":"conjunto residual",
+	"unit":"1"               
+    },
+    {
+	"front":"5c1e1b5d57a29c8cc393be8547924003.jpg",
+	"back":"kilobyte 1024 bytes",
+	"unit":"1"                      
+    },
+    {
+	"front":"e5e619222a4397d0683b1bdc9333cb03.jpg",
+	"back":"kilobit 1024 bits",
+	"unit":"1"               
+    },
+    {
+	"front":"4f4f6b80e658192edfc3589628c5addc.jpg",
+	"back":"megabyte 1024 kilobytes",
+	"unit":"1"               
+    },
+    {
+	"front":"e710bbe34c00d7d0eac1ce120b72233a.jpg",
+	"back":"megabit 1024 kilobits",
+	"unit":"1"               
+    },
+    {
+	"front":"8e6abece85519e57c1e92f66bb3d3f67.jpg",
+	"back":"gigabyte 1024 megabytes",
+	"unit":"1"               
+    },
+    {
+	"front":"b597b11467b21ace5f68c7ff39bc070a.jpg",
+	"back":"gigabit 1024 megabits",
+	"unit":"1"               
+    },
+    {
+	"front":"b0e59a30c5f646ed3fe649e526e36dd9.jpg",
+	"back":"1 byte 8 bits",
+	"unit":"1"               
+    },
+    {
+	"front":"a14ea696817fe08a506a4fe6228a5989.jpg",
+	"back":"1 bit (vale cero o uno)",
+	"unit":"1"               
+    },
+    {
+	"front":"83d7df328e3e84b75ec63918995c7a99.jpg",
+	"back":"falso",
+	"unit":"1"               
+    },
+    {
+	"front":"ec102e8e65fd9ad2b554e0cffd5c64c9.jpg",
+	"back":"verdad",
+	"unit":"1"               
+    },
+    {
+	"front":"7a55ae050e5eae9c25ee89bbac6f555f.jpg",
+	"back":"binario (base 2)",
+	"unit":"1"               
+    },
+    {
+	"front":"ba74aaa97cd3e676e5247dbc80d7db38.jpg",
+	"back":"octal (base 8)",
+	"unit":"1"               
+    },
+    {
+	"front":"1f032ff2d40edd458798df2cf1741cf1.jpg",
+	"back":"hexadecimal (base 16)",
+	"unit":"1"               
+    },
+    {
+	"front":"b3ec4498dd14ad2ecaa89f93bdd00c91.jpg",
+	"back":"decimal (base 10)",
+	"unit":"1"               
+    },
+    {
+	"front":"8648167c207f2a6c626594327c88645a.jpg",
+	"back":"base arbitraria",
+	"unit":"1"               
+    },
+    {
+	"front":"651652b59c21ecda1c8e4995fc97bf91.jpg",
+	"back":"gamma minúscula",
+	"unit":"1"               
+    },
+    {
+	"front":"6d5fa2bb46e4c2dbbe2d416f3487152d.jpg",
+	"back":"delta minúscula",
+	"unit":"1"               
+    },
+    {
+	"front":"7a9c0b00e8e364007d0aa690c8592b67.jpg",
+	"back":"delta mayúscula",
+	"unit":"1"               
+    },
+    {
+	"front":"0efa58776d46f78675888768635d893e.jpg",
+	"back":"alfa",
+	"unit":"1"               
+    },
+    {
+	"front":"43f64ed1fd901d0c2fb7719b8ce615e7.jpg",
+	"back":"beta",
+	"unit":"1"               
+    },
+    {
+	"front":"ee75c2b58ac82f08ebd645d7b42c2a4b.jpg",
+	"back":"mu",
+	"unit":"1"               
+    },
+    {
+	"front":"eb8c01908b300909028d34aaa8b8a244.jpg",
+	"back":"omega",
+	"unit":"1"               
+    },
+    {
+	"front":"4e9ebae1577d5c3d71374b20c406ed1b.jpg",
+	"back":"punto flotante",
+	"unit":"1"               
+    },
+    {
+	"front":"05d29bf1aad5b8618869122b6956b3f4.jpg",
+	"back":"negación",
+	"unit":"1"               
+    },
+    {
+	"front":"39277ce1e00f50cd3357e08b22cec2e0.jpg",
+	"back":"fi",
+	"unit":"1"               
+    },
+    {
+	"front":"9d7378bcf534acdaf65aa280a7328eaf.jpg",
+	"back":"o (disyunción)",
+	"unit":"1"               
+    },
+    {
+	"front":"b6890e622e42fb66c23383788c7f685f.jpg",
+	"back":"y (conjunción)",
+	"unit":"1"               
+    },
+    {
+	"front":"d36883789bd57e25693394b1d9407377.jpg",
+	"back":"xor (o exclusivo)",
+	"unit":"1"               
+    },
+    {
+	"front":"559dcfea5767a14d3af2cae7206866c1.jpg",
+	"back":"implicación",
+	"unit":"1"               
+    },
+    {
+	"front":"bab8f22ea796a41877910e897160b24e.jpg",
+	"back":"equivalencia",
+	"unit":"1"               
+    },
+    {
+	"front":"b4ddd01a1669a6d8b9d192b03d659e1e.jpg",
+	"back":"satisface",
+	"unit":"1"               
+    },
+    {
+	"front":"tautología",
+	"back":"válida bajo cada asignación",
+	"unit":"1"               
+    },
+    {
+	"front":"59bfbc51f33082603c1b94ee9fd6e358.jpg",
+	"back":"equivalencia lógica",
+	"unit":"1"               
+    },
+    {
+	"front":"45a535691432abbf6fee88da837c3465.jpg",
+	"back":"módulo (residuo)",
+	"unit":"1"               
+    },
+    {
+	"front":"90e3918a2e762d6bc449f0490c34d2d5.jpg",
+	"back":"no satisface",
+	"unit":"1"               
+    },
+    {
+	"front":"CNF",
+	"back":"forma normal conjuntiva",
+	"unit":"1"               
+    },
+    {
+	"front":"DNF",
+	"back":"forma normal disyuntiva",
+	"unit":"1"               
+    },
+    {
+	"front":"SAT",
+	"back":"problema de satisfiabilidad",
+	"unit":"3"               
+    },
+    {
+	"front":"14193d08aa0a4e924c3e18a94a2fbea1.jpg",
+	"back":"cota superior (complejidad asintótica de peor caso)",
+	"unit":"3"               
+    },
+    {
+	"front":"2440ea93c88fbef1d5575fa0e0981593.jpg",
+	"back":"cota inferior (complejidad asintótica de mejor caso)",
+	"unit":"3"               
+    },
+    {
+	"front":"BDD",
+	"back":"árbol de decisión binaria",
+	"unit":"1"               
+    },
+    {
+	"front":"a32c4e6acfeb6a260a6d0ba965874813.jpg",
+	"back":"factorial",
+	"unit":"2"               
+    },
+    {
+	"front":"82153f7fa00069b8d7daa42280b462e3.jpg",
+	"back":"coeficiente binomial",
+	"unit":"2"               
+    },
+    {
+	"front":"234686141b80a378b49cac3e6b4b48fa.jpg",
+	"back":"triángulo de Pascal",
+	"unit":"2"               
+    },
+    {
+	"front":"160517c687dc984fcad95425ee571ec3.jpg",
+	"back":"conjunto vacío",
+	"unit":"1"                      
+    },
+    {
+	"front":"f324ff76f700732ca13ab6554d868ef1.jpg",
+	"back":"grupo",
+	"unit":"1"                      
+    },
+    {
+	"front":"5f41d4263bf18e210385ffeaaf544891.jpg",
+	"back":"pi 3.14159",
+	"unit":"1"                      
+    },
+    {
+	"front":"c6ed24b7dc603d1b5a3347c693ed20c6.jpg",
+	"back":"número de Euler 2.71828",
+	"unit":"1"                      
+    },
+    {
+	"front":"35f257a75e75e9e4b3e6efc143f60ff6.jpg",
+	"back":"sucesión de Fibonacci (comienza con cero y uno)",
+	"unit":"2"                      
+    },
+    {
+	"front":"70a730450d67221c69afbe3b51d6ac2f.jpg",
+	"back":"tasa dorada 1.61803",
+	"unit":"2"                      
+    },
+    {
+	"front":"0e891c93ec126e8d3ae848dc2345bafb.jpg",
+	"back":"convolución",
+	"unit":"2"                      
+    },
+    {
+	"front":"46124a21e74301cf0beb9ce52045626c.jpg",
+	"back":"serie aritmética",
+	"unit":"2"                      
+    },
+    {
+	"front":"1a2cf6632e30412d288b9e24ea0bdea6.jpg",
+	"back":"serie geométrica",
+	"unit":"2"                      
+    },
+    {
+	"front":"f0da2461bc8ac6c1f6d31e787bfcbb00.jpg",
+	"back":"producto cartesiano",
+	"unit":"1"                      
+    },
+    {
+	"front":"94bc67d4a1f76d41cce9d07ded8789a6.jpg",
+	"back":"relación",
+	"unit":"1"                      
+    },
+    {
+	"front":"2ce1e89f4b6bac1dfd47975732e12d72.jpg",
+	"back":"reflexiva",
+	"unit":"1"                      
+    },
+    {
+	"front":"12f7872bdac4fda7defd1eb45cc59724.jpg",
+	"back":"simétrica",
+	"unit":"1"                      
+    },
+    {
+	"front":"4bf6d990c38482edcb3acf420113ef80.jpg",
+	"back":"transitiva",
+	"unit":"1"                      
+    },
+    {
+	"front":"52bb67a9d0a8d91b917e9b14c2be4495.jpg",
+	"back":"mapeo (de dominio a rango)",
+	"unit":"1"                      
+    },
+    {
+	"front":"836ceafe87f30f74c91e337cec6cb12a.jpg",
+	"back":"epiyectivo",
+	"unit":"1"                      
+    },
+    {
+	"front":"f3f9bb676144ad6eba585aff85550a35.jpg",
+	"back":"inyectivo",
+	"unit":"1"                      
+    },
+    {
+	"front":"biyectivo",
+	"back":"inyectivo y epiyectivo",
+	"unit":"1"                      
+    },
+    {
+	"front":"2aaae213e1aee50ea8824a2123e38ce7.jpg",
+	"back":"función exponencial",
+	"unit":"1"                      
+    },
+    {
+	"front":"c459072f9caef1cb50e14da5cd58f775.jpg",
+	"back":"logaritmo",
+	"unit":"1"                      
+    },
+    {
+	"front":"ca0467fd0aa14a71cb29346553444c2c.jpg",
+	"back":"logaritmo natural",
+	"unit":"1"                      
+    },
+    {
+	"front":"cedf32057807e4306ab052dd107050b1.jpg",
+	"back":"logaritmo en base arbitraria",
+	"unit":"1"                      
+    },
+    {
+	"front":"7a7a397ce927474c8019e6e7f02ca179.jpg",
+	"back":"piso (mayor entero menor o igual)",
+	"unit":"1"                      
+    },
+    {
+	"front":"aa29d3ccd4c5461957354f88f014ba3b.jpg",
+	"back":"techo (menor entero mayor o igual)",
+	"unit":"1"                      
+    },
+    {
+	"front":"primo",
+	"back":"sin divisores además de uno y sí mismo",
+	"unit":"1"                      
+    },
+    {
+	"front":"impar",
+	"back":"residuo uno al dividir entre dos",
+	"unit":"1"                      
+    },
+    {
+	"front":"par",
+	"back":"residuo cero al dividir entre dos",
+	"unit":"1"                      
+    },
+    {
+	"front":"a1992024412c599f2054e802698934ba.jpg",
+	"back":"raíz cuadrada",
+	"unit":"1"                      
+    },
+    {
+	"front":"63e897a91fbdd05ccd8b159a5fdacf6a.jpg",
+	"back":"intervalo cerrado",
+	"unit":"1"                      
+    },
+    {
+	"front":"44b4e80964a3319b7759e1d0a5bc1003.jpg",
+	"back":"intervalo semicerrado (cierre izquierdo)",
+	"unit":"1"                      
+    },
+    {
+	"front":"e47bf21ac9159af80cc725a5b4e27b45.jpg",
+	"back":"intervalo semicerrado (cierre derecho)",
+	"unit":"1"                      
+    },
+    {
+	"front":"3b4a1082809a317512e143ffe320df05.jpg",
+	"back":"intervalo abierto",
+	"unit":"1"                      
+    },
+    {
+	"front":"GCD",
+	"back":"mayor divisor común (greatest common divisor)",
+	"unit":"1"                      
+    },
+    {
+	"front":"695a2f7ca320e2691fa0434047a10dac.jpg",
+	"back":"relativemente primos",
+	"unit":"1"                      
+    },
+    {
+	"front":"0a9de37e0c9dfb8260f8bf7f6567621c.jpg",
+	"back":"operador binario (operador de un grupo)",
+	"unit":"1"                      
+    },
+    {
+	"front":"40066e6118132e5e8fcb6279dc5d681c.jpg",
+	"back":"clausura",
+	"unit":"1"                      
+    },
+    {
+	"front":"c1986b0d25860f513bffc07bb04c8d63.jpg",
+	"back":"asociatividad",
+	"unit":"1"                      
+    },
+    {
+	"front":"c4186372f91508de40e5dd3516d28de7.jpg",
+	"back":"identidad",
+	"unit":"1"                      
+    },
+    {
+	"front":"f340ea145ef213493274a871bb5ce7b3.jpg",
+	"back":"inversión",
+	"unit":"1"                      
+    },
+    {
+	"front":"c2f2671fdfc80f73e031f882151add69.jpg",
+	"back":"subgrupo",
+	"unit":"1"                      
+    },
+    {
+	"front":"90ea480c59fa20d47ed9c647efa359f1.jpg",
+	"back":"divisible",
+	"unit":"1"                      
+    },
+    {
+	"front":"a0f1d2b90e2ae5acb1e1f64a171a3060.jpg",
+	"back":"función de Euler",
+	"unit":"1"                      
+    },
+    {
+	"front":"90027ca8d86eef860fe7df6a564f1371.jpg",
+	"back":"teorema de Fermat (para *p* primo)",
+	"unit":"1"                      
+    },
+    {
+	"front":"7478f108da9a360c75296bedf1626730.jpg",
+	"back":"máquina Turing",
+	"unit":"2"                      
+    },
+    {
+	"front":"cde3199fed4cf5ed8dccb94ebd2d7e8a.jpg",
+	"back":"espacio blanco",
+	"unit":"2"                      
+    },
+    {
+	"front":"c3e709eb280abf9d7f5efc883b747880.jpg",
+	"back":"inicio de cinta",
+	"unit":"2"                      
+    },
+    {
+	"front":"48e837a1a9b65227f27b947686ed8581.jpg",
+	"back":"no detiene",
+	"unit":"2"                      
+    },
+    {
+	"front":"cc790806c96a76c11dc8ffae51ba9eb0.jpg",
+	"back":"grafo",
+	"unit":"3"                      
+    },
+    {
+	"front":"3336cd36d7c170d607cabe51f3659f59.jpg",
+	"back":"vértice",
+	"unit":"3"                      
+    },
+    {
+	"front":"529a8f288d06b7bc83028f2d76a6affd.jpg",
+	"back":"arista (no dirigida)",
+	"unit":"3"                      
+    },
+    {
+	"front":"af31b5ce975deab6857ec7fb82b8a137.jpg",
+	"back":"arista dirigida",
+	"unit":"3"                      
+    },
+    {
+	"front":"c4516624d6db1a2667c0e4681a614d6d.jpg",
+	"back":"grafo (no dirigido)",
+	"unit":"3"                      
+    },
+    {
+	"front":"226063d66e36fe3fef9f9de5ad9eca67.jpg",
+	"back":"grafo dirigido",
+	"unit":"3"                      
+    },
+    {
+	"front":"85f8c71791e5277a449d3a0e0b903b8a.jpg",
+	"back":"matriz de adyacencia",
+	"unit":"3"                      
+    },
+    {
+	"front":"ponderado",
+	"back":"cuenta con un peso",
+	"unit":"3"                                   
+    },
+    {
+	"front":"vecino",
+	"back":"conectado por arista",
+	"unit":"3"                      
+    },
+    {
+	"front":"65b28a089bb3883d555202a93e840fb9.jpg",
+	"back":"grado (número de vecinos)",
+	"unit":"3"                      
+    },
+    {
+	"front":"711b0f9a1a9f63500ea472d1d24363e9.jpg",
+	"back":"grado de salida",
+	"unit":"3"                      
+    },
+    {
+	"front":"50f107176f17c3ca349a659e17cf3ede.jpg",
+	"back":"grado de entrada",
+	"unit":"3"                      
+    },
+    {
+	"front":"13b21040770952d57061e8319c556102.jpg",
+	"back":"todos los grados valen *k*",
+	"unit":"3"                      
+    },
+    {
+	"front":"4b2b12b905746316400ffeb59dc19044.jpg",
+	"back":"bipartito",
+	"unit":"3"                      
+    },
+    {
+	"front":"4205a56d49ccf1e29370f168ad809871.jpg",
+	"back":"vecindad",
+	"unit":"3"                      
+    },
+    {
+	"front":"1463ce4e3304287d374ce6e77d6ad797.jpg",
+	"back":"gamma mayúscula",
+	"unit":"1"                      
+    },
+    {
+	"front":"3dc2d77c9292b23aa8ff8f024e072a2f.jpg",
+	"back":"psi",
+	"unit":"1"                      
+    }
+]

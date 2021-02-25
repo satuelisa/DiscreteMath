@@ -36,6 +36,7 @@ const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejem
 	      'youtube': 'https://www.youtube.com/playlist?list=PLSxaeMB7D949M8LiimQF_XQEGWptVJk5o',
 	      'twi': 'https://twitch.tv/satuelisa',
 	      'stream': 'https://twitch.tv/satuelisa',
+	      'canal': 'pregúntame por el canal de **!twitch** o de **!youtube**',
 	      'git': 'https://github.com/satuelisa/DiscreteMath',
 	      'clase': 'https://twitch.tv/satuelisa',
 	      'curso': 'https://elisa.dyndns-web.com/teaching/mat/discretas/',
@@ -58,6 +59,8 @@ const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejem
 	      't5p3': 'https://youtu.be/lJ0OiPKdcXg',
 	      't5p4': 'https://youtu.be/lJ0OiPKdcXg', 
 	      't5p5': 'https://youtu.be/ZTehJDpaqdU',
+	      'fact': 'Sé calcular el *factorial*; pídeme por ejemplo **!calc fact(5)** y te digo que vale 120.',
+	      'conv': 'Sé convertir *enteros a decimal*; dame los dígitos y la base, tipo **!calc dec(a2f, 19)** para ver cuánto vale a29 de base 19 en base 10', 
 	      'ayuda': 'Para registrar una ayuda, escribe **!mvp**, *menciona* el usuario (con \@) quien te ayudó y en qué cosa',
 	      't2': 'La tarea 2 tiene videos por pregunta; pregúntame por t2p1, por ejemplo.',
 	      't5': 'La tarea 5 tiene videos por pregunta; pregúntame por t5p1, por ejemplo.',
@@ -167,8 +170,14 @@ const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejem
 
 const claves = Object.keys(data);
 
-function sendCard(target) {
-    let fields = cards[Math.floor(Math.random() * Math.floor(max))];
+function sendCard(target, specs) {
+    var fields;
+    while (1) {
+	fields = cards[Math.floor(Math.random() * Math.floor(max))];
+	if (specs.length == 0 || specs.includes(fields['unit'])) {
+	    break;
+	}
+    }
     let front = fields['front'];
     let back = fields['back'];
     if (front.includes('.jpg')) {
@@ -262,7 +271,7 @@ function process(message) {
 	mvp(message, channel.name);
 	return;
     } else if (text.startsWith('!reto')) {
-	sendCard(channel);
+	sendCard(channel, (text.substring(5)).trim());
 	return;
     } else if (text.startsWith('!calc')) {
 	if (text.includes("log")) {
@@ -460,7 +469,7 @@ async function chat(message) {
 }
 
 async function poll(channel, title) {
-    channel.send('*Encuesta instantánea*' + title + '\n\nOcupo saber _qué tan bien entiendes_ de qué estamos hablando en el stream de la clase en este momento.\n\nPor favor **reacciona** a este mensaje\ncon :white_check_mark: si vas bien\ncon :question: si tienes dudas (y luego escribe tu pregunta)\ncon :confused: si se te hace que no entiendes pero tampoco sabes qué preguntar\ncon :sleeping: si no estabas en realidad prestando atención\n...');
+    channel.send('*Encuesta instantánea*' + title + '\n\nOcupo saber __qué tan bien entiendes__ de qué estamos hablando en el stream de la clase en este momento.\n\nPor favor **reacciona** a este mensaje\ncon :white_check_mark: si vas bien\ncon :question: si tienes dudas (y luego escribe tu pregunta)\ncon :confused: si necesitas un poco de tiempo para procesar esto\ncon :sleeping: si no estabas en realidad prestando atención\n...');
 }
 
 
