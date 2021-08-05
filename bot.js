@@ -35,6 +35,7 @@ const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejem
 	      'video': 'https://www.youtube.com/playlist?list=PLSxaeMB7D949M8LiimQF_XQEGWptVJk5o',
 	      'youtube': 'https://www.youtube.com/playlist?list=PLSxaeMB7D949M8LiimQF_XQEGWptVJk5o',
 	      'twi': 'https://twitch.tv/satuelisa',
+	      'profe': 'Por favor intenta mantener *las preguntas dirigidas a la profe* al horario laboral (tipo nueve a cinco) y toma en cuenta que no siempre te puede responder de inmediato fuera de tus horas clase; ella tiene **muchas cosas que hacer** además de esta clase y además merece su tiempo libre.', 
 	      'stream': 'https://twitch.tv/satuelisa',
 	      'canal': 'pregúntame por el canal de **!twitch** o de **!youtube**',
 	      'git': 'https://github.com/satuelisa/DiscreteMath',
@@ -429,7 +430,7 @@ async function chat(message) {
     message.author.send('¡Hola, ' + usuario + '!');
     var text = message.content.toLowerCase();
     if (text.includes("!reto")) {
-	sendCard(message.author);
+	sendCard(message.author, text.substring(5).trim());
 	return;
     }
     var digitos = /^\d+$/.test(text);
@@ -485,6 +486,9 @@ client.on("message", (message) => {
 	    !channel.name.includes('progra') &&
 	    !channel.name.includes('proba') &&
 	    !channel.name.includes('tesis') &&
+	    !channel.name.includes('metodolo') &&
+	    !channel.name.includes('aprendiz') &&
+	    !channel.name.includes('seminario') &&
 	    !channel.name.includes('simula')) { // ignore other channels
 	    return;
 	}
