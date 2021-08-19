@@ -110,6 +110,7 @@ const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejem
 	      'coef': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/combinat/coef_binomial.png',
 	      'potencia': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/combinat/conpot.png',
 	      'subconjunto': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/combinat/subconjuntos.png',
+	      'combinacion': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/combinat/subconjuntos.png',
 	      'binaria': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/arreglos/bbinaria.gif',
 	      'turing': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/logica/tm.gif',
 	      'distancia de edición': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/algoritmos/editdist.gif',
@@ -153,9 +154,6 @@ const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejem
 	      'resultado': 'https://elisa.dyndns-web.com/cgi-bin/res.py',
 	      'registro': 'https://elisa.dyndns-web.com/cgi-bin/res.py',
 	      'viejos': 'https://elisa.dyndns-web.com/teaching/mat/discretas/examenes/',
-	      'tarjetas': 'https://tinycards.duolingo.com/users/satuelisa',
-	      'tiny': 'https://tinycards.duolingo.com/users/satuelisa',
-	      'cards': 'https://tinycards.duolingo.com/users/satuelisa',
 	      'pia': 'Pregúntame sobre el proyecto, te puedo pasar la página con las instrucciones.',
 	      'examen': 'https://elisa.dyndns-web.com/teaching/mat/discretas/guion/examen.html',
 	      'temas': 'https://elisa.dyndns-web.com/teaching/mat/discretas/temario.html',
@@ -219,7 +217,7 @@ function timestamp() {
 }
 
 async function asistencia(usuario, materia) {
-    console.log(usuario);
+    // console.log(usuario);
     const matr = matricula(usuario);
     if (typeof matr === "undefined") {
 	return;
@@ -232,7 +230,8 @@ async function asistencia(usuario, materia) {
 
 async function mvp(message, topic) {
     console.log('Buscando matricula para', message.author.tag);
-    const recipiente = matricula(message.author.tag);
+    var recipiente = undefined;
+    recipiente = matricula(message.author.tag);
     if (typeof recipiente === "undefined") {
 	message.channel.send('No me has dicho tu matrícula aún, ' +
 			     message.author.tag +
@@ -436,7 +435,7 @@ async function chat(message) {
     var digitos = /^\d+$/.test(text);
     if (digitos && text.length == 7) {
 	let member = client.users.cache.find(user => user.username == usuario);
-	console.log(member);
+	// console.log(member);
 	var actuales = fs.readFileSync('matr.dat').toString().trim().split('\n').filter(Boolean);
 	for (var i = 0; i < actuales.length; i++) {
 	    var campos = actuales[i].split(' ');
@@ -504,7 +503,7 @@ client.on("message", (message) => {
 	    } else if (channel.name.includes('progra')) {
 		newRole = rPE;
 	    }
-	    console.log(newRole);
+	    // console.log(newRole);
 	    if (newRole.id) {
 		message.guild.member(user).roles.add(newRole);
 		message.channel.send('Has sido asignado el rol **' + newRole.name + '**, ' + message.author.toString() + '.');
