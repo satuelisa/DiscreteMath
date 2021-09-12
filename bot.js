@@ -237,13 +237,13 @@ async function voto(message) {
     let text = message.content.toLowerCase();
     if (text.includes("green") || text.includes("ok") || text.includes("verde") || text.includes("bien")) {
 	send(voter, "green");
-    } else if (text.includes("yellow") || text.includes("amarillo") || text.includes("conf")) {
+    } else if (text.includes("yellow") || text.includes("amarillo") || text.includes("conf") || text.includes("slow")) {
 	send(voter, "yellow");
-    } else if (text.includes("question") || text.includes("red") || text.includes("rojo")) {
+    } else if (text.includes("question") || text.includes("red") || text.includes("rojo") || text.includes("duda") || text.includes("pregunta")) {
 	send(voter, "red");
-    } else if (text.includes("zzz") || text.includes("gris") || text.includes("gray") || text.includes("grey")) {
+    } else if (text.includes("zzz") || text.includes("gris") || text.includes("gray") || text.includes("grey") || text.includes("afk")) {
 	send(voter, "gray");
-    } else if (text.includes("black") || text.includes("negro") || text.includes("problem")) {
+    } else if (text.includes("black") || text.includes("negro") || text.includes("problem") || text.includes("tech")) {
 	send(voter, "black");
     } else {
 	message.channel.send('No conozco ese tipo de voto, ' +
