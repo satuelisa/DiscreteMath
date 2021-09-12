@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-
+const https = require('https')
 const client = new Discord.Client();
 
 const fs = require('fs');
@@ -216,6 +216,43 @@ function timestamp() {
     return '' + new Date();
 }
 
+function send(matr, value) {
+    let url = "https://elisa.dyndns-web.com/cgi-bin/interact.py?matr=" + matr + "&value=" + value;
+    https.get(url, res => {
+	return;
+    }).on('error', err => {
+	return;
+    })
+}
+
+async function voto(message) {
+    var voter  = undefined;
+    voter = matricula(message.author.tag);
+    if (typeof voter === "undefined") {
+	message.channel.send('No me has dicho tu matrícula aún, ' +
+			     message.author.tag +
+			     '; mándame eso por DM para poder registrar tus votos.');
+    	return;
+    }
+    let text = message.content.toLowerCase();
+    if (text.includes("green") || text.includes("ok") || text.includes("verde") || text.includes("bien")) {
+	send(voter, "green");
+    } else if (text.includes("yellow") || text.includes("amarillo") || text.includes("conf")) {
+	send(voter, "yellow");
+    } else if (text.includes("question") || text.includes("red") || text.includes("rojo")) {
+	send(voter, "red");
+    } else if (text.includes("zzz") || text.includes("gris") || text.includes("gray") || text.includes("grey")) {
+	send(voter, "gray");
+    } else if (text.includes("black") || text.includes("negro") || text.includes("problem")) {
+	send(voter, "black");
+    } else {
+	message.channel.send('No conozco ese tipo de voto, ' +
+			     message.author.tag +
+			     '; mejor dale en <https://elisa.dyndns-web.com/teaching/interact.html>.');
+    }
+    return;
+}
+
 async function asistencia(usuario, materia) {
     // console.log(usuario);
     const matr = matricula(usuario);
@@ -425,13 +462,27 @@ async function chat(message) {
     if (tag.includes('MathBot')) { // it me, Mario
 	return;
     }
-    var usuario =  tag.split('#')[0];
-    message.author.send('¡Hola, ' + usuario + '!');
-    var text = message.content.toLowerCase();
+    var text = message.content.toLowerCase();    
     if (text.includes("!reto")) {
 	sendCard(message.author, text.substring(5).trim());
 	return;
     }
+    if (tag == "Frozy#6969") {
+	fs.appendFileSync('frozy.log', timestamp() + ' ' + text + '\n', (err) => {
+	    if (err) throw err;
+	});
+	message.author.send('I wrote that down for you, gorgeous.\n').catch(error => { console.log(tag + ' no me escucha') });		
+	return;
+    }
+    if (tag == "satuelisa#0666") {
+	fs.appendFileSync('elisa.log', timestamp() + ' ' + text + '\n', (err) => {
+	    if (err) throw err;
+	});
+	message.author.send('Anotado.\n').catch(error => { console.log(tag + ' no me escucha') });	
+	return;
+    }
+    var usuario =  tag.split('#')[0];
+    message.author.send('¡Hola, ' + usuario + '!');    
     var digitos = /^\d+$/.test(text);
     if (digitos && text.length == 7) {
 	let member = client.users.cache.find(user => user.username == usuario);
@@ -511,6 +562,10 @@ client.on("message", (message) => {
 		message.channel.send('La asignación de roles solamente funciona en los canales de las UA de licenciatura');
 	    }
 	} else if (text.startsWith('!')) {
+	    if (text.startsWith('!vot')) {
+		voto(message);
+		return;
+	    }    
 	    if (text.startsWith('!poll')) {
 		let title = "";
 		if (text.length > 5) {
