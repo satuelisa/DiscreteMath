@@ -1,9 +1,9 @@
 import operator # for getting extrema from dictionaries
 from sys import argv # read command-line parameters
 import matplotlib.pyplot as plt # for the drawings
-from math import sqrt, log, ceil # mathematical routines
 from collections import defaultdict # easy storage
-from random import random, shuffle # pseudo-random number generation
+from math import sqrt, log, ceil, exp # mathematical routines
+from random import random, shuffle, randint # pseudo-random number generation
 from networkx import Graph, draw, relabel_nodes # graph representation (object-oriented)
 
 n = None
@@ -13,32 +13,47 @@ except:
     n = 4 # a small default
 assert n > 2 # we need at least three for this to make sense
 print(f'Working with a TSP of {n} cities')
+w = int(n * sqrt(n)) 
+radius = 1 / n
+unit = 8
 
 # step 1) represent the complete graph with euclidean-distance weights
 
+def eucl(p1, p2):
+    (vx, vy) = p1
+    (wx, wy) = p2
+    dx = vx - wx # horizontal difference
+    dy = vy - wy # vertical difference
+    return sqrt(dx**2 + dy**2) # remember Pythagoras?
+
 # we COULD of course do the creation of the graph using a library
 # routine from networkx, but we LEARN more if we do it step by step
-
 G = Graph() # storage for the graph
 gpos = dict() # storage for the vertex positions
-for v in range(n): # add a total of n vertices called 0, 1, 2, ..., n - 1
+v = 0
+while v < n: # add a total of n vertices called 0, 1, 2, ..., n - 1
     # position each vertex pseudo-randomly in a unit square
     x = random() # horizontal position
     y = random() # vertical position
-    G.add_node(v)
-    gpos[v] = (x, y)
+    p = (x, y)
+    close = False
+    for w in G.nodes(): # check that it is not too close
+        distance = eucl(p, gpos[w])
+        if distance < radius:
+            close = True
+            break
+    if not close:
+        G.add_node(v)
+        gpos[v] = (x, y)
+        v += 1
+        
 low = sqrt(2) # the highest possible Euclidean distance in a unit square
 high = 0 # the lowest possible distance
 for v in gpos: # for each vertex
-    (vx, vy) = gpos[v] # access position
     for w in gpos: # for each other vertex
         if v == w:
             continue # skip self
-        (wx, wy) = gpos[w]
-        dx = vx - wx # horizontal difference
-        dy = vy - wy # vertical difference
-        distance = sqrt(dx**2 + dy**2) # remember Pythagoras?
-        G.add_edge(v, w, cost = distance)
+        G.add_edge(v, w, cost = eucl(gpos[v], gpos[w]))
         low = min(low, distance) # figure out the minimum edge cost
         high = max(high, distance) # as well as the maximum
 # view the min-max costs at two-decimal precision
@@ -49,11 +64,10 @@ opt = { 'node_color': 'white', # white vertex color
         'font_color': 'black' # vertex label font color
 }
 opt['with_labels'] = n <= 30
-opt['node_size'] = max(100, 500 - 3 * int(log(n, 2)))
+opt['node_size'] = max(100, 300 - 10 * int(log(n, 2)))
 opt['width'] = max(4 - int(ceil(log(n, 10))), 1)
 costs = [ data['cost'] for v, w, data in G.edges(data = True) ]
 worst = sum(costs) # no solution could ever cost more than ALL the edges
-unit = 15
 plt.rcParams['figure.figsize'] = (unit, unit) # big figure
 if n <= 100:
     fig, ax = plt.subplots() # create an image to draw onto
@@ -167,7 +181,6 @@ if n < 10: # too slow for larger graphs
     root.join(T) # create vertices to represent the nodes
     labels = dict()
     tpos = dict()
-    w = int(n * sqrt(n)) # figure width
     wunit = (w / n) * unit
     plt.rcParams['figure.figsize'] = (wunit, unit) # big figure
     root.position(labels, tpos, (0, w)) # label and position the nodes with
@@ -334,7 +347,7 @@ def dfs(v):
         dfs(w)
         route.append(v)
 dfs(0)
-if n <= 30:
+if n <= 10:
     print('Back and forth', route)
 bfcost = cost(G, route)
 print(f'The back-and-forth MST costs {bfcost:.2f}')
@@ -353,12 +366,11 @@ last = straight[-1]
 used.add((0, last))
 used.add((last, 0))
 straight.append(0) # close the loop
-if n <= 30:
+if n <= 10:
     print('Straighted out', straight)
 assert len(straight) == n + 1
 scost = cost(G, straight)
 print(f'The straightened-out MST cycle costs {scost:.2f}')
-print(f'The cheapest random walk was {rbest:.2f}')
 
 S = G.copy() # make a copy of the graph
 S.remove_edges_from(G.edges() - used)
@@ -375,4 +387,84 @@ if n <= 100:
     plt.savefig(f'approx{n}.png')
     plt.close()
 
-# PENDING: local search with 2opt for stupid jumps (as a GIF)
+# now, some of those edges are plain dumb choices, right?
+
+inverse = dict()
+for (v, w) in costs: # symmetry
+    inverse[(w, v)] = costs[(v, w)]
+costs = { **costs, **inverse } # merge
+
+def roll(route):
+    n = len(route)
+    assert route[0] == route[-1]
+    route.pop() # remove the last
+    offset = randint(1, n - 2)
+    assert offset < len(route)
+    rolled = route[offset:] + route[:offset] 
+    return rolled + [ rolled[0] ] # close it back
+    
+# local search
+def twoopt(route):
+    n = len(route)
+    while True: # pick two random cuts
+        f = randint(1, n - 1)
+        s = randint(1, n - 1)
+        f, s = min(f, s), max(f, s)
+        if f + 2 < s:
+            start = route[:f]
+            middle = route[f:s] # to invert
+            finish = route[s:]
+            return start + middle[::-1] + finish
+
+# simulated annealing
+T = 1000
+cooling = 0.9995
+stalled = 0
+maximum = 500
+current = straight
+cheapest = straight.copy()
+lcost = ccost = scost
+i = 0
+while stalled < maximum:
+    modified = twoopt(current)
+    assert len(modified) == n + 1
+    mcost = cost(G, modified)
+    if mcost < lcost: # a new low (a good thing here)
+        print(f'New low at {mcost:.2f} on iteration {i} at temp {T:.2f}')
+        cheapest = modified.copy()
+        lcost = mcost
+    d = ccost - mcost
+    threshold = exp(d / T) # probability
+    i += 1
+    if random() < threshold: # accept
+        current = roll(modified)
+        assert current[0] == current[-1]
+        ccost = mcost
+        if d > 0: # it was better
+            T *= cooling # get stricter
+            stalled = 0 
+            continue
+    stalled += 1
+
+if n <= 100:
+    final = set()
+    for p in range(n):
+        a = cheapest[p]
+        b = cheapest[p + 1]
+        final.add((a, b))
+        final.add((b, a))
+    F = G.copy() # make a copy of the graph
+    F.remove_edges_from(G.edges() - final)
+    scosts = [ data['cost'] for v, w, data in F.edges(data = True) ]
+    fig, ax = plt.subplots()
+    draw(F, pos = gpos, 
+         edge_cmap = plt.get_cmap('Oranges'), 
+         edge_color = scosts, 
+         **opt) 
+    ax.set_facecolor('black')
+    fig.set_facecolor('black')
+    ax.axis('off')
+    plt.savefig(f'local{n}.png')
+    plt.close()
+
+

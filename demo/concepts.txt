@@ -19,14 +19,16 @@ recursive
 permutation
 factorial
 combinatorial explosion
+global optimum
 random walk
 self-avoiding
 triangle inequality
-constructive phase
-local search
-2-opt 
-heuristic
 mst
 dfs
 approximation algorithm
-
+feasible
+local search
+2-opt 
+heuristic
+simulated annealing
+local optimum
