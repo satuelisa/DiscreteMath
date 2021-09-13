@@ -1,4 +1,5 @@
 tsp
+algorithm
 graph
 vertex
 pseudorandomness
@@ -17,5 +18,15 @@ height
 recursive
 permutation
 factorial
-mst
+combinatorial explosion
+random walk
+self-avoiding
 triangle inequality
+constructive phase
+local search
+2-opt 
+heuristic
+mst
+dfs
+approximation algorithm
+
