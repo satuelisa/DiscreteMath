@@ -190,7 +190,7 @@ if n < 10: # too slow for larger graphs
     start = time()
     groot = Node(0) # we can start at zero w.l.o.g.
     gbest = groot.permute({ v for v in range(n) }, edgecosts, groot, worst)
-    print(f'The cheapest (exhaustive) route edgecosts {gbest:.2f}')
+    print(f'The cheapest (exhaustive) route costs {gbest:.2f}')
     timestamp(start)
     groot.adjust()
     T = Graph() # we make a graph of it so we can draw it the same way
@@ -255,7 +255,7 @@ if n < 10:
     start = time()
     sroot = Smart(0)
     sbest = sroot.permute({ v for v in range(n) }, edgecosts, sroot, worst)
-    print(f'The cheapest (pruned) route edgecosts {sbest:.2f}')
+    print(f'The cheapest (pruned) route costs {sbest:.2f}')
     timestamp(start)
     assert fabs(gbest - sbest) < significant
     sroot.adjust()
@@ -281,6 +281,12 @@ if n < 10:
         ax.axis('off')
         plt.savefig(f'prune{n}.png')
         plt.close()        
+
+plt.rcParams['figure.figsize'] = (unit, unit) # restore some of these
+opt['node_size'] = gns
+opt['node_color'] = 'white' 
+opt['with_labels'] = n <= 30
+opt['font_color'] = 'black'
         
 # what if we have a large n?
 # first idea: self-avoiding random walk
@@ -301,12 +307,41 @@ start = time()
 route = [ v for v in range(n) ]
 replicas = 10 * magn
 rbest = worst
+bestwalk = None
 for replica in range(replicas): # try several times
     shuffle(route) # a new permutation
     cycle = route + [ route[0] ] # close the cycle
-    rbest = min(rbest, cost(G, cycle))
-print(f'The cheapest random walk edgecosts {rbest:.2f} (over {replicas} attempts)')
+    c = cost(G, cycle)
+    if c < rbest:
+        rbest = c
+        bestwalk = cycle.copy()
+print(f'The cheapest random walk costs {rbest:.2f} (over {replicas} attempts)')
 timestamp(start)
+
+def used(r):
+    u = set()
+    for p in range(len(r)  - 1):
+        a = r[p]
+        b = r[p + 1]
+        u.add((a, b))
+        u.add((b, a))
+    return u
+
+W = G.copy() # make a copy
+removed = G.edges() - used(bestwalk)
+W.remove_edges_from(removed)
+if n <= 100:
+    fig, ax = plt.subplots()
+    draw(W, pos = gpos, 
+         edge_cmap = plt.get_cmap('Oranges'), 
+         edge_color = [ edgecosts[(v, w)] for v, w in W.edges() ], 
+         **opt) 
+    ax.set_facecolor('black')
+    fig.set_facecolor('black')
+    ax.axis('off')
+    plt.savefig(f'rw{n}.png')
+    plt.close()
+
 
 # so this is pretty fast but quite bad; we need a better approach
 # let us compute a minimum spanning tree 
@@ -332,13 +367,8 @@ while len(candidates) > 0: # Kruskal's algorithm for MST
             break
         for u in combination:
             components[u] = combination
-print(f'The minimum spanning tree edgecosts {mstcost:.2f}')
+print(f'The minimum spanning tree costs {mstcost:.2f}')
 timestamp(start)
-plt.rcParams['figure.figsize'] = (unit, unit) # restore some of these
-opt['node_size'] = gns
-opt['node_color'] = 'white' 
-opt['with_labels'] = n <= 30
-opt['font_color'] = 'black'
 M = G.copy() # make a copy
 removed = G.edges() - mst
 M.remove_edges_from(removed)
@@ -371,34 +401,28 @@ dfs(0)
 if n <= 10:
     print('Back and forth', route)
 bfcost = cost(G, route)
-print(f'The back-and-forth MST edgecosts {bfcost:.2f}')
+print(f'The back-and-forth MST costs {bfcost:.2f}')
 timestamp(start)
 
 # we need to straighten out the repeated visits
 start = time()
 prev = 0 # start at zero again
 straight = [ 0 ]
-used = set()
 for pos in range(1, len(route)):
     cand = route[pos]
     if cand not in straight: # skip ahead (already visited)
         straight.append(cand)
-        used.add((prev, cand))
-        used.add((cand, prev))
         prev = cand
-last = straight[-1]
-used.add((0, last))
-used.add((last, 0))
 straight.append(0) # close the loop
 if n <= 10:
     print('Straighted out', straight)
 assert len(straight) == n + 1
 scost = cost(G, straight)
-print(f'The straightened-out MST cycle edgecosts {scost:.2f}')
+print(f'The straightened-out MST cycle costs {scost:.2f}')
 timestamp(start)
 
 S = G.copy() # make a copy of the graph
-S.remove_edges_from(G.edges() - used)
+S.remove_edges_from(G.edges() - used(straight))
 if n <= 100:
     fig, ax = plt.subplots()
     draw(S, pos = gpos, 
@@ -436,7 +460,7 @@ def twoopt(route):
 # simulated annealing
 start = time()
 T = 1000
-eps = 0.0001
+eps = 0.01
 cooling = 0.999
 stalled = 0
 maximum = 200 * magn
@@ -446,7 +470,7 @@ current = straight
 cheapest = straight.copy()
 lcost = ccost = scost
 i = 0
-while stalled < maximum:
+while stalled < maximum and T > eps:
     modified = twoopt(current)
     assert len(modified) == n + 1
     mcost = cost(G, modified)
@@ -476,14 +500,8 @@ while stalled < maximum:
 timestamp(start)
     
 if n <= 100:
-    final = set()
-    for p in range(n):
-        a = cheapest[p]
-        b = cheapest[p + 1]
-        final.add((a, b))
-        final.add((b, a))
     F = G.copy() # make a copy of the graph
-    F.remove_edges_from(G.edges() - final)
+    F.remove_edges_from(G.edges() - used(cheapest))
     fig, ax = plt.subplots()
     draw(F, pos = gpos, 
          edge_cmap = plt.get_cmap('Oranges'), 
