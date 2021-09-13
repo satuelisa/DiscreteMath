@@ -2,41 +2,36 @@ import json
 
 def place(content):
     if 'jpg' not in content:
-        content = content.replace('#', '\\#')
-        content = content.replace('&', '\\&')
         print('{\\Huge ' + content.replace('*', '$') + '}')
     else:
-        print(f'\\includegraphics[width=110mm]{{cards/{content}}}')
+        print(f'\\includegraphics[width=70mm]{{cards/{content}}}')
 
 def first(content):
-    print('\\begin{tabular}{|m{120mm}|m{120mm}|}')    
-    print('\\hline')
+    print('\\begin{tabular}{cc}')    
     place(content)
     print('&')
 
 def second(content):
     place(content)
-    print('''\\\\   
-\\hline    
-\\end{tabular}''')    
+    print('\\end{tabular}')    
 
 print('''\\documentclass[landscape]{article}
 \\usepackage{graphicx}
-\\usepackage{array}
 \\usepackage[spanish]{babel}   
-\\usepackage[top=10mm,bottom=10mm,left=10mm,right=10mm]{geometry}   
 \\usepackage[utf8]{inputenc}
-\\pagestyle{empty}
-\\renewcommand{\\arraystretch}{24}
-\\begin{document}''')
+\\title{Conceptos de Matemáticas Discretas}
+\\author{Elisa Schaeffer}
+\\institute {FIME UANL}
+\\email{elisa.schaeffer@uanl.edu.mx}
+\\begin{document}
+\\maketitle
+\\begin{center}''')
     
 with open('cards.json') as source:
      data = json.load(source)
      for card in data:
          first(card['front'])
          second(card['back'])
-         print('\\newpage')
          
-print('\end{document}')
-
-# MUST USE xelatex because there are unicode characters
+print('''\\end{center}
+\end{document}''')
