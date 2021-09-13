@@ -1,0 +1,23 @@
+Working with a TSP of 30 cities
+The minimum single-edge cost is 0.18 and the maximum is 0.18
+The cheapest random walk edgecosts 12.71 (over 50 attempts)
+That took 1 ms of runtime
+The minimum spanning tree edgecosts 3.75
+That took 4 ms of runtime
+The back-and-forth MST edgecosts 7.51
+That took 0 ms of runtime
+The straightened-out MST cycle edgecosts 5.53
+That took 0 ms of runtime
+New low at 5.49 on iteration 25085 at temp 0.09
+New low at 5.40 on iteration 25218 at temp 0.09
+New low at 5.31 on iteration 26050 at temp 0.08
+New low at 5.31 on iteration 26056 at temp 0.08
+New low at 5.27 on iteration 26083 at temp 0.08
+New low at 5.27 on iteration 26103 at temp 0.08
+New low at 5.13 on iteration 26104 at temp 0.08
+New low at 5.08 on iteration 26144 at temp 0.08
+New low at 5.02 on iteration 28291 at temp 0.07
+New low at 4.80 on iteration 28300 at temp 0.07
+New low at 4.76 on iteration 38985 at temp 0.03
+New low at 4.74 on iteration 39508 at temp 0.03
+That took 350 ms of runtime

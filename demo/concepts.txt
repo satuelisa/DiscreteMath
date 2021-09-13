@@ -20,6 +20,7 @@ permutation
 factorial
 combinatorial explosion
 global optimum
+runtime
 random walk
 self-avoiding
 triangle inequality
@@ -31,4 +32,5 @@ local search
 2-opt 
 heuristic
 simulated annealing
+convergence
 local optimum

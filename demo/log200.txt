@@ -1,0 +1,47 @@
+Working with a TSP of 200 cities
+The minimum single-edge cost is 0.22 and the maximum is 0.22
+The cheapest random walk edgecosts 95.82 (over 80 attempts)
+That took 8 ms of runtime
+The minimum spanning tree edgecosts 9.18
+That took 2219 ms of runtime
+The back-and-forth MST edgecosts 18.36
+That took 0 ms of runtime
+The straightened-out MST cycle edgecosts 13.87
+That took 0 ms of runtime
+New low at 13.80 on iteration 72176 at temp 0.02
+New low at 13.79 on iteration 72208 at temp 0.02
+New low at 13.79 on iteration 73280 at temp 0.02
+New low at 13.79 on iteration 73292 at temp 0.02
+New low at 13.77 on iteration 73306 at temp 0.02
+New low at 13.77 on iteration 73311 at temp 0.02
+New low at 13.72 on iteration 73349 at temp 0.02
+New low at 13.72 on iteration 73397 at temp 0.02
+New low at 13.72 on iteration 73416 at temp 0.02
+New low at 13.71 on iteration 73433 at temp 0.02
+New low at 13.71 on iteration 73513 at temp 0.02
+New low at 13.56 on iteration 73522 at temp 0.02
+New low at 13.53 on iteration 73524 at temp 0.02
+New low at 13.50 on iteration 73568 at temp 0.02
+New low at 13.50 on iteration 73636 at temp 0.02
+New low at 13.50 on iteration 73669 at temp 0.02
+New low at 13.50 on iteration 73697 at temp 0.02
+New low at 13.48 on iteration 75455 at temp 0.02
+New low at 13.48 on iteration 75845 at temp 0.02
+New low at 13.48 on iteration 75887 at temp 0.02
+New low at 13.43 on iteration 75912 at temp 0.02
+New low at 13.43 on iteration 75921 at temp 0.02
+New low at 13.42 on iteration 76358 at temp 0.02
+New low at 13.42 on iteration 76428 at temp 0.01
+New low at 13.42 on iteration 76451 at temp 0.01
+New low at 13.39 on iteration 76629 at temp 0.01
+New low at 13.39 on iteration 76662 at temp 0.01
+New low at 13.38 on iteration 76706 at temp 0.01
+New low at 13.32 on iteration 78406 at temp 0.01
+New low at 13.28 on iteration 78455 at temp 0.01
+New low at 13.28 on iteration 78492 at temp 0.01
+New low at 13.27 on iteration 78607 at temp 0.01
+New low at 13.25 on iteration 78630 at temp 0.01
+New low at 13.23 on iteration 78684 at temp 0.01
+New low at 13.22 on iteration 78713 at temp 0.01
+New low at 13.19 on iteration 78718 at temp 0.01
+That took 4072 ms of runtime
