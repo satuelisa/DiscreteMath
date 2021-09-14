@@ -185,7 +185,7 @@ class Node: # now, consider all the possible visitation orders as a tree
 opt['with_labels'] = n < 5
 opt['font_color'] = 'cyan'
 opt['node_size'] = tns
-if n < 10: # too slow for larger graphs
+if n < 11: # too slow for larger graphs
     # note that it does not matter where we start since it is a cycle
     start = time()
     groot = Node(0) # we can start at zero w.l.o.g.
@@ -208,7 +208,8 @@ if n < 10: # too slow for larger graphs
              edge_color = [ data['cost'] for v, w, data in L.edges(data = True) ], **opt) 
         ax.set_facecolor('black')
         fig.set_facecolor('black')
-        plt.savefig(f'tree{n}.png')
+        plt.subplots_adjust(left=0.01, right=0.99)
+        plt.savefig(f'tree{n}.png', bbox_inches='tight')
         plt.close()        
 
 # let's be smart and prune branches that cost more than the best one seen thus far
@@ -251,7 +252,7 @@ class Smart(Node):
 
 opt['font_color'] = 'cyan'
 opt['font_size'] = 12
-if n < 10:
+if n < 11:
     start = time()
     sroot = Smart(0)
     sbest = sroot.permute({ v for v in range(n) }, edgecosts, sroot, worst)
@@ -279,7 +280,8 @@ if n < 10:
         ax.set_facecolor('black')
         fig.set_facecolor('black')
         ax.axis('off')
-        plt.savefig(f'prune{n}.png')
+        plt.subplots_adjust(left=0.01, right=0.99)
+        plt.savefig(f'prune{n}.png', bbox_inches='tight')
         plt.close()        
 
 plt.rcParams['figure.figsize'] = (unit, unit) # restore some of these
