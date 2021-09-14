@@ -69,8 +69,8 @@ for v in gpos: # for each vertex
         G.add_edge(v, w, cost = d)
         edgecosts[(v, w)] = d
         edgecosts[(w, v)] = d
-        low = min(low, distance) # figure out the minimum edge cost
-        high = max(high, distance) # as well as the maximum
+        low = min(low, d) # figure out the minimum edge cost
+        high = max(high, d) # as well as the maximum
 # view the min-max edgecosts at two-decimal precision
 print(f'The minimum single-edge cost is {low:.2f} and the maximum is {high:.2}')
 
@@ -185,6 +185,9 @@ class Node: # now, consider all the possible visitation orders as a tree
 opt['with_labels'] = n < 5
 opt['font_color'] = 'cyan'
 opt['node_size'] = tns
+gbest = None
+labels = dict()
+tpos = dict()
 if n < 11: # too slow for larger graphs
     # note that it does not matter where we start since it is a cycle
     start = time()
@@ -195,8 +198,6 @@ if n < 11: # too slow for larger graphs
     groot.adjust()
     T = Graph() # we make a graph of it so we can draw it the same way
     groot.join(T) # create vertices to represent the nodes
-    labels = dict()
-    tpos = dict()
     plt.rcParams['figure.figsize'] = (wunit, unit) # big figure
     groot.position(labels, tpos, (0, w), 1, 1 / (n + 1)) # label and position the nodes with
     L = relabel_nodes(T, labels)
@@ -252,13 +253,14 @@ class Smart(Node):
 
 opt['font_color'] = 'cyan'
 opt['font_size'] = 12
-if n < 11:
+if n < 13:
     start = time()
     sroot = Smart(0)
     sbest = sroot.permute({ v for v in range(n) }, edgecosts, sroot, worst)
     print(f'The cheapest (pruned) route costs {sbest:.2f}')
     timestamp(start)
-    assert fabs(gbest - sbest) < significant
+    if gbest is not None:
+        assert fabs(gbest - sbest) < significant
     sroot.adjust()
     P = Graph() 
     sroot.join(P)
