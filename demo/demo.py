@@ -373,6 +373,7 @@ while len(candidates) > 0: # Kruskal's algorithm for MST
             components[u] = combination
 print(f'The minimum spanning tree costs {mstcost:.2f}')
 timestamp(start)
+
 M = G.copy() # make a copy
 removed = G.edges() - mst
 M.remove_edges_from(removed)
