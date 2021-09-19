@@ -1,12 +1,4 @@
-import operator # for getting extrema from dictionaries
-from time import time
 from sys import argv # read command-line parameters
-import matplotlib.pyplot as plt # for the drawings
-from collections import defaultdict # easy storage
-from math import sqrt, log, ceil, exp, fabs # mathematical routines
-from random import random, shuffle, randint # pseudo-random number generation
-from networkx import Graph, draw, relabel_nodes # graph representation (object-oriented)
-
 n = None
 try:
     n = int(argv[1]) # how many cities does our TSP have
@@ -15,6 +7,7 @@ except:
 assert n > 2 # we need at least three for this to make sense
 print(f'Working with a TSP of {n} cities')
 
+from math import sqrt, log, ceil, exp, fabs # mathematical routines
 unit = 8
 width = int(n * sqrt(n))
 wunit = (width / n) * unit
@@ -24,9 +17,10 @@ significant = 0.01
 gns = max(50, 300 - 20 * int(log(n, 2))) if n <= 30 else 20 # node size for graphs
 tns = max(150, 400 - 20 * int(log(n, 2))) if n < 5 else 20 # node size for trees
 
+from time import time
 def timestamp(start):
     ms = 1000 * (time() - start)
-    print(f'That took {ms:.0f} ms of runtime')
+    print(f'That took {ms:.2f} ms of runtime')
 
 # step 1) represent the complete graph with euclidean-distance weights
 
@@ -39,9 +33,12 @@ def eucl(p1, p2):
 
 # we COULD of course do the creation of the graph using a library
 # routine from networkx, but we LEARN more if we do it step by step
+from networkx import Graph, draw, relabel_nodes # graph representation (object-oriented)
 G = Graph() # storage for the graph
 gpos = dict() # storage for the vertex positions
 v = 0
+
+from random import random, shuffle, randint # pseudo-random number generation
 while v < n: # add a total of n vertices called 0, 1, 2, ..., n - 1
     # position each vertex pseudo-randomly in a unit square
     x = random() # horizontal position
@@ -81,6 +78,7 @@ opt['node_size'] = gns
 opt['width'] = max(4 - magn, 1)
 worst = sum(edgecosts.values()) / 2 # no solution could ever cost more than ALL the edges
 
+import matplotlib.pyplot as plt # for the drawings
 plt.rcParams['figure.figsize'] = (unit, unit) # big figure
 if n <= 100:
     fig, ax = plt.subplots() # create an image to draw onto
@@ -93,7 +91,6 @@ if n <= 100:
     ax.axis('off') # no axis needed
     plt.savefig(f'graph{n}.png')
     plt.close()
-
 
 class Node: # now, consider all the possible visitation orders as a tree 
 
@@ -312,6 +309,8 @@ route = [ v for v in range(n) ]
 replicas = 10 * magn
 rbest = worst
 bestwalk = None
+# let's remember some of these for later
+memories = dict()
 for replica in range(replicas): # try several times
     shuffle(route) # a new permutation
     cycle = route + [ route[0] ] # close the cycle
@@ -319,6 +318,9 @@ for replica in range(replicas): # try several times
     if c < rbest:
         rbest = c
         bestwalk = cycle.copy()
+        memories[f'BRW'] = bestwalk
+    if replica < 5:
+        memories[f'RW{replica}'] = cycle.copy()
 print(f'The cheapest random walk costs {rbest:.2f} (over {replicas} attempts)')
 timestamp(start)
 
@@ -349,6 +351,9 @@ if n <= 100:
 
 # so this is pretty fast but quite bad; we need a better approach
 # let us compute a minimum spanning tree 
+from collections import defaultdict # easy storage
+import operator # for getting extrema from dictionaries
+
 start = time()
 mst = set()
 components = dict() # connected-component storage
@@ -412,22 +417,23 @@ timestamp(start)
 # we need to straighten out the repeated visits
 start = time()
 prev = 0 # start at zero again
-straight = [ 0 ]
+st = [ 0 ] # store the straightened-out route
 for pos in range(1, len(route)):
     cand = route[pos]
-    if cand not in straight: # skip ahead (already visited)
-        straight.append(cand)
+    if cand not in st: # skip ahead (already visited)
+        st.append(cand)
         prev = cand
-straight.append(0) # close the loop
+st.append(0) # close the loop
 if n <= 10:
-    print('Straighted out', straight)
-assert len(straight) == n + 1
-scost = cost(G, straight)
+    print('Straighted out', st)
+assert len(st) == n + 1
+scost = cost(G, st)
 print(f'The straightened-out MST cycle costs {scost:.2f}')
 timestamp(start)
+memories['MST'] = st
 
 S = G.copy() # make a copy of the graph
-S.remove_edges_from(G.edges() - used(straight))
+S.remove_edges_from(G.edges() - used(st))
 if n <= 100:
     fig, ax = plt.subplots()
     draw(S, pos = gpos, 
@@ -463,45 +469,47 @@ def twoopt(route):
     return start + middle[::-1] + finish
         
 # simulated annealing
-start = time()
-T = 1000
-eps = 0.01
-cooling = 0.999
-stalled = 0
-maximum = 200 * magn
-stuck = magn
-stable = 0
-current = straight
-cheapest = straight.copy()
-lcost = ccost = scost
-i = 0
-while stalled < maximum and T > eps:
-    modified = twoopt(current)
-    assert len(modified) == n + 1
-    mcost = cost(G, modified)
-    d = ccost - mcost
-    if mcost < lcost: # a new low (a good thing here)
-        print(f'New low at {mcost:.2f} on iteration {i} at temp {T:.2f}')
-        cheapest = modified.copy()
-        lcost = mcost
-        if d > eps:
-            stable += 1
-            if stable > stuck:
-                stalled = maximum
+def simAnn(G, current, stuck, maximum, quiet = False, \
+           T = 1000, cooling = 0.999, eps = 0.01):
+    stalled = 0
+    stable = 0
+    cheapest = current.copy()
+    lcost = ccost = cost(G, current)
+    i = 0
+    while stalled < maximum and T > eps:
+        modified = twoopt(current)
+        assert len(modified) == n + 1
+        mcost = cost(G, modified)
+        d = ccost - mcost
+        if mcost < lcost: # a new low (a good thing here)
+            if not quiet:
+                print(f'New low at {mcost:.2f} on iteration {i} at temp {T:.2f}')
+            cheapest = modified.copy()
+            lcost = mcost
+            if d > eps:
+                stable += 1
+                if stable > stuck:
+                    stalled = maximum
+                    continue
+            else:
+                stable = 0 # notable improvement
+        threshold = exp(d / T) # probability
+        i += 1
+        if random() < threshold: # accept
+            current = roll(modified) # change the start position (for varying 2-opt)c
+            assert current[0] == current[-1]
+            ccost = mcost
+            if d > 0: # it was better
+                T *= cooling # get stricter
+                stalled = 0 
                 continue
-        else:
-            stable = 0 # notable improvement
-    threshold = exp(d / T) # probability
-    i += 1
-    if random() < threshold: # accept
-        current = roll(modified) # change the start position (for varying 2-opt)c
-        assert current[0] == current[-1]
-        ccost = mcost
-        if d > 0: # it was better
-            T *= cooling # get stricter
-            stalled = 0 
-            continue
-    stalled += 1
+        stalled += 1
+    return cheapest
+
+start = time()
+# start with a copy of the straightened-out route
+cheapest = simAnn(G, st.copy(), magn, 200 * magn)
+memories['SA'] = cheapest
 timestamp(start)
     
 if n <= 100:
@@ -518,4 +526,102 @@ if n <= 100:
     plt.savefig(f'local{n}.png')
     plt.close()
 
+# what if we use artificial intelligence instead?
+# WARNING: not every laptop will do this in a blink of an eye
 
+# let's make a training set of tons of routes
+k = 250 # how many to make (normally you need a lot)
+# higher -> better (but make less if using this online)
+start = time()
+routes = []
+for r in range(k // 2): # make half "good ones", half "bad ones"
+    good = simAnn(G, st.copy(), magn, 50 * magn, quiet = True)
+    routes.append(good)    
+    bad = good.copy()[:-1] # unclosed
+    shuffle(bad) # random walk
+    bad.append(bad[0]) # closed
+    routes.append(bad)
+    if r % 25 == 0:
+        print('.') # progress indicator
+print('Training data ready')
+timestamp(start)
+
+import numpy as np # we need a matrix
+X = np.array(routes)
+
+# label those that are cheaper than 3/2 * MST as "okay" (True)
+# label those that are more expensive as "not okay" (False)
+
+demanding = (3 / 2) * mstcost # the Christophides upper bound
+relaxed = 2 * mstcost # the upper bound we discussed
+threshold = (demanding + relaxed) / 2 # compromise at the average
+
+# these are the intended labels as a column vector
+y = np.array([ cost(G, r) < threshold for r in routes ]).T # transpose
+labels, counts = np.unique(y, return_counts = True)
+assert len(counts) == 2 # we _need_ both kinds
+for (l, c) in zip(labels, counts):
+    print(f'Training with {c} routes with label {l}')
+
+# now we do some deep learning (yes, it was a long wait)
+from keras.models import Sequential # increment the layers one at a time
+from keras.layers import Dense # everything is connected to everything
+# if you do this on your computer, also install TensorFlow
+m = Sequential()
+m.add(Dense(16, input_dim = n + 1, activation = 'relu')) # the route is the input
+m.add(Dense(8, activation = 'relu')) # rectified linear unit activation function
+m.add(Dense(4, activation = 'relu')) # picking which ones and how many is an artform
+m.add(Dense(1, activation = 'sigmoid')) # this will output the 0/1
+# we have five layers now: an input, THREE hidden ones, and an output layer
+
+start = time()
+m.compile(loss = 'binary_crossentropy', # a two-class problem
+              optimizer = 'adam', # a gradient descent algorithm
+              metrics = [ 'accuracy' ]) # performance measure
+m.fit(X, y, epochs = 50, batch_size = 10) # how many rounds, update interval
+# usually we do many more, but this is just a quick demo
+timestamp(start)
+
+# lets build a test set 
+k = 60 # this can be smaller
+testroutes = []
+for r in range(k // 2): # half good, half bad
+    good = simAnn(G, st.copy(), magn, 50 * magn, quiet = True)
+    testroutes.append(good)    
+    bad = good.copy()[:-1] 
+    shuffle(bad) 
+    bad.append(bad[0])
+    testroutes.append(bad)
+print('Test data ready')
+
+testX = np.array(testroutes)
+testy = np.array([ cost(G, r) < threshold for r in testroutes ]).T
+labels, counts = np.unique(testy, return_counts = True)
+assert len(counts) == 2 # we again _need_ both kinds
+for (l, c) in zip(labels, counts):
+    print(f'Testing with {c} routes with label {l}')
+
+# check look at the performance
+for (metric, value) in zip(m.metrics_names, m.evaluate(testX, testy)):
+    print(f'Performance metric {metric} was {value:.3f} in the test')
+
+# remember, we never told the model we were solving the TSP
+# let us see for ourselves how well this works
+order = [ key for key in memories.keys() ]
+X = np.array([ memories[r] for r in order ])
+output = m.predict(X)
+
+# remember: this will look different every time you run it
+happy, sad = 0, 0
+for (result, key) in zip(output, order):
+    route = memories[key]
+    expected = cost(G, route) < threshold
+    observed = result[0] > 0.5 # sigmoidal threshold
+    match = observed == expected
+    outcome = ':)' if match else ':('
+    happy += match
+    sad += not match
+    print(f'{outcome} for {key}\twanted {expected}\t got {observed}\t(raw: {result})')
+hp = 'es' if happy > 1 else ''
+sp = 'es' if sad > 1 else ''
+print(f'That is {happy} match{hp} and {sad} mismatch{sp}.')
