@@ -417,16 +417,15 @@ timestamp(start)
 # we need to straighten out the repeated visits
 start = time()
 prev = 0 # start at zero again
-st = [ 0 ] # store the straightened-out route
-for pos in range(1, len(route)):
-    cand = route[pos]
-    if cand not in st: # skip ahead (already visited)
+st = [] # store the straightened-out route
+for cand in route:
+    if cand not in st: # skip ahead if already visited
         st.append(cand)
-        prev = cand
-st.append(0) # close the loop
+st.append(st[0])
 if n <= 10:
     print('Straighted out', st)
-assert len(st) == n + 1
+for i in range(n):
+    assert i in st
 scost = cost(G, st)
 print(f'The straightened-out MST cycle costs {scost:.2f}')
 timestamp(start)
@@ -526,7 +525,7 @@ if n <= 100:
     plt.savefig(f'local{n}.png')
     plt.close()
 
-# what if we use artificial intelligence instead?
+# what if we use deep learning instead?
 # WARNING: not every laptop will do this in a blink of an eye
 
 # let's make a training set of tons of routes
@@ -545,7 +544,7 @@ for r in range(k // 2): # make half "good ones", half "bad ones"
         print('.') # progress indicator
 print('Training data ready')
 timestamp(start)
-
+shuffle(routes) # randomize the order just in case
 import numpy as np # we need a matrix
 X = np.array(routes)
 
