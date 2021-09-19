@@ -17,7 +17,8 @@ play with the code on a stand-alone Python installation or
 the
 [Jupyter notebook](https://github.com/satuelisa/DiscreteMath/blob/master/demo/demo.ipynb) to
 just see what it does or to explore ways to improve it (the latter has
-a bit more explanations of the steps).
+a bit more explanations of the steps). You can [interact with it](https://colab.research.google.com/github/satuelisa/DiscreteMath/blob/master/demo/demo.ipynb) online as well.
+
 
 The last two files are for making that plot of the solution quality of
 the simulated annealing step:
