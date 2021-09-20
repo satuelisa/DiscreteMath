@@ -1,7 +1,7 @@
 # Discrete Math meets Deep Learning
 
 YouTube has a silent
-but [animated version](https://youtu.be/lW_ExV1yGL8) of
+but [animated version](https://youtu.be/jkOwnpWEHfQ) of
 the
 [slides](https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/demo.pdf);
 remember that you can use the controls to slow it down or speed it up
