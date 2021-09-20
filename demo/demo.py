@@ -666,7 +666,7 @@ def examine(m, X, y, testX, testy, epochs = 20): # the things we need to do with
         print(f'{outcome} for {key}\twanted {expected}\t got {observed}\t(raw: {result})')
         hp = 'es' if happy > 1 else ''
         sp = 'es' if sad > 1 else ''
-        print(f'That is {happy} match{hp} and {sad} mismatch{sp}.')
+    print(f'That is {happy} match{hp} and {sad} mismatch{sp}.')
     return results
 
 # if you do this on your computer, also install TensorFlow

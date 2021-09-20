@@ -128,19 +128,12 @@ That took 1189.58 ms of runtime
 Performance metric loss was 0.636 in the test
 Performance metric accuracy was 0.660 in the test
 :) for BRW	wanted False	 got False	(raw: [0.49441367])
-That is 1 match and 0 mismatch.
 :( for RW0	wanted False	 got True	(raw: [0.5499859])
-That is 1 match and 1 mismatch.
 :) for RW1	wanted False	 got False	(raw: [0.11383786])
-That is 2 matches and 1 mismatch.
 :) for RW2	wanted False	 got False	(raw: [0.05036401])
-That is 3 matches and 1 mismatch.
 :) for RW3	wanted False	 got False	(raw: [0.39978075])
-That is 4 matches and 1 mismatch.
 :) for RW4	wanted False	 got False	(raw: [0.45638418])
-That is 5 matches and 1 mismatch.
 :) for MST	wanted True	 got True	(raw: [0.56488645])
-That is 6 matches and 1 mismatch.
 :) for SA	wanted True	 got True	(raw: [0.6117116])
 That is 7 matches and 1 mismatch.
 The correlation is -0.0044339485635448445
@@ -189,19 +182,12 @@ That took 710.41 ms of runtime
 Performance metric loss was 0.386 in the test
 Performance metric accuracy was 0.833 in the test
 :) for BRW	wanted False	 got False	(raw: [0.24816737])
-That is 1 match and 0 mismatch.
 :) for RW0	wanted False	 got False	(raw: [0.06167372])
-That is 2 matches and 0 mismatch.
 :) for RW1	wanted False	 got False	(raw: [0.08991873])
-That is 3 matches and 0 mismatch.
 :) for RW2	wanted False	 got False	(raw: [0.0204951])
-That is 4 matches and 0 mismatch.
 :) for RW3	wanted False	 got False	(raw: [0.19897413])
-That is 5 matches and 0 mismatch.
 :( for RW4	wanted False	 got True	(raw: [0.5590368])
-That is 5 matches and 1 mismatch.
 :) for MST	wanted True	 got True	(raw: [0.9004541])
-That is 6 matches and 1 mismatch.
 :) for SA	wanted True	 got True	(raw: [0.84625834])
 That is 7 matches and 1 mismatch.
 The first one had 0.636 loss and 0.660 accuracy
