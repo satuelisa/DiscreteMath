@@ -292,12 +292,12 @@ opt['font_color'] = 'black'
 # what if we have a large n?
 # first idea: self-avoiding random walk
 
-def cost(G, route):
+def cost(G, r):
     acc = 0 # accumulate the cost here
     p = 1 # by traversing the route
-    while p < len(route):
-        source = route[p - 1]
-        target = route[p]
+    while p < len(r):
+        source = r[p - 1]
+        target = r[p]
         d = G.get_edge_data(source, target)
         assert 'cost' in d
         acc += d['cost']
@@ -305,7 +305,7 @@ def cost(G, route):
     return acc
 
 start = time()
-route = [ v for v in range(n) ]
+route = [ v for v in range(n) ] 
 replicas = 10 * magn
 rbest = worst
 bestwalk = None
@@ -378,6 +378,7 @@ while len(candidates) > 0: # Kruskal's algorithm for MST
             components[u] = combination
 print(f'The minimum spanning tree costs {mstcost:.2f}')
 timestamp(start)
+# (3 / 2) * mstcost is the Christophides upper bound
 
 M = G.copy() # make a copy
 removed = G.edges() - mst
@@ -395,22 +396,22 @@ if n <= 100:
     plt.close()
 
 # let us make a cycle from the MST by walking it back and forth
-route = []
+bf = []
 visited = set()
 
 def dfs(v):
-    global route, neighbors, visited
-    route.append(v)
+    global bf, neighbors, visited
+    bf.append(v)
     visited.add(v)
     cand = neighbors[v] - visited # unvisited
     for w in cand:
         dfs(w)
-        route.append(v)
+        bf.append(v)
 start = time()
 dfs(0)
 if n <= 10:
-    print('Back and forth', route)
-bfcost = cost(G, route)
+    print('Back and forth', bf)
+bfcost = cost(G, bf)
 print(f'The back-and-forth MST costs {bfcost:.2f}')
 timestamp(start)
 
@@ -418,7 +419,7 @@ timestamp(start)
 start = time()
 prev = 0 # start at zero again
 st = [] # store the straightened-out route
-for cand in route:
+for cand in bf:
     if cand not in st: # skip ahead if already visited
         st.append(cand)
 st.append(st[0])
@@ -447,40 +448,44 @@ if n <= 100:
 
 # now, some of those edges are plain dumb choices, right?
 
-def roll(route):
-    n = len(route)
-    assert route[0] == route[-1]
-    route.pop() # remove the last
+def roll(r):
+    n = len(r)
+    assert r[0] == r[-1]
+    r.pop() # remove the last
     offset = randint(1, n - 2)
-    assert offset < len(route)
-    rolled = route[offset:] + route[:offset] 
+    assert offset < len(r)
+    rolled = r[offset:] + r[:offset] 
     return rolled + [ rolled[0] ] # close it back
     
 # local search
-def twoopt(route):
-    n = len(route)
+def twoopt(r):
+    n = len(r)
     f = randint(1, n - 2) # first cut
     s = randint(f + 1, n - 1) # second cut
-    start = route[:f]
-    middle = route[f:s] # to invert
-    finish = route[s:]
+    start = r[:f]
+    middle = r[f:s] # to invert
+    finish = r[s:]
     assert len(start) > 0 and len(middle) > 0 and len(finish) > 0
     return start + middle[::-1] + finish
         
 # simulated annealing
 def simAnn(G, current, stuck, maximum, quiet = False, \
-           T = 1000, cooling = 0.999, eps = 0.01):
+           T = 1000, cooling = 0.999, eps = 0.01, target = None, cap = 0):
     stalled = 0
     stable = 0
     cheapest = current.copy()
     lcost = ccost = cost(G, current)
     i = 0
     while stalled < maximum and T > eps:
+        current = roll(current) # not always 0 in the beginning
+        assert current[0] == current[-1]        
         modified = twoopt(current)
         assert len(modified) == n + 1
         mcost = cost(G, modified)
         d = ccost - mcost
         if mcost < lcost: # a new low (a good thing here)
+            if target is not None and len(target) < cap: # store this
+                target.add(tuple(current)) # lists cannot go into set
             if not quiet:
                 print(f'New low at {mcost:.2f} on iteration {i} at temp {T:.2f}')
             cheapest = modified.copy()
@@ -495,9 +500,8 @@ def simAnn(G, current, stuck, maximum, quiet = False, \
         threshold = exp(d / T) # probability
         i += 1
         if random() < threshold: # accept
-            current = roll(modified) # change the start position (for varying 2-opt)c
-            assert current[0] == current[-1]
             ccost = mcost
+            current = modified
             if d > 0: # it was better
                 T *= cooling # get stricter
                 stalled = 0 
@@ -525,80 +529,103 @@ if n <= 100:
     plt.savefig(f'local{n}.png')
     plt.close()
 
-# what if we use deep learning instead?
+# what if we DID NOT know the edge costs?
+# can deep learning infer them by observing good and bad routes?
 # WARNING: not every laptop will do this in a blink of an eye
 
-# let's make a training set of tons of routes
-k = 250 # how many to make (normally you need a lot)
+# let's make a dataset of tons of routes
+goal = 500 # how many to make (normally you need a lot)
 # higher -> better (but make less if using this online)
 start = time()
-routes = []
-for r in range(k // 2): # make half "good ones", half "bad ones"
-    good = simAnn(G, st.copy(), magn, 50 * magn, quiet = True)
-    routes.append(good)    
-    bad = good.copy()[:-1] # unclosed
-    shuffle(bad) # random walk
-    bad.append(bad[0]) # closed
-    routes.append(bad)
-    if r % 25 == 0:
-        print('.') # progress indicator
-print('Training data ready')
+routes = set()
+half = goal // 2
+# make roughly half "good ones" (note that we may get "rotations" of one same route)
+print('Generating the "good" routes')
+while len(routes) < half: # make some with local search
+    simAnn(G, st.copy(), magn, 200 * magn, quiet = True, target = routes, cap = half)
+    present = len(routes) # how many do we have
+goal = max(present, goal) # if we already have more, match that
+# the other half "bad ones" (random walks)
+print('Generating the "bad" routes')
+while len(routes) < goal:
+    shuffle(route) # we can use the same one we already had
+    routes.add(tuple(route + [ route[0] ])) 
+print('Data generation ready')
 timestamp(start)
+routes = list(routes)
 shuffle(routes) # randomize the order just in case
-import numpy as np # we need a matrix
-X = np.array(routes)
+
+# now, these are very BAD inputs (random orderings)
+# we should match the inputs to the vertices
+# and store at which _position_ that vertex is visited
+# assuming 0 is first (we fix this)
+def index(r):
+    pos = dict()
+    i = 0
+    for v in r[:-1]:
+        pos[v] = i
+        i += 1
+    zero = pos[0] # make this first
+    output = [0]
+    for v in range(1, n):
+        p = pos[v]
+        if p > zero: # it came AFTER zero
+            output.append(p - zero)
+        elif p < zero: # it came BEFORE zero 
+            output.append(zero + p)
+    return output
 
 # label those that are cheaper than 3/2 * MST as "okay" (True)
 # label those that are more expensive as "not okay" (False)
+threshold = 2 * mstcost # the upper bound we discussed 
+costs = [ cost(G, r) < threshold for r in routes ] # whether costs are below the threshold
+routes = [ index(r) for r in routes ] # better inputs (one less of them, too)
+total = len(routes)
+div = round(0.7 * len(routes))
+# split into train and test
+training = routes[:div] # 70%
+testing = routes[div:] # 30%
 
-demanding = (3 / 2) * mstcost # the Christophides upper bound
-relaxed = 2 * mstcost # the upper bound we discussed
-threshold = (demanding + relaxed) / 2 # compromise at the average
-
-# these are the intended labels as a column vector
-y = np.array([ cost(G, r) < threshold for r in routes ]).T # transpose
+import numpy as np # we need a matrix
+X = np.array(training)
+y = np.array(costs[:div]).T # labels as a column vector
 labels, counts = np.unique(y, return_counts = True)
-assert len(counts) == 2 # we _need_ both kinds
 for (l, c) in zip(labels, counts):
     print(f'Training with {c} routes with label {l}')
-
+assert len(counts) == 2 # we _need_ both kinds
+assert min(counts) > max(counts) / 2 # no gross imbalance
+    
 # now we do some deep learning (yes, it was a long wait)
 from keras.models import Sequential # increment the layers one at a time
 from keras.layers import Dense # everything is connected to everything
 # if you do this on your computer, also install TensorFlow
 m = Sequential()
-m.add(Dense(16, input_dim = n + 1, activation = 'relu')) # the route is the input
-m.add(Dense(8, activation = 'relu')) # rectified linear unit activation function
-m.add(Dense(4, activation = 'relu')) # picking which ones and how many is an artform
-m.add(Dense(1, activation = 'sigmoid')) # this will output the 0/1
-# we have five layers now: an input, THREE hidden ones, and an output layer
+m.add(Dense(n, input_dim = n, activation = 'relu')) # rectified linear unit activation function
+# we could stuff things in between here, too
+#m.add(Dense(n // 2, activation = 'relu')) 
+#m.add(Dense(round(sqrt(n)), activation = 'relu')) 
+#m.add(Dense(round(log(n, 2)), activation = 'relu')) 
+m.add(Dense(1, activation = 'sigmoid')) # output the 0/1
+
+from keras_visualizer import visualizer
+visualizer(m, filename = 'model', format = 'png', view = False)
 
 start = time()
 m.compile(loss = 'binary_crossentropy', # a two-class problem
-              optimizer = 'adam', # a gradient descent algorithm
-              metrics = [ 'accuracy' ]) # performance measure
-m.fit(X, y, epochs = 50, batch_size = 10) # how many rounds, update interval
+          optimizer = 'adam', # a gradient descent algorithm
+          metrics = [ 'accuracy' ]) # performance measure
+m.fit(X, y, epochs = 100, batch_size = 10) # how many rounds, update interval
 # usually we do many more, but this is just a quick demo
 timestamp(start)
 
-# lets build a test set 
-k = 60 # this can be smaller
-testroutes = []
-for r in range(k // 2): # half good, half bad
-    good = simAnn(G, st.copy(), magn, 50 * magn, quiet = True)
-    testroutes.append(good)    
-    bad = good.copy()[:-1] 
-    shuffle(bad) 
-    bad.append(bad[0])
-    testroutes.append(bad)
-print('Test data ready')
-
-testX = np.array(testroutes)
-testy = np.array([ cost(G, r) < threshold for r in testroutes ]).T
+# now we use the test data
+testX = np.array(testing)
+testy = np.array(costs[div:]).T
 labels, counts = np.unique(testy, return_counts = True)
-assert len(counts) == 2 # we again _need_ both kinds
 for (l, c) in zip(labels, counts):
     print(f'Testing with {c} routes with label {l}')
+assert len(counts) == 2 # we again _need_ both kinds
+assert min(counts) > max(counts) / 2 # no gross imbalance
 
 # check look at the performance
 for (metric, value) in zip(m.metrics_names, m.evaluate(testX, testy)):
@@ -607,7 +634,7 @@ for (metric, value) in zip(m.metrics_names, m.evaluate(testX, testy)):
 # remember, we never told the model we were solving the TSP
 # let us see for ourselves how well this works
 order = [ key for key in memories.keys() ]
-X = np.array([ memories[r] for r in order ])
+X = np.array([ index(memories[r]) for r in order ])
 output = m.predict(X)
 
 # remember: this will look different every time you run it
@@ -624,3 +651,35 @@ for (result, key) in zip(output, order):
 hp = 'es' if happy > 1 else ''
 sp = 'es' if sad > 1 else ''
 print(f'That is {happy} match{hp} and {sad} mismatch{sp}.')
+
+w = m.get_weights()
+I = w[0] # what DL thinks of the vertex-to-vertex relations now
+# build the distance matrix from the edges
+D = np.zeros((n, n))
+for (v, w), d in edgecosts.items():
+    D[v, w] = d
+
+# normalize both to [0, 1]
+ri = I.max() - I.min()
+I -= I.min()
+I /= ri
+
+rd = D.max() - D.min()
+D -= D.min()
+D /= rd
+
+# visual inspection
+import seaborn as sns
+ax = sns.heatmap(D, linewidth = 0)
+plt.savefig('original.png')
+plt.close()
+ax = sns.heatmap(I, linewidth = 0)
+plt.savefig('inferred.png')
+plt.close()
+
+# are these related? 
+i = I.flatten() # 1D
+d = D.flatten() # 1D
+corr = np.corrcoef(i, d)[0][-1] 
+print(f'The correlation is {corr}')
+# remember, the model NEVER saw ANY edges at all
