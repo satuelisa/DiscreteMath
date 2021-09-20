@@ -424,7 +424,7 @@ for cand in bf:
         st.append(cand)
 st.append(st[0])
 if n <= 10:
-    print('Straighted out', st)
+    print('Straightened out', st)
 for i in range(n):
     assert i in st
 scost = cost(G, st)
