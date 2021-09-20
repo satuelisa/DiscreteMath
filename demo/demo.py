@@ -580,12 +580,16 @@ while len(routes) < half and stuck < 10: # make some with local search
     if present == prev:
         stuck += 1 # do not try forever
     prev = present
+print('Good ones done')    
 goal = max(present, goal) # if we already have more, match that
+
 # the other half "bad ones" (random walks)
+# will need to start at zero, too
+# otherwise we get leakage
 print('Generating probable "bad" routes')
 while len(routes) < goal:
     shuffle(route) # we can use one we already had and mix it
-    routes.add(tuple(route + [ route[0] ])) 
+    routes.add(tuple(restore(route + [ route[0] ])))
 print('Data generation ready')
 timestamp(start)
 routes = list(routes)
@@ -593,7 +597,16 @@ routes = list(routes)
 import numpy as np 
 shuffle(routes) # randomize the order 
 costs = [ cost(G, r) for r in routes ] # route costs
-thr = np.median(costs) 
+thr = np.median(costs) # a threshold for "cheap" / "expensive"
+
+# let's take a look
+head, h = n, 0
+for (r, c) in zip(routes, costs):
+    print(f'{r} -> {c:.3f} -> {c < thr}')
+    h += 1
+    if h == head:
+        break # not all
+
 labels = [ c < thr for c in costs ] # better / worse
 ri = [ index(r) for r in routes ] # better inputs (one less of them, too)
 div = round(0.7 * len(routes)) # split into train and test
@@ -619,74 +632,86 @@ assert len(cs) == 2 # we again _need_ both kinds
 assert min(cs) > max(cs) / 2 # no gross imbalance
 
 # now we do some deep learning (this will perform poorly for small n)
+
+def examine(m, X, y, testX, testy, epochs = 20): # the things we need to do with a model
+    start = time()
+    m.compile(loss = 'binary_crossentropy', # a two-class problem
+              optimizer = 'adam', # a gradient descent algorithm
+              metrics = [ 'accuracy' ]) # performance measure
+    m.fit(X, y, epochs = epochs, batch_size = 10) # how many rounds, update interval
+    # usually we do many more, but this is just a quick demo
+    timestamp(start)
+
+    results = m.evaluate(testX, testy)
+    # check look at the performance
+    for (metric, value) in zip(m.metrics_names, results):
+        print(f'Performance metric {metric} was {value:.3f} in the test')
+        
+    # remember, we never told the model we were solving the TSP
+    # let us see for ourselves how well this works
+    order = [ key for key in memories.keys() ]
+    X = np.array([ index(memories[r]) for r in order ])
+    output = m.predict(X)
+
+    # remember: this will look different every time you run it
+    happy, sad = 0, 0
+    for (result, key) in zip(output, order):
+        route = memories[key]
+        expected = cost(G, route) < thr
+        observed = result[0] > 0.5 # sigmoidal threshold
+        match = observed == expected
+        outcome = ':)' if match else ':('
+        happy += match
+        sad += not match
+        print(f'{outcome} for {key}\twanted {expected}\t got {observed}\t(raw: {result})')
+        hp = 'es' if happy > 1 else ''
+        sp = 'es' if sad > 1 else ''
+        print(f'That is {happy} match{hp} and {sad} mismatch{sp}.')
+    return results
+
+# if you do this on your computer, also install TensorFlow
 from keras.models import Sequential # increment the layers one at a time
 from keras.layers import Dense # everything is connected to everything
-# if you do this on your computer, also install TensorFlow
+
+# a first model
+
 m = Sequential()
 m.add(Dense(n, input_dim = n, activation = 'relu')) # rectified linear unit activation function
-# we could stuff things in between here, too
-#m.add(Dense(n // 2, activation = 'relu')) 
-#m.add(Dense(round(sqrt(n)), activation = 'relu')) 
-#m.add(Dense(round(log(n, 2)), activation = 'relu')) 
 m.add(Dense(1, activation = 'sigmoid')) # output the 0/1
+# not very "deep", is it?
+first = examine(m, X, y, testX, testy)
 
 from keras_visualizer import visualizer
-visualizer(m, filename = 'model', format = 'png', view = False)
+visualizer(m, filename = 'first', format = 'png', view = False)
 
-start = time()
-m.compile(loss = 'binary_crossentropy', # a two-class problem
-          optimizer = 'adam', # a gradient descent algorithm
-          metrics = [ 'accuracy' ]) # performance measure
-m.fit(X, y, epochs = 20, batch_size = 10) # how many rounds, update interval
-# usually we do many more, but this is just a quick demo
-timestamp(start)
+# the weights go by pairs per layer: kernel matrix, bias vector
+W = m.get_weights()
+# what DL thinks of the vertex-to-vertex relations
+# between the input and the hidden layer now 
+I = W[0]
 
-# check look at the performance
-for (metric, value) in zip(m.metrics_names, m.evaluate(testX, testy)):
-    print(f'Performance metric {metric} was {value:.3f} in the test')
-
-# remember, we never told the model we were solving the TSP
-# let us see for ourselves how well this works
-order = [ key for key in memories.keys() ]
-X = np.array([ index(memories[r]) for r in order ])
-output = m.predict(X)
-
-# remember: this will look different every time you run it
-happy, sad = 0, 0
-for (result, key) in zip(output, order):
-    route = memories[key]
-    expected = cost(G, route) < thr
-    observed = result[0] > 0.5 # sigmoidal threshold
-    match = observed == expected
-    outcome = ':)' if match else ':('
-    happy += match
-    sad += not match
-    print(f'{outcome} for {key}\twanted {expected}\t got {observed}\t(raw: {result})')
-hp = 'es' if happy > 1 else ''
-sp = 'es' if sad > 1 else ''
-print(f'That is {happy} match{hp} and {sad} mismatch{sp}.')
-
-w = m.get_weights()
-I = w[0] # what DL thinks of the vertex-to-vertex relations now
 # build the distance matrix from the edges
 D = np.zeros((n, n))
 for (v, w), d in edgecosts.items():
     D[v, w] = d
 
 # normalize both to [0, 1]
-ri = I.max() - I.min()
-I -= I.min()
-I /= ri
+def normalize(M):
+    span = M.max() - M.min()
+    M -= M.min()
+    M /= span
+    return M
 
-rd = D.max() - D.min()
-D -= D.min()
-D /= rd
+D = normalize(D)
+I = normalize(I)
 
 # visual inspection
 import seaborn as sns
+
 ax = sns.heatmap(D, linewidth = 0)
 plt.savefig('original.png')
 plt.close()
+
 ax = sns.heatmap(I, linewidth = 0)
 plt.savefig('inferred.png')
 plt.close()
@@ -695,5 +720,54 @@ plt.close()
 i = I.flatten() # 1D
 d = D.flatten() # 1D
 corr = np.corrcoef(i, d)[0][-1] 
-print(f'The correlation is {corr}')
-# remember, the model NEVER sees the edges 
+print(f'The correlation is {corr}') # nope
+
+# remember, the model NEVER sees the edges
+# but it "knows" them now...
+# how? and can we get them out of there?
+
+deep = Sequential() # kinda like Arturo's bolzmann machines
+deep.add(Dense(n, input_dim = n, activation = 'relu')) # input and first hidden:
+for i in range(n - 1): # another n - 1 hidden layers
+    deep.add(Dense(n, activation = 'relu')) 
+deep.add(Dense(1, activation = 'sigmoid')) # output the 0/1
+
+second = examine(m, X, y, testX, testy)
+
+# is it better?
+print(f'The first one had {first[0]:.3f} loss and {first[1]:.3f} accuracy')
+print(f'This one had {second[0]:.3f} loss and {second[1]:.3f} accuracy')
+
+from keras_visualizer import visualizer
+visualizer(deep, filename = 'deep', format = 'png', view = False)
+
+# since we do not know how in maps the vertices
+# on the layers internally, we can but visualize the structure
+W = deep.get_weights()
+Gd = Graph()
+dpos = dict()
+for layer in range(n):
+    w = normalize(W[2 * layer])
+    for v in range(n):
+        vl = f'{layer}.{v}'
+        Gd.add_node(vl)
+        dpos[vl] = (layer, v) # position by layer
+        if layer > 0: # link it to the previous layer, all positions
+            for u in range(n): 
+                Gd.add_edge(vl, f'{layer-1}.{u}', weight = w[v][u]) # we use the kernel matrix
+
+# set up how we want the visualization to look
+plt.rcParams['figure.figsize'] = (2 * n, n) # we need this _wide_
+opt = { 'node_color': 'blue', 'with_labels': False, 'node_size': 50, 'width': 1 }
+fig, ax = plt.subplots()
+from networkx import get_edge_attributes
+wm = get_edge_attributes(Gd, 'weight').values()
+draw(Gd, pos = dpos, 
+     edge_cmap = plt.get_cmap('Oranges'), # the same palette works
+     edge_color = wm, # edge colors from weights
+     **opt) 
+ax.set_facecolor('black') 
+fig.set_facecolor('black')
+ax.axis('off') 
+plt.savefig(f'layers.png') # somewhere in there, our edges are hiding :)
+plt.close()
