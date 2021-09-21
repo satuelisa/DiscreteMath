@@ -566,7 +566,7 @@ from math import factorial
 assert goal <= factorial(n - 1)
 # higher -> better (but make less if using this online)
 start = time()
-routes = set()
+routes = set() # avoid duplicates (still getting the mirror images)
 half = goal // 2
 # make roughly half "good ones" 
 print('Generating probable "good" routes')
