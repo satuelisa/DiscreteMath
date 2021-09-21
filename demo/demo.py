@@ -681,7 +681,8 @@ m.add(Dense(1, activation = 'sigmoid')) # output the 0/1
 # not very "deep", is it?
 first = examine(m, X, y, testX, testy)
 
-from keras_visualizer import visualizer
+# relies on the graphviz backend to be present on your system
+from keras_visualizer import visualizer 
 visualizer(m, filename = 'first', format = 'png', view = False)
 
 # the weights go by pairs per layer: kernel matrix, bias vector
