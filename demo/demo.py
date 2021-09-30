@@ -561,9 +561,8 @@ def index(r):
             output.append(zero + p)
     return output
 
-goal = 500 # how many to make (normally you need a lot)
 from math import factorial
-assert goal <= factorial(n - 1)
+goal = min(500, 3 * factorial(n - 1) / 4) # be prudent
 # higher -> better (but make less if using this online)
 start = time()
 routes = set() # avoid duplicates (still getting the mirror images)
@@ -664,8 +663,10 @@ def examine(m, X, y, testX, testy, epochs = 20): # the things we need to do with
         happy += match
         sad += not match
         print(f'{outcome} for {key}\twanted {expected}\t got {observed}\t(raw: {result})')
-        hp = 'es' if happy > 1 else ''
-        sp = 'es' if sad > 1 else ''
+    hp = 'es' if happy > 1 else ''
+    sp = 'es' if sad > 1 else ''
+    sad = 'no' if sad == 0 else str(sad)
+    happy = 'no' if happy == 0 else str(happy)
     print(f'That is {happy} match{hp} and {sad} mismatch{sp}.')
     return results
 
@@ -698,27 +699,64 @@ for (v, w), d in edgecosts.items():
 
 # normalize both to [0, 1]
 def normalize(M):
-    span = M.max() - M.min()
-    M -= M.min()
-    M /= span
+    low = M.min()
+    span = M.max() - low
+    if low > 0:
+        M -= M.min()
+    if span > 0:
+        M /= span
     return M
 
+# we KNOW the vertex order in this one
 D = normalize(D)
-I = normalize(I)
+
+# in this one, we only know the input order, not the one at the hidden
+# layer side but since if this WERE a representation of the edges, the
+# diagonal (self) elements would be the smallest ones, we can put this
+# in the "most promising order"
+
+def mindiag(matrix): # reorder the columns to put minimal elements on
+    n, m = matrix.shape
+    assert n == m # square only
+    ordered = dict()
+    used = set()
+    high = np.max(matrix) * 2
+    while len(ordered) < n:
+        low = high
+        pick = None
+        for x in range(n): # rows
+            if not x in ordered:
+                for y in range(n): # columns
+                    if not y in used:
+                        v = matrix[x][y]
+                        if v < low:
+                            low = v
+                            pick = (x, y)
+        (x, y) = pick
+        ordered[x] = matrix[:, y]
+        used.add(y)
+    return np.column_stack([ ordered[v] for v in range(n) ])
 
 # visual inspection
 import seaborn as sns
 
-ax = sns.heatmap(D, linewidth = 0)
+ax = sns.heatmap(D, linewidth = 0, square = True)
 plt.savefig('original.png')
 plt.close()
 
-ax = sns.heatmap(I, linewidth = 0)
+ax = sns.heatmap(I, linewidth = 0, square = True)
 plt.savefig('inferred.png')
 plt.close()
 
-# are these related? 
-i = I.flatten() # 1D
+Io = mindiag(normalize(I))
+
+ax = sns.heatmap(Io, linewidth = 0, square = True)
+plt.savefig('reordered.png')
+plt.close()
+
+# are these related?
+# remember that we are still just guessing an ordering
+i = Io.flatten() # 1D
 d = D.flatten() # 1D
 corr = np.corrcoef(i, d)[0][-1] 
 print(f'The correlation is {corr}') # nope
@@ -748,27 +786,34 @@ W = deep.get_weights()
 Gd = Graph()
 dpos = dict()
 for layer in range(n):
-    w = normalize(W[2 * layer])
+    k = 2 * layer
+    ew = normalize(W[k])
+    # for this architecture, we get just zeroes,
+    # but in general we may want to see these
+    vw = normalize(W[k - 1]) if k > 0 else np.zeros(n)
     for v in range(n):
         vl = f'{layer}.{v}'
-        Gd.add_node(vl)
+        Gd.add_node(vl, weight = vw[v])
         dpos[vl] = (layer, v) # position by layer
         if layer > 0: # link it to the previous layer, all positions
             for u in range(n): 
-                Gd.add_edge(vl, f'{layer-1}.{u}', weight = w[v][u]) # we use the kernel matrix
+                Gd.add_edge(vl, f'{layer-1}.{u}', weight = ew[v][u]) # we use the kernel matrix
 
 # set up how we want the visualization to look
 plt.rcParams['figure.figsize'] = (2 * n, n) # we need this _wide_
-opt = { 'node_color': 'blue', 'with_labels': False, 'node_size': 50, 'width': 1 }
+opt = { 'with_labels': False, 'node_size': 50, 'width': 1 }
 fig, ax = plt.subplots()
-from networkx import get_edge_attributes
+from networkx import get_edge_attributes, get_node_attributes
 wm = get_edge_attributes(Gd, 'weight').values()
+wn = list(get_node_attributes(Gd, 'weight').values())
 draw(Gd, pos = dpos, 
+     cmap = plt.get_cmap('Blues'), # color the nodes with their weights
      edge_cmap = plt.get_cmap('Oranges'), # the same palette works
+     node_color = wn, # node colors from weights
      edge_color = wm, # edge colors from weights
      **opt) 
 ax.set_facecolor('black') 
 fig.set_facecolor('black')
 ax.axis('off') 
-plt.savefig(f'layers.png') # somewhere in there, our edges are hiding :)
+plt.savefig(f'layers.png') # somewhere in there, our edges are hiding
 plt.close()
