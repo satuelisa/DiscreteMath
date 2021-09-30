@@ -815,5 +815,5 @@ draw(Gd, pos = dpos,
 ax.set_facecolor('black') 
 fig.set_facecolor('black')
 ax.axis('off') 
-plt.savefig(f'layers.png') # somewhere in there, our edges are hiding :)
+plt.savefig(f'layers.png') # somewhere in there, our edges are hiding
 plt.close()
