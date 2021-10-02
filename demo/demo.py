@@ -817,3 +817,57 @@ fig.set_facecolor('black')
 ax.axis('off') 
 plt.savefig(f'layers.png') # somewhere in there, our edges are hiding
 plt.close()
+
+# HOMEWORK
+
+C = Graph() # we make a circle of n vertices
+cpos = dict()
+from math import pi, sin, cos
+da = 2 * pi / n
+sep = 200 # how far apart along the circle the vertices go
+radius = sep / da
+noise = 0.05 # how noisy it should be (as a fraction of [-radius, radius])
+
+def wiggle(magnitude, radius):
+    return radius + magnitude * radius * (2 * random() - 1)
+
+for v in range(n):
+    angle = v * da
+    x = wiggle(noise, radius) * cos(angle)
+    y = wiggle(noise, radius) * sin(angle)
+    p = (x, y)
+    C.add_node(v)
+    cpos[v] = (x, y)
+
+ec = dict()
+for v in range(n):
+    (vx, vy) = cpos[v]
+    for u in range(n):
+        (ux, uy) = cpos[u]
+        d = sqrt((vx - ux)**2 + (vy - uy)**2)
+        C.add_edge(v, u)
+        ec[(v, u)] = d
+        
+opt = { 'node_color': 'white', 'font_color': 'black' }
+opt['with_labels'] = n <= 30
+opt['node_size'] = sep // 2
+opt['width'] = max(4 - magn, 1)
+plt.rcParams['figure.figsize'] = (unit, unit) 
+if n <= 100:
+    fig, ax = plt.subplots() 
+    draw(C, pos = cpos, 
+         edge_cmap = plt.get_cmap('Oranges'), 
+         edge_color = [ ec[(v, w)] for v, w in C.edges() ], 
+         **opt) 
+    ax.set_facecolor('black') 
+    fig.set_facecolor('black')
+    ax.axis('off') 
+    plt.savefig(f'circle{n}.png')
+    plt.close()
+
+# the optimum here is be obvious as long as the noise is low; explore
+# with different kinds of DL models to see you explain how the fitted
+# model represents the graph
+
+# you can either write your own code or reuse bits and pieces from the
+# code above to test things out
