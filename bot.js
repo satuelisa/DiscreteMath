@@ -40,6 +40,7 @@ const data = {'boole': 'https://elisa.dyndns-web.com/teaching/mat/discretas/ejem
 	      'canal': 'pregúntame por el canal de **!twitch** o de **!youtube**',
 	      'git': 'https://github.com/satuelisa/DiscreteMath',
 	      'clase': 'https://twitch.tv/satuelisa',
+	      'interact': 'https://elisa.dyndns-web.com/teaching/interact.html',
 	      'curso': 'https://elisa.dyndns-web.com/teaching/mat/discretas/',
 	      'agenda': 'https://elisa.dyndns-web.com/teaching/mat/discretas/',
 	      'web': 'https://elisa.dyndns-web.com/teaching/',	      
@@ -225,30 +226,49 @@ function send(matr, value) {
     })
 }
 
-async function voto(message) {
-    var voter  = undefined;
-    voter = matricula(message.author.tag);
-    if (typeof voter === "undefined") {
-	message.channel.send('No me has dicho tu matrícula aún, ' +
-			     message.author.tag +
-			     '; mándame eso por DM para poder registrar tus votos.');
-    	return;
+async function wordcloud(message, person) {
+    var tag = message.author.tag;    
+    let text = message.content.toLowerCase();
+    if (text == "redo" && tag == "satuelisa#0666") {
+	message.author.send('The word cloud will be reset.\n').catch(error => { console.log(tag + ' no me escucha') });		
+	let url = "https://elisa.dyndns-web.com/cgi-bin/redo.py";
+	https.get(url, res => {
+	    return true;
+	}).on('error', err => {
+	    return false;
+	})
+	return; // do not send that text anymore
     }
+    let url = "https://elisa.dyndns-web.com/cgi-bin/respond.py?matr=" + person + "&value=" + text;
+    https.get(url, res => {
+	return true;
+    }).on('error', err => {
+	return false;
+    })
+}
+
+async function voto(message, voter) {
     let text = message.content.toLowerCase();
     if (text.includes("green") || text.includes("ok") || text.includes("verde") || text.includes("bien")) {
 	send(voter, "green");
+	return true;
     } else if (text.includes("yellow") || text.includes("amarillo") || text.includes("conf") || text.includes("slow")) {
 	send(voter, "yellow");
+	return true;	
     } else if (text.includes("question") || text.includes("red") || text.includes("rojo") || text.includes("duda") || text.includes("pregunta")) {
 	send(voter, "red");
+	return true;	
     } else if (text.includes("zzz") || text.includes("gris") || text.includes("gray") || text.includes("grey") || text.includes("afk")) {
 	send(voter, "gray");
+	return true;	
     } else if (text.includes("black") || text.includes("negro") || text.includes("problem") || text.includes("tech")) {
 	send(voter, "black");
-    } else {
-	message.channel.send('No conozco ese tipo de voto, ' +
-			     message.author.tag +
-			     '; mejor dale en <https://elisa.dyndns-web.com/teaching/interact.html>.');
+	return true;	
+    } else if (text.includes("blue") || text.includes("clear") || text.includes("borra") || text.includes("reset")  || text.includes("azul")) {
+	send(voter, "clear");
+	return true;	
+    } else {		
+	return false;
     }
     return;
 }
@@ -463,8 +483,33 @@ async function chat(message) {
 	return;
     }
     var text = message.content.toLowerCase();    
-    if (text.includes("!reto")) {
+    if (text.includes("reto")) {
 	sendCard(message.author, text.substring(5).trim());
+	return;
+    }
+    if (text.includes("vot")) {
+	if (text.includes("reset") && tag == "satuelisa#0666") {
+	    let url = "https://elisa.dyndns-web.com/cgi-bin/reset.py";
+	    https.get(url, res => {
+		return;
+	    }).on('error', err => {
+		return;
+	    })	    
+	    message.author.send('The votes have been reset.\n').catch(error => { console.log(tag + ' no me escucha') });		
+	    return;
+	}
+	let voter = matricula(message.author.tag);
+	if (typeof voter === "undefined") {
+	    message.author.send('No me has dicho tu matrícula aún; ' +
+				'mándame eso por DM para poder registrar tus votos.').catch(error => { console.log(tag + ' no me escucha') });		
+	    
+	    return;
+	}
+	if (voto(message, voter)) {
+	    message.author.send('Gracias :)').catch(error => { console.log(tag + ' no me escucha') });			    
+	    return;
+	}
+	message.author.send('No conozco ese tipo de voto; ' +				 'mejor dale en <https://elisa.dyndns-web.com/teaching/interact.html>.').catch(error => { console.log(tag + ' no me escucha') });		
 	return;
     }
     if (tag == "Frozy#6969") {
@@ -474,15 +519,8 @@ async function chat(message) {
 	message.author.send('I wrote that down for you, gorgeous.\n').catch(error => { console.log(tag + ' no me escucha') });		
 	return;
     }
-    if (tag == "satuelisa#0666") {
-	fs.appendFileSync('elisa.log', timestamp() + ' ' + text + '\n', (err) => {
-	    if (err) throw err;
-	});
-	message.author.send('Anotado.\n').catch(error => { console.log(tag + ' no me escucha') });	
-	return;
-    }
     var usuario =  tag.split('#')[0];
-    message.author.send('¡Hola, ' + usuario + '!');    
+    // message.author.send('¡Hola, ' + usuario + '!');    
     var digitos = /^\d+$/.test(text);
     if (digitos && text.length == 7) {
 	let member = client.users.cache.find(user => user.username == usuario);
@@ -512,9 +550,20 @@ async function chat(message) {
 	message.author.send('Gracias, ' + usuario +
 			    ", por decirme que tu matrícula es " + text +
 			    ". Ahora te puedo tomar asistencia cuando hables en el canal de las unidades en el servidor Science.").catch(error => { console.log(error) });
-    } else {
-	message.author.send('Hola, ' + usuario + '. Esperaba que me dijeras tu matrícula completa.' +
-			    ' Eso y **!reto** son todo lo que hago por mensaje privado por el momento.').catch(error => { console.log(tag + ' no me escucha')});
+    } else { 
+	let voter = matricula(message.author.tag);
+	if (typeof voter === "undefined") {
+	    message.author.send('No me has dicho tu matrícula aún; ' +
+				'mándame eso por DM para poder registrar tus respuestas.').catch(error => { console.log(tag + ' no me escucha') });		
+	    
+	    return;
+	}
+	if (wordcloud(message, voter)) {
+	    message.author.send('Gracias :)').catch(error => { console.log(tag + ' no me escucha') });			    
+	    return;
+	}
+	message.author.send('No te entiendo bien:( Mejor dale en <https://elisa.dyndns-web.com/teaching/interact.html>.').catch(error => { console.log(tag + ' no me escucha') });		
+	return;
     }
     return;
 }
@@ -563,9 +612,32 @@ client.on("message", (message) => {
 	    }
 	} else if (text.startsWith('!')) {
 	    if (text.startsWith('!vot')) {
-		voto(message);
+		var voter  = undefined;
+		voter = matricula(message.author.tag);
+		if (typeof voter === "undefined") {
+		    message.channel.send('No me has dicho tu matrícula aún, ' +
+					 message.author.username +
+					 '; mándame eso por DM para poder registrar tus votos.');
+    		    return;
+		}
+		if (voto(message, voter)) {
+		    message.channel.send('Gracias por interactuar, ' +
+					 message.author.username +
+					 '.');		    
+		    return;
+		}
+		message.channel.send('No conozco ese tipo de voto, ' +
+				     message.author.username +
+				     '; mejor dale en <https://elisa.dyndns-web.com/teaching/interact.html>.');
+	    }
+	    if (text.startsWith('!tutorial')) {
+		message.channel.send('Puedes ver el tutorial sobre votar en https://youtu.be/PVcRRuB_9OA');
 		return;
-	    }    
+	    }
+	    if (!channel.name.includes('discretas') && text.startsWith('!interact')) {
+		message.channel.send('Puedes interactuar en https://elisa.dyndns-web.com/teaching/interact.html');
+		return;
+	    }	    
 	    if (text.startsWith('!poll')) {
 		let title = "";
 		if (text.length > 5) {
