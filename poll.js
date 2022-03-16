@@ -63,6 +63,8 @@ async function crop(target) {
     gm('latex.1.png')
 	.quality(300) // .transparent('white')
 	.trim()
+    	.borderColor('white')
+    	.border(5, 5)
 	.write(filename,
 	       (err) => {
 		   if (err) {
