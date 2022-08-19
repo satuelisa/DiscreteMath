@@ -4,7 +4,7 @@ On Youtube, there is
 a [video of me talking about this](https://youtu.be/VDjWbPRaTBk) as
 well as [silent but animated version](https://youtu.be/jkOwnpWEHfQ) of
 the
-[slides](https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/demo.pdf);
+slides;
 remember that you can use the controls to slow it down or speed it up
 to your liking. 
 
