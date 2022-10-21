@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<HTML lang="es">
+  <HEAD>
+    <META HTTP-EQUIV="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <LINK rel="stylesheet" type="text/css" href="https://elisa.dyndns-web.com/teaching/exam.css">
+    <link rel="stylesheet" type="text/css" media="only screen and (-webkit-min-device-pixel-ratio: 2)" href="https://elisa.dyndns-web.com/teaching/mobile.css" />
+    <TITLE>Examen &mdash; Matem&aacute;ticas Discretas &mdash; Schaeffer</title>
+  </HEAD>
+  <BODY>
+    <div class="top">
+      <div class="intro">
+	<p align="right">
+	  11-8-ACM-03-R02
+	</p>
+	<p align="center">
+	  <span style="line-height:45px">
+	    UNIVERSIDAD AUT&Oacute;NOMA DE NUEVO LE&Oacute;N<br/>
+	    FACULTAD DE INGENIER&Iacute;A MEC&Aacute;NICA Y EL&Eacute;CTRICA
+	  </span>
+	</p>	
+	<p>
+	  TIPO DE EXAMEN Y/O EVALUACI&Oacute;N: <span id="examType"></span>
+	</p>
+	<p>
+	  MATERIA/UNIDAD DE APRENDIZAJE: Matem&aacute;ticas Discretas
+	</p>
+	<p>
+	  SEMESTRE: 3o
+	</p>
+	<p>	
+	  ACADEMIA: Software de Base
+	</p>
+	<p>	
+	  INSTRUCCIONES.—
+	</p>
+	<p>	
+	  Conteste los siguientes cuestionamientos. Este examen es de <em>libro cerrado</em>, <strong>sin calculadora</strong> y se contesta en
+	  l&iacute;nea.<br/>No se permite usar la computadora para ver otros sitios web ni el uso de software adicional al navegador.
+	</p>
+	<p>	
+	  Si varias opciones son correctas, se puede elegir
+	  cualquiera.  No se permite dejar preguntas sin responder.
+	</p>
+	<p>		  
+	  Cada inciso vale un punto.
+	</p>
+	<p>		  
+	  <span id="unidad"></span>
+	</p>
+	<p>		  
+	  <span id="idioma"></span>
+	</p>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="column content" style="background-color:#fff;">
+	<p>
+	</p>
+	<div class="clase" id="questions"><hr></div>
+      </div>
+
+      <div class="column controls" style="background-color:#ddd;">
+	<p>
+	  Contestadas: <span id="count">0</span> de <span id="total">0</span>
+	</p>
+	<form action="https://elisa.dyndns-web.com/cgi-bin/process.py" method="post">
+	  <input type="hidden" id="resp" name="resp" value="">
+	  <input type="hidden" id="hash" name="hash" value="">
+	  <input type="hidden" id="kind" name="kind" value="">
+	  <input type="hidden" id="mod" name="mod" value="">
+	  <p>
+	    <input type="submit" value="Calificar" id="button" disabled/> Clave: <input maxlength="4" name="pin" id="pin" size="4" disabled/>
+	    <div id="alert"></div>
+	  </p>	  
+	</form>
+	<p>
+	  <span id="reloj"></span>	  
+	  <span id="quedan"></span> 
+	</p>
+	<p>	  
+	  <span id="final"></span>
+	</p>
+      </div>
+    </div>
+    <div class="footer">
+      <p>
+	REVISI&Oacute;N No.: 7 <br/>
+	VIGENTE A PARTIR DE: 01 de Agosto del 2016
+      </p>
+    </div>
+  </body>
+  <script src="exam.js"></script>
+  <script>
+    MathJax = {
+	tex: {
+	    inlineMath: [['$', '$']]
+  }
+    };
+  </script>
+  <script id="MathJax-script" async
+	  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+</html>

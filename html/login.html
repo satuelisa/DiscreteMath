@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<HTML lang="es">
+  <HEAD>
+    <META HTTP-EQUIV="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <LINK rel="stylesheet" type="text/css" href="https://elisa.dyndns-web.com/teaching/curso.css">
+    <TITLE>Examen &mdash; Matem&aacute;ticas Discretas &mdash; Schaeffer</title>
+    <script type="text/javascript"
+	    src="https://elisa.dyndns-web.com/scripts/syntax/scripts/shCore.js"></script>
+    <script type="text/javascript"
+	    src="https://elisa.dyndns-web.com/scripts/syntax/scripts/shBrushPython.js"></script>
+    <link type="text/css" rel="stylesheet"
+	  href="https://elisa.dyndns-web.com/scripts/syntax/styles/shThemeEmacs.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+  </HEAD>
+  <BODY>
+    <div id="elementos">  
+      <div id="navibar">
+	<p>
+	  <a href="https://elisa.dyndns-web.com">Schaeffer</a> /
+	  <a href="https://elisa.dyndns-web.com/teaching/mat/discretas/">Matem&aacute;ticas Discretas</a> 
+	  / Examen
+	</p>
+      </div>
+      <div class="contenido">
+	<h1>Examen en l&iacute;nea</h1>
+	<div class="ejercicio">
+	<p>
+	  No se permite el uso de calculadoras o apuntes. Tampoco se
+	  permite comunicaci&oacute;n entre participantes. Una vez
+	  iniciado el examen, se permiten <strong>90 minutos</strong>
+	  para concluirla, despu&eacute;s de que ser&aacute;
+	  considerado un NP (no present&oacute;). En caso de cierre
+	  accidental del examen, se puede volver a entrar por este
+	  medio durante la vigencia del examen. Conviene asegurar que
+	  el reloj del dispositivo est&eacute; en la hora correcta
+	  para que no haya problemas con la hora l&iacute;mite y
+	  adem&aacute;s poner alarma en el celular para recibir una alerta 15
+	  minutos antes de que se cierre el examen; es responsabilidad
+	  del alumno estar al tanto del tiempo
+	  restante. <strong>Anotar todas las respuestas a mano en la
+	  hoja de apuntes por si acaso haya p&eacute;rdida de
+	  conexi&oacute;n.</strong> No recargar la p&aacute;gina de
+	  preguntas ni retroceder.
+	</p>
+	<form action="https://elisa.dyndns-web.com/cgi-bin/login.py" method="post">
+	  <p>
+	    Matr&iacute;cula: <input maxlength="7" name="matr" id="matr" size="7" required/> <small>(completa de siete d&iacute;gitos)</small>
+	  </p>
+	  <p>
+	    Correo utilizado para las tareas: <input type="email" autocomplete="on" name="correo" id="correo" size="30" required/>
+	  </p>
+	  <p>
+	    Tipo de examen: 
+	    <select name="kind" id="kind">
+	      <option value="mc">Medio curso</option>
+	      <option value="ord">Ordinario</option>
+	      <option value="xord">Extraordinario</option>
+	    </select>
+	  </p>
+	  <p>
+	    <h3>Modalidad</h3>
+	  <p>
+	    <input type="radio" id="trial" name="mod" value="t" onchange="process()">
+	    <label for="trial">Practicar</label> <small>(indicar abajo si quiere cambiarlo para practicar)</small><br>
+	    <input type="radio" id="real" name="mod" value="r" onchange="process()">
+	    <label for="real">Presentar</label> <small>en el idioma que corresponde a mi inscripci&oacute;n en SIASE</small>
+	  </p>
+	  Idioma:
+	  <input type="checkbox" id="swap" name="swap"><small><strong>practicar</strong> con preguntas en idioma distinto a mi inscripci&oacute;n en SIASE</small></input><br/>	  
+	  <p>
+	    Clave de acceso: <input maxlength="4" name="pin" id="pin" size="4" disabled/> <small>No se requiere una clave para practicar</small><br>
+	    <small>La profesora proporciona la clave de acceso al mostrar su credencial vigente de
+	    la UANL a la hora de <strong>presentar</strong> el
+	    examen.</small>
+	  </p>	  
+	  <input type="submit" id="submit" value="Iniciar" disabled/>
+	</form>
+	</div>
+      </div>
+      <div id="pie">
+	Actualizado el 11 de noviembre del 2021.
+	<br>
+	URL: https://elisa.dyndns-web.com/teaching/mat/discr/login.html
+      </div>
+    </div>
+    <script type="text/javascript" src="login.js"></script>  
+  </body>
+</html>

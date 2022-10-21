@@ -1,0 +1,331 @@
+<!DOCTYPE HTML>
+<HTML lang="es">
+  <HEAD>
+    <META HTTP-EQUIV="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+  margin: 10px;
+  padding: 10px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #000000;
+  background-color: #ffffff;
+  }
+  #header {
+  display: block;
+  font-size: 6px;
+  text-align: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  }
+  #act {
+  line-height: 170%;
+  display: block;
+  text-align: left;
+  clear: both;
+  margin-left: 5px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 800px;
+  max-width: 1000px;
+  border-radius: 25px;
+  border: 2px solid #000000;
+  }
+  @media print {
+  #act {page-break-after: always;}
+  }
+</style>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<TITLE>Portafolio de Evidencia &mdash; Matem&aacute;ticas Discretas</title>
+<script src="https://elisa.dyndns-web.com/scripts/portafolio.js"></script>
+  </HEAD>
+  <BODY onload="performLogin()">
+    <div id="debug"></div>
+    <span style="color:red" id="instr1"><p>Llena los campos blancos y
+      luego pica el bot&oacute;n al final de la p&aacute;gina para
+      crear un portafolio.</p><p>Si no est&aacute;s registrado, hay que
+      hacer eso primero en la 
+      <a href="https://elisa.dyndns-web.com/cgi-bin/res.py">p&aacute;gina de resultados</a>.</p>
+    </span>
+    <div id="act">
+      <H1>Portafolio de Evidencia</h1>
+      <h2>Matem&aacute;ticas Discretas</h2>
+      <h3>FIME UANL</h3>
+      <p>
+	<strong>Nombre completo</strong> <span id="fnombre"><input id="nombre" size="50"></input></span><br>
+	<strong>Matr&iacute;cula</strong> <span id="matr"></span><br>	
+	<strong>Calificaci&oacute;n</strong> <span id="calif">NP</span> de 100 m&aacute;ximo<br>
+        <strong>Grupo</strong> Jueves <span id="fgrupo"></span> con Dra. Elisa Schaeffer<br>
+	<!--      <select id="grupo">                                                                                                                             
+<option value="1">M4&ndash;6</option>                                                                                                                     
+<option value="2">V1&ndash;3</option>                                                                                                                     
+<option value="3">V4&ndash;6</option>                                                                                                                     
+</select> -->
+	<span id="correo"></span>
+	<strong>Fecha de compilaci&oacute;n del portafolio</strong> <span id="fecha"></span>
+	<span id="pe.res"></span>
+      </p>
+      <p>
+	<small>Cada tarea (actividades fundamentales 1&ndash;2 &amp; 4&ndash;6) contiene cinco preguntas.<br> 
+	  Cada respuesta correcta
+	otorga dos puntos.</small>
+      </p>
+</div>
+<div class="header">Portafolio de Evidencia de Matem&aacute;ticas Discretas</div>
+<div id="act">
+  <h3>A1: L&oacute;gica (<span id="p1">NP</span> de 10 %)</h3>
+  <p>
+    El resultado de $A \cup (B \setminus (C \cap D))$ con<br> 
+    $A = \{$<span id="d1.A">2, 4, 6, 8</span>$\}$,<br>
+    $B = \{$<span id="d1.B">3, 5, 7</span>$\}$,<br>
+    $C = \{$<span id="d1.C">1, 2, 3, 4</span>$\}$ y<br>
+    $D = \{$<span id="d1.D">4, 5, 6, 7, 9</span>$\}$.
+    <br>
+    <strong>Respuesta correcta obtenida</strong> <span id="r1.1"><span style="color:red"><em>(a esta pregunta no se obtuvo una respuesta correcta)</em></span></span>
+  <p>
+    El valor decimal del n&uacute;mero
+    binario <span id="d1.bin">10001111</span>.
+    <br>
+    <strong>Respuesta correcta obtenida</strong> <span id="r1.2"><span style="color:red"><em>(a esta pregunta no se obtuvo una respuesta correcta)</em></span></span>
+  </p>
+  <p>
+    La representaci&oacute;n en
+    base <span id="d1.base">5</span> del valor
+    decimal <span id="d1.dec">78</span>.<br>
+    <strong>Respuesta correcta obtenida</strong> <span id="r1.3"><span style="color:red"><em>(a esta pregunta no se obtuvo una respuesta correcta)</em></span></span>
+  </p>
+  <p>
+    El resultado de 
+    <span class="codevar">(a & (b << c))</span> donde  
+				     $a$ = <span id="d1.a">1000</span>,
+				     $b$ = <span id="d1.b">500</span> y
+				     $c$ = <span id="d1.c">7</span>.<br>
+				     <strong>Respuesta correcta obtenida</strong> <span id="r1.4"><span style="color:red"><em>(a esta pregunta no se obtuvo una respuesta correcta)</em></span></span>
+  </p>
+  <p>
+    El valor <em>binario</em> de la expresi&oacute;n 
+    $(x \vee z) \wedge \neg (\neg y \vee \neg z)$ cuando $x =$
+    <span id="d1.x">1</span>, $y =$ <span id="d1.y">NP</span> &amp; 
+    $z =$ <span id="d1.z">1</span>.<br>
+    <strong>Respuesta correcta obtenida</strong> <span id="r1.5"><span style="color:red"><em>(a esta pregunta no se obtuvo una respuesta correcta)</em></span></span>
+  </p>
+  </div>
+<div class="header">Portafolio de Evidencia de Matem&aacute;ticas Discretas</div>
+  <div id="act">
+    <h3>A2: Combinatoria (<span id="p2">NP</span> de 10 %)</h3>
+    <p>
+      La cantidad de permutaciones del conjunto $\{a, b, c, d, e, f, g\}$
+      <br>en las cuales el primero en aparacer es 
+      <em><span id="d2.primero">a</span></em> y el &uacute;ltimo es
+      <em><span id="d2.ultimo">g</span></em>.<br>
+      <strong>Respuesta correcta obtenida</strong> <span id="r2.1"><span style="color:red"><em>(a esta pregunta no se obtuvo una respuesta correcta)</em></span></span>
+    </p>
+    <p>
+      La cantidad de subconjuntos del conjunto $\{1, 2, 3, 4, 5, 6, 7, 8\}$ 
+      que contienen <span id="d2.k">3</span> elementos<br>pero tienen
+      una intersecci&oacute;n vac&iacute;a con $\{$<span id="d2.sub">3,
+	5</span>$\}$.<br>
+      <strong>Respuesta correcta obtenida</strong> <span id="r2.2"></span>
+    </p>
+    <p>
+      El valor de $F_k$ en la sucesi&oacute;n de Fibonacci donde $k =$ 
+      <span id="d2.fibo">24</span>.<br><strong>Respuesta correcta obtenida</strong> <span id="r2.3"><span style="color:red"><em>(a esta pregunta no se obtuvo una respuesta correcta)</em></span></span>
+    </p>
+    <p>
+      La salida de la siguiente m&aacute;quina Turing si la entrada es 
+      <span id="d2.turing">10101</span> (sin incluir el
+      $\triangleright$).<br><strong>Respuesta correcta obtenida</strong> <span id="r2.4"><span style="color:red"><em>(a esta pregunta no se obtuvo una respuesta correcta)</em></span></span></p>
+    <table border="1" cellpadding="3" cellspacing="0">
+      <tr><td>$p \in K$</td><td>$\sigma \in \Sigma$</td><td>$\delta(p,\sigma)$</td></tr>
+      <tr><td>$s$</td><td>$\triangleright$</td><td>$(s, \triangleright, \rightarrow)$</td></tr> 
+      <tr><td>$s$</td><td>$0$</td><td>$(s,0, \rightarrow)$</td></tr> 
+      <tr><td>$s$</td><td>$1$</td><td>$(s,1,\rightarrow)$</td></tr> 
+      <tr><td>$s$</td><td>$\sqcup$</td><td>$(q, \sqcup, \leftarrow)$</td></tr> 
+      <tr><td>$q$</td><td>$0$</td><td>$(t, \sqcup, \leftarrow)$</td></tr> 
+      <tr><td>$q$</td><td>$1$</td><td>$(t ,\sqcup, \leftarrow)$</td></tr>
+      <tr><td>$q$</td><td>$\triangleright$</td><td>$(\text{alto}, \triangleright, \rightarrow)$</td></tr> 
+	     <tr><td>$t$</td><td>$\triangleright$</td><td>$(\text{alto}, \triangleright, -)$</td></tr> 
+      <tr><td>$t$</td><td>$0$</td><td>$(\text{alto}, 0, -)$</td></tr> 
+      <tr><td>$t$</td><td>$1$</td><td>$(\text{alto}, 1, -)$</td></tr> 
+    </table>
+  </p>
+  <p>
+    La cantidad de veces que se eval&uacute;a $\delta$ en la
+    ejecuci&oacute;n de la TM con esa entrada.<br> <strong>Respuesta correcta obtenida</strong> <span id="r2.5"><span style="color:red"><em>(a esta pregunta no se obtuvo una respuesta correcta)</em></span></span>
+  </p>
+  </div>
+<div class="header">Portafolio de Evidencia de Matem&aacute;ticas Discretas</div>
+  <div id="act">
+    <h3>A3: Examen de medio curso (<span id="p.mc">NP</span> de 20 %)</h3>
+    <p>
+      La hoja de examen de medio curso con las preguntas y sus puntajes
+      m&aacute;ximos est&aacute; disponible en formato PDF en la URL
+      <code>https://elisa.dyndns-web.com/teaching/mat/mediocurso_ej16.pdf</code>.
+    </p>
+    <p>
+    <span id="mc.res"></span>
+    <span style="color:red" id="instr2">La profesora agrega en esta
+      parte tu examen de medio curso.</span>
+    </p>
+  </div>
+<div class="header">Portafolio de Evidencia de Matem&aacute;ticas Discretas</div>
+  <div id="act">
+    <h3>A4: Grafos (<span id="p4">NP</span> de 10 %)</h3>
+    <p>
+      Determina para el grafo no dirigido con
+      <br>$V = \{1,
+      2, 3, 4, 5, 6, 7, 8, 9\}$ y<br>$E = \{ (1, 2), (1, 3), (2, 4), (u, v),
+      (3, 5), (3, 6), (4, 6), (4, 7), (5, 8), (6, 9), (7, 9) \},$<br>donde $u$
+      = <span id="d3.u">7</span> &amp; $v$ = <span id="d3.v">4</span> lo siguiente:
+	</p>
+	<p>
+	  El grado m&aacute;ximo.<br><strong>Respuesta correcta obtenida</strong> <span id="r3.1"><span style="color:red"><em>(a esta pregunta no se obtuvo una respuesta correcta)</em></span></span>
+	</p>
+	<p>
+	  La densidad.<br><strong>Respuesta correcta obtenida</strong> <span id="r3.2"><span style="color:red"><em>(a esta pregunta no se obtuvo una respuesta correcta)</em></span></span>  </p>
+	<p>La distancia entre $1$ y $v$.<br><strong>Respuesta correcta obtenida</strong> <span id="r3.3"><span style="color:red"><em>(a esta pregunta no se obtuvo una respuesta correcta)</em></span></span></p>
+	<p>El di&aacute;metro.<br><strong>Respuesta correcta obtenida</strong> <span id="r3.4"><span style="color:red"><em>(a esta pregunta no se obtuvo una respuesta correcta)</em></span></span></p>
+	<p>
+	  La cantidad de aristas en el subgrafo inducido con $V' = V \setminus \{ u, v \}$.<br>
+	  <strong>Respuesta correcta obtenida</strong> <span id="r3.5"><span style="color:red"><em>(a esta pregunta no se obtuvo una respuesta correcta)</em></span></span></p>
+      </div>
+<div class="header">Portafolio de Evidencia de Matem&aacute;ticas Discretas</div>
+      <div id="act">
+	<h3>A5: Optimizaci&oacute;n combinatoria (<span id="p5">NP</span> de 10 %)</h3>
+	<p>
+	  Simplifica $\mathcal{O}$(<span id="d4.pol">3<em>n</em><sup>3</sup> - 2<em>n</em><sup>2</sup> + 12<em>n</em> - 8</span>).<br>
+	  <strong>Respuesta correcta obtenida</strong> <span id="r4.1"><span style="color:red"><em>(a esta pregunta no se obtuvo una respuesta correcta)</em></span></span></p>
+	<p>
+	  &iquest;Cu&aacute;l de las siguientes tres funciones es la m&aacute;s lenta en t&eacute;rminos de
+	  crecimiento asint&oacute;tico?
+	  <ul>
+<li>$f(n)$ = <span id="d4.f"><em>n</em><sup>2</sup> log <em>n</em></span></li>
+<li>$g(n)$ = <span id="d4.g">sqrt(<em>n</em>)<em>n</em><sup>3</sup></span></li>
+<li>$h(n)$ = <span id="d4.h"><em>n</em>log<em>n</em><sup>2</sup></span>
+</ul>
+	  <strong>Respuesta correcta obtenida</strong> <span id="r4.2"><span style="color:red"><em>(a esta pregunta no se obtuvo una respuesta correcta)</em></span></span></p>
+	<p>
+	  Agregando un objeto con peso <span id="d4.peso">12</span> y
+	  valor <span id="d4.valor">17</span> a una instancia del
+	  problema de la mochila con el siguiente conjunto de objetos
+	  (peso, valor): <br> $\{(5, 10), (8, 12), (4, 24), (12, 30),
+	  (5, 7), (2, 8), (1, 3)\}$,<br> &iquest;cuanto vale el
+	  &oacute;ptimo si el l&iacute;mite de peso de la mochila
+	  es <span id="d4.limite">32</span>?<br>
+	  <strong>Respuesta correcta obtenida</strong> <span id="r4.3"><span style="color:red"><em>(a esta pregunta no se obtuvo una respuesta correcta)</em></span></span></p>
+	<p>
+	  Asigne una capacidad de <span id="d4.cap">12</span> a una
+	  arista desde <span id="d4.desde">2</span>
+	  hasta <span id="d4.hasta">5</span> a una instancia del
+	  problema de flujo m&aacute;ximo que consiste en las
+	  siguientes aristas en formato <codevar>(inicio, final):
+	  capacidad</codevar><br>$\{(0, 1): 16, (0, 2): 13, (1, 2): 10,
+	  (2, 1): 4, (3, 2): 9, \ (1, 3): 12, (2, 4): 14, (4, 3): 7,
+	  (3, 5): 20, (4, 5): 4\}$.
+	  </p>
+<p>
+  &iquest;Cu&aacute;nto vale el
+  &oacute;ptimo para $s = 1$ y $t = 4$?<br>
+  <strong>Respuesta correcta obtenida</strong> <span id="r4.4"><span style="color:red"><em>(a esta pregunta no se obtuvo una respuesta correcta)</em></span></span>
+</p>
+	<p>
+	  &iquest;Cu&aacute;nto es el mayor flujo posible?<br><strong>Respuesta correcta obtenida</strong> <span id="r4.5"><span style="color:red"><em>(a esta pregunta no se obtuvo una respuesta correcta)</em></span></span>
+	</p>
+	</div>
+<div class="header">Portafolio de Evidencia de Matem&aacute;ticas Discretas</div>
+    <div id="act">
+<h3>A6: &Aacute;rboles (<span id="p6">NP</span> de 10 %)</h3>
+  <p>
+    &iquest;Cu&aacute;ntas llamadas a una rutina recursiva de
+    b&uacute;squeda binaria se necesita realizar al buscar por el valor
+    <span id="d5.valor">5</span> en un arreglo cuyo contenido son los
+    enteros ordenados desde <span id="d5.desde">2</span>
+    hasta <span id="d5.hasta">20</span> en pasos
+    de <span id="d5.pasos">2</span>?<br>
+  <strong>Respuesta correcta obtenida</strong> <span id="r5.1"><span style="color:red"><em>(a esta pregunta no se obtuvo una respuesta correcta)</em></span></span>
+  </p>
+  <p>
+    &iquest;Qu&eacute; es la altura m&iacute;nima posible de un
+    &aacute;rbol binario lleno de <span id="d5.nodos">30</span>
+    nodos?<br>
+<strong>Respuesta correcta obtenida</strong> <span id="r5.2"><span style="color:red"><em>(a esta pregunta no se obtuvo una respuesta correcta)</em></span></span>
+  </p>
+  <p>
+    Agregando en el siguiente orden los
+    elementos <span id="d5.arbol">18, 32, 12, 34, 15, 7, 21, 88, 16,
+    56</span> al &aacute;rbol binario simple del c&oacute;digo
+    ejemplo, &iquest;cu&aacute;ntas llamadas a la
+    rutina <span class="codevar">ubicar</span> se necesita buscar por
+    el elemento <span id="d5.elemento">30</span> en el &aacute;rbol
+    resultante?<br>
+<strong>Respuesta correcta obtenida</strong> <span id="r5.3"><span style="color:red"><em>(a esta pregunta no se obtuvo una respuesta correcta)</em></span></span>
+  </p>
+  <p>
+    Si los costos de las operaciones de edici&oacute;n son
+    <span id="d5.ins">2</span> por insertar,
+    <span id="d5.eli">2</span> por eliminar y 
+    <span id="d5.ree">1</span> por reemplazar,
+    &iquest;cu&aacute;nto es la distancia de edici&oacute;n entre
+    "s&aacute;bado" y "domingo"?<br>
+<strong>Respuesta correcta obtenida</strong> <span id="r5.4"><span style="color:red"><em>(a esta pregunta no se obtuvo una respuesta correcta)</em></span></span>
+  </p>
+  <p>
+   Asignando un peso de <span id="d5.peso">3</span> a una arista
+   desde <span id="d5.inicio">2</span>
+   hasta <span id="d5.final">7</span> a la instancia del problema de
+   &aacute;rbol de expensi&oacute;n m&iacute;nima con aristas
+   ponderadas existentes<br>$\{(1, 3): 4, (2, 3): 2, (2, 4): 1, (3, 4):
+   2, (4, 6): 1, (5, 6): 2\}$,<br>&iquest;cu&aacute;nto vale el &oacute;ptimo?<br>
+<strong>Respuesta correcta obtenida</strong> <span id="r5.5"><span style="color:red"><em>(a esta pregunta no se obtuvo una respuesta correcta)</em></span></span>
+  </p>
+  </div>
+<div class="header">Portafolio de Evidencia de Matem&aacute;ticas Discretas</div>
+    <div id="act">
+      <h3>A7: Proyecto (<span id="p.pr">NP</span> de 10 %)</h3>
+      <p>
+	<span id="pr.res"></span>
+      </p>
+      <span style="color:red" id="instr3">
+	La profesora inserta en esta parte tu reporte del proyecto
+	usando el PDF que le hayas entregado.</span>
+    </div>
+<div class="header">Portafolio de Evidencia de Matem&aacute;ticas Discretas</div>
+    <div id="act">
+      <h3>A8: Examen ordinario (<span id="p.eo">NP</span> de 20 %)</h3>
+      <p>
+	La hoja de examen ordinario con las preguntas y sus puntajes
+	m&aacute;ximos est&aacute; disponible en formato PDF en la URL
+	https://elisa.dyndns-web.com/teaching/mat/ordinario_ej16.pdf.
+      </p>
+      <p>
+	<span id="eo.res"></span>
+	<span style="color:red" id="instr4">La profesora agrega en
+	  esta parte tu examen ordinario.</span>
+      </p>
+    </div>
+    <span id="error"></span>
+    <span id="done"><button id="create" onclick="process()" disabled>Crear portafolio entregable</button></span>
+    <span style="color:red" id="instr5"><p>Revisa bien antes de guardar
+    el PDF o imprimir el documento generado que est&eacute;n correctos
+    en ello tu nombre y matr&iacute;cula.<br>Habr&aacute; una
+    p&aacute;gina vac&iacute;a al final que no se ocupa ni guardar ni
+    imprimir.</p></span>
+</body>
+</html>

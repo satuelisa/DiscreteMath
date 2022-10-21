@@ -1,0 +1,90 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" charset="UTF-8" href="arboles.css"></link>
+    <title>&Aacute;rboles de decisi&oacute;n</title>
+  </head>
+  <body>
+    <div id="elementos">
+      <div id="navibar">
+	<p>
+	  <a href="https://elisa.dyndns-web.com/espanol.html">Schaeffer</a> /
+	  <a href="https://elisa.dyndns-web.com/teaching/espanol.html">Docencia</a> /
+	  <a href="https://elisa.dyndns-web.com/teaching/mat/discretas/">Matem&aacute;ticas discretas</a> /
+	  <a href="https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/">Ejemplos</a> /
+	  &Aacute;rboles de decisi&oacute;n
+	</p>
+      </div>
+      <div ID="contenido">
+	<h1>&Aacute;rboles de decisi&oacute;n</h1>
+	<h3>Expresi&oacute;n booleana</h3>
+	<div contenteditable="true" id="expr">( a &and; b ) &or; &not; ( b &harr; a &rarr; &not; c ) &oplus; b</div>
+	<p>
+	  <button id="fr" onclick="freeze()">Fijar</button>
+	</p>
+	<p>
+	  Nombra las <strong>variables</strong> usando <em>letras
+	  min&uacute;sculas</em>, coloca las par&eacute;ntesis y
+	  los operadores con los botones:
+	<p>
+	  <button style="font-size:20px;height:32px;width:40px" onclick="putSymbol(event)" id="put_not">&not;</button>      
+	  <button style="font-size:20px;height:32px;width:40px" onclick="putSymbol(event)" id="put_and">&and;</button>
+	  <button style="font-size:20px;height:32px;width:40px" onclick="putSymbol(event)" id="put_or">&or;</button>
+	  <button style="font-size:20px;height:32px;width:40px" onclick="putSymbol(event)" id="put_xor">&oplus;</button>
+	  <button style="font-size:20px;height:32px;width:40px" onclick="putSymbol(event)" id="put_impl">&rarr;</button>
+	  <button style="font-size:20px;height:32px;width:40px" onclick="putSymbol(event)" id="put_equi">&harr;</button>
+	  <button style="font-size:20px;height:32px;width:40px" onclick="putSymbol(event)" id="put_open">(</button>
+	  <button style="font-size:20px;height:32px;width:40px" onclick="putSymbol(event)" id="put_close">)</button>
+	</p>
+	<h3>Precedencia</h3>
+	<p>
+	  Arrastra los operadores de mayor precedencia (arriba) a
+	  menor precedencia (abajo) seg&uacute;n el orden deseado; a
+	  las par&eacute;ntesis y a la negaci&oacute;n no se les puede
+	  reordenar &mdash; las par&eacute;ntesis dividen la
+	  expresi&oacute;n en subexpresiones que se eval&uacute;an
+	  recursivamente antes de proceder con la evaluaci&oacute;n de
+	  la expresi&oacute;n que las contiene y el operador unario
+	  (de una entrada) de negaci&oacute;n se eval&uacute;a antes
+	  de cualquier operador binario (de dos entradas).
+	</p>
+	<ul id="prec" style="list-style: none;">
+	  <li id="not" draggable="false">&not;</li>      
+	  <li id="and" draggable="true" ondragover="dragOver(event)" ondragstart="dragStart(event)">&and;</li>
+	  <li id="or" draggable="true" ondragover="dragOver(event)" ondragstart="dragStart(event)">&or;</li>
+	  <li id="xor" draggable="true" ondragover="dragOver(event)" ondragstart="dragStart(event)">&oplus;</li>
+	  <li id="impl" draggable="true" ondragover="dragOver(event)" ondragstart="dragStart(event)">&rarr;</li>
+	  <li id="equi" draggable="true" ondragover="dragOver(event)" ondragstart="dragStart(event)">&harr;</li>
+	  <li id="open" draggable="false">(</li>
+	  <li id="close" draggable="false">)</li>
+	</ul>
+	<h3>Asignaci&oacute;n</h3>
+	<p>
+	  Selecciona aquellas variables son verdaderas en la
+	  asignaci&oacute;n.
+	<p>
+	  <select multiple id='vars' size='5' onchange="clearTree()"></select>
+	</p>
+	<p>
+	  Una vez fija la expresi&oacute;n, se puede evaluar bajo
+	  distintas asignaciones y &oacute;rdenes de precedencia. Se
+	  puede recargar la p&aacute;gina para definir una nueva
+	  expresi&oacute;n &mdash; puedes copiar antes de a recarga y
+	  pegar la expresi&oacute;n actual despu&eacute;s de la recarga si
+	  quieres modificarla.
+	</p>
+	<p>
+	  <button id="eval" onclick="process()" disabled="true">Evaluar</button>
+	</p>
+	<div id="msg"></div>
+	<canvas id="draw" width="10" height="10"/>
+      </div>
+      <div id="pie">
+	Actualizado el 12 de agosto del 2021.
+	<br>
+	URL: https://elisa.dyndns-web.com/teaching/mat/discretas/ejemplos/arboles.html
+      </div>
+    </div>
+  </body>
+  <script src="arboles.js"></script>
+</html>

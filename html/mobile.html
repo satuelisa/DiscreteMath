@@ -1,0 +1,368 @@
+<!DOCTYPE HTML>
+<HTML lang="es">
+  <HEAD>
+    <META HTTP-EQUIV="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <LINK rel="stylesheet" type="text/css" href="https://elisa.dyndns-web.com/teaching/movil.css">
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+    <TITLE>Mobile Discrete Math Homework</title>
+  </HEAD>
+  <BODY>
+    <div class="envoltura">
+      <div class="cabecera">
+	<span id="login"></span>
+	<span id="pts"></span>
+	</div>
+      <div class="tareas">
+	<button class="ts" id="ct1" onclick="cargaTarea(event, '1')">Assignment 1 <span id="pt1"></span></button>
+	<button class="ts" id="ct2" onclick="cargaTarea(event, '2')">Assignment 2 <span id="pt2"></span></button>
+	<button class="ts" id="ct3" onclick="cargaTarea(event, '3')">Assignment 3 <span id="pt3"></span></button>
+	<button class="ts" id="ct4" onclick="cargaTarea(event, '4')">Assignment 4 <span id="pt4"></span></button>
+	<button class="ts" id="ct5" onclick="cargaTarea(event, '5')">Assignment 5 <span id="pt5"></span></button>
+      </div>
+      <div class="preguntas">
+	<button class="ps" id="cp1" onclick="cargaPregunta(event, '1')">Question 1</button>
+	<button class="ps" id="cp2" onclick="cargaPregunta(event, '2')">Question 2</button>
+	<button class="ps" id="cp3" onclick="cargaPregunta(event, '3')">Question 3</button>
+	<button class="ps" id="cp4" onclick="cargaPregunta(event, '4')">Question 4</button>
+	<button class="ps" id="cp5" onclick="cargaPregunta(event, '5')">Question 5</button>
+      </div>
+      <div id="T11" class="contenido">
+	<p>
+	  The value of the expression
+	  $A \cup (B \setminus (C \cap D))$ with <br>
+	  $A = \{$<span id="d1.A">2, 4, 6, 8</span>$\}$,<br>
+	  $B = \{$<span id="d1.B">3, 5, 7</span>$\}$,<br>
+	  $C = \{$<span id="d1.C">1, 2, 3, 4</span>$\}$ y<br>
+	  $D = \{$<span id="d1.D">4, 5, 6, 7, 9</span>$\}$:
+	</p>
+	<p>
+	  <input type="text" id="r1.1" size="20" value="">
+	</p>
+	<span id="c1.1"></span>
+      </div>
+      <div id="T12" class="contenido">    
+	<p>
+	  The decimal representation of the binary number
+	   <span id="d1.bin">10001111</span>:
+	</p>
+	<p>
+	  <input type="text" id="r1.2" size="10" value="">
+	</p>
+	<span id="c1.2"></span>
+      </div>      
+      <div id="T13" class="contenido">
+	<p>
+	  Base
+	   <span id="d1.base">5</span> equivalent of the decimal number
+	   <span id="d1.dec">78</span>:
+	</p>
+	<p>
+	  <input type="text" id="r1.3" size="10" value="">
+	</p>
+	<span id="c1.3"></span>
+      </div>
+      <div id="T14" class="contenido">
+	<p>
+	  The value of 
+	  <span class="codevar">(a & (b &lt;&lt; c))</span> where<br>  
+	  $a$ = <span id="d1.a">1000</span>,<br>  
+	  $b$ = <span id="d1.b">500</span> y<br>  
+	  $c$ = <span id="d1.c">7</span>:
+	</p>
+	<p>
+	  <input type="text" id="r1.4" size="10" value="">
+	</p>
+	<span id="c1.4"></span>
+      </div>            
+      <div id="T15" class="contenido">
+	<p>
+	  The <em>binary</em> value of the expression
+	  $(x \vee z) \wedge \neg (\neg y \vee \neg z)$ <br>where $x =$
+	  <span id="d1.x">1</span>, $y =$ <span id="d1.y">0</span> &amp; 
+	  $z =$ <span id="d1.z">1</span>: 
+	</p>
+	<p>
+	  <input type="text" id="r1.5" size="10" value="">
+	</p>
+	<span id="c1.5"></span>
+      </div>
+      <div id="T21" class="contenido">
+	<p>
+	  The number of permutations of $\{a, b, c, d, e, f, g\}$
+	  in which the first to appear is 
+	  <em><span id="d2.primero">a</span></em> and the last to
+	  appear is
+	  <em><span id="d2.ultimo">g</span></em>:
+	</p>
+	<p>
+	  <input type="text" id="r2.1" size="10" value="">
+	</p>
+	<span id="c2.1"></span>
+      </div>
+      <div id="T22" class="contenido">
+	<p>
+	  The number of subsets of 
+	  	  $\{1, 2, 3, 4, 5, 6, 7, 8\}$
+	  that contain <span id="d2.k">3</span> elements
+	  but have an empty intersection (that is, no common elements) with
+          $\{$<span id="d2.sub">3, 5</span>$\}$:
+	</p>
+	<p>
+	  <input type="text" id="r2.2" size="10" value="">
+	</p>
+	<span id="c2.2"></span>
+      </div>      
+      <div id="T23" class="contenido">
+	<p>
+	  The final element of the initial fragment of the Fibonacci succession that contains
+ $k =$ 
+	  <span id="d2.fibo">24</span> elements:
+	</p>
+	<p>
+	  <input type="text" id="r2.3" size="10" value="">
+	</p>
+	<span id="c2.3"></span>
+      </div>      
+      <div id="T24" class="contenido">
+	<table>
+	  <tr><td>$p \in K$</td><td>$\sigma \in \Sigma$</td><td>$\delta(p,\sigma)$</td></tr>
+	  <tr><td>$s$</td><td>$\triangleright$</td><td>$(s, \triangleright, \rightarrow)$</td></tr> 
+	  <tr><td>$s$</td><td>$0$</td><td>$(s,0, \rightarrow)$</td></tr> 
+	  <tr><td>$s$</td><td>$1$</td><td>$(s,1,\rightarrow)$</td></tr> 
+	  <tr><td>$s$</td><td>$\sqcup$</td><td>$(q, \sqcup, \leftarrow)$</td></tr> 
+	  <tr><td>$q$</td><td>$0$</td><td>$(t, \sqcup, \leftarrow)$</td></tr> 
+	  <tr><td>$q$</td><td>$1$</td><td>$(t ,\sqcup, \leftarrow)$</td></tr>
+	  <tr><td>$q$</td><td>$\triangleright$</td><td>$(\text{stop}, \triangleright, \rightarrow)$</td></tr> 
+	  <tr><td>$t$</td><td>$\triangleright$</td><td>$(\text{stop}, \triangleright, -)$</td></tr> 
+	  <tr><td>$t$</td><td>$0$</td><td>$(\text{stop}, 0, -)$</td></tr> 
+	  <tr><td>$t$</td><td>$1$</td><td>$(\text{stop}, 1, -)$</td></tr> 
+	</table>
+	<p>
+	  The output of the Turing Machine with the provided 
+	  	  $\delta$ for the input
+	    <span id="d2.turing">10101</span>.  Do not include
+	    $\triangleright$ in your response.
+	  </p>
+	  <p>
+	    <input type="text" id="r2.4" size="10" value="">
+	  </p>
+	  <span id="c2.4"></span>
+	</div>      
+	<div id="T25" class="contenido">
+	  <p>
+	    The number of times that 
+	    $\delta$ is evaluated during the execution of the TM of the previous question with that input:
+	  </p>      
+	  <p>
+	    <input type="text" id="r2.5" size="10" value="">
+	  </p>
+	  <span id="c2.5"></span>
+	</div>
+	<div id="T31" class="contenido">
+	  <p>
+	    Determine the following for un directed graph with
+	    $V = \{1, 2, 3, 4,
+	    5, 6, 7, 8, 9\}$ y<br>
+	    $E = \{ (1, 2), (1, 3), (2, 4), (u, v),$ <br>
+	    $(3, 5), (3, 6), (4, 6), (4, 7),$ <br>
+	    $(5, 8), (6, 9), (7, 9) \},$ <br>
+	    where $u$ = <span id="d3.u">7</span> &amp; $v$
+	    = <span id="d3.v">4</span> its <strong>maximum degree</strong>:
+	  </p>      
+	  <p>
+	    <input type="text" id="r3.1" size="10" value="">
+	  </p>
+	  <span id="c3.1"></span>
+	</div>
+	<div id="T32" class="contenido">
+	  <p>
+	    Determine the 
+	     <strong>density</strong> of that same graph:
+	  </p>      
+	  <p>
+	    <input type="text" id="r3.2" size="10" value="">
+	  </p>
+	  <span id="c3.2"></span>
+	</div>
+	<div id="T33" class="contenido">
+	  <p>
+	    Determine the 
+	     <strong>distance</strong> between $1$ y $v$ in the same
+	     graph:
+	  </p>      
+	  <p>
+	    <input type="text" id="r3.3" size="10" value="">
+	  </p>
+	  <span id="c3.3"></span>
+	</div>
+	<div id="T34" class="contenido">
+	  <p>
+	    Determine the
+	     <strong>diameter</strong> of the same graph:
+	  </p>      
+	  <p>
+	    <input type="text" id="r3.4" size="10" value="">
+	  </p>
+	  <span id="c3.4"></span>
+	</div>
+	<div id="T35" class="contenido">
+	  <p>
+	    Determine, for the same graph, the number of edges in the
+ <strong>induced subgraph</strong> where $V' = V \setminus \{ u,
+	    v \}$:
+	  </p>      
+	  <p>
+	    <input type="text" id="r3.5" size="10" value="">
+	    <br>
+	    <span id="c3.5"></span>
+	  </p>
+	</div>
+	<div id="T41" class="contenido">
+	  <p>
+	    Simplify $\mathcal{O}$(<span id="d4.pol">3<em>n</em><sup>3</sup> - 2<em>n</em><sup>2</sup> + 12<em>n</em> - 8</span>).
+	  </p>
+	  <p>
+	    Express your response in the format <span class="codevar">O(x^d)</span> with the adequate exponent <code>d</code>.
+	  </p>      
+	  <p>
+	    <input type="text" id="r4.1" size="10" value="">
+	    <br>
+	    <span id="c4.1"></span>
+	  </p>
+	</div>
+	<div id="T42" class="contenido">      
+	  <p>
+	    Which of the following functions $f(n)$, $g(n)$ o $h(n)$
+	    has the slowest asymptotic growth,
+	    if $f(n)$
+	    = <span id="d4.f"><em>n</em><sup>2</sup> log <em>n</em></span>, $g(n)$
+	    = <span id="d4.g">sqrt(<em>n</em>)<em>n</em><sup>3</sup></span> &amp; $h(n)$
+	    = <span id="d4.h"><em>n</em>log<em>n</em><sup>2</sup></span>
+	    where <span class="codevar">sqrt</span> refers to the square root.
+	  </p>
+	  <p>
+	    Write "x(n)" without any quotes placing the letter of the slowest function in place of <code>x</code>.
+	  </p>      
+	  <p>
+	    <input type="text" id="r4.2" size="10" value="">
+	  </p>
+	  <span id="c4.2"></span>
+	</div>
+	<div id="T43" class="contenido">
+	  <p>
+	    Adding a new object with a weight of <span id="d4.peso">12</span> and
+	    a value <span id="d4.valor">17</span> to the instance of the knapsack problem given in the example code, 
+	    what is the value of the optimum if the capacity is set to 
+	    <span id="d4.limite">32</span>?
+	  </p>      
+	  <p>
+	    <input type="text" id="r4.3" size="10" value="">
+	  </p>
+	  <span id="c4.3"></span>
+	</div>
+	<div id="T44" class="contenido">
+	  <p>
+	    Assigning a capacity of 
+	     <span id="d4.cap">12</span> to an edge from 
+	     <span id="d4.desde">2</span>
+	    to <span id="d4.hasta">5</span> in the instance of the max-flow problem in the example code, 
+	     what is the value of the optimum for
+	    $s = 1$ and $t = 4$?
+	  </p>      
+	  <p>
+	    <input type="text" id="r4.4" size="10" value="">
+	  </p>
+	  
+	  <span id="c4.4"></span>
+	</div>      
+	<div id="T45" class="contenido">
+	  <p>
+	    What is the highest possible flow in that network, maintaining the modification of the instance made in the previous question?
+	  </p>      
+	  <p>
+	    <input type="text" id="r4.5" size="10" value="">
+	  </p>
+	  <span id="c4.5"></span>
+	</div>
+	<div id="T51" class="contenido">
+	  <p>
+	    How many calls of the routine
+	    <span class="codevar">bbinaria</span> are employed to search for 
+	    <span id="d5.valor">5</span> in an array filled with ordered integers
+	    from <span id="d5.desde">2</span>
+	    to <span id="d5.hasta">20</span> in steps of
+	    <span id="d5.pasos">2</span>?
+	  </p>      
+	  <p>
+	    <input type="text" id="r5.1" size="10" value="">
+	  </p>
+	  <span id="c5.1"></span>
+	</div>
+	<div id="T52" class="contenido">
+	  <p>
+	    What is the minimum height of a full binary tree with 
+ <span id="d5.nodos">30</span> nodes?
+	  </p>      
+	  <p>
+	    <input type="text" id="r5.2" size="10" value="">
+	  </p>
+	  <span id="c5.2"></span>
+	</div>
+	<div id="T53" class="contenido">
+	  <p>
+	    Adding in the following order
+	    <span id="d5.arbol">18, 32, 12, 34, 15, 7, 21, 88, 16,
+	      56</span> into the simple binary tree of the example
+	      code, how many calls to the routine
+	    <span class="codevar">ubicar</span> are made when searching for 
+	    <span id="d5.elemento">30</span> in the resulting tree?
+	  </p>
+	  <p>
+	    <input type="text" id="r5.3" size="10" value="">
+	  </p>
+	  <span id="c5.3"></span>
+	</div>
+	<div id="T54" class="contenido">
+	  <p>
+	    If the operation costs are 
+	    <span id="d5.ins">2</span> for insertion,
+	    <span id="d5.eli">2</span> for elimination and 
+	    <span id="d5.ree">1</span> for replacement,
+	    what is the edit distance between the words
+	    "s&aacute;bado" and "domingo"?
+	  </p>      
+	  <p>
+	    <input type="text" id="r5.4" size="10" value="">
+	  </p>
+	  <span id="c5.4"></span>
+	</div>
+	<div id="T55" class="contenido">
+	  <p>
+	    Assigning a weight of 
+	    <span id="d5.peso">3</span> to an edge from
+	   <span id="d5.inicio">2</span>
+	  to <span id="d5.final">7</span> (substituting the existing value if there is one) 
+	   to the minimum spanning tree instance of the example codes, what is now the value of the optimum?
+	  </p>
+	<p>
+	  <input type="text" id="r5.5" size="10" value="">
+	</p>
+	<span id="c5.5"></span>
+	</div>
+	<div class="interact">
+	  <span id="calif"></span>
+	</div>
+    </div>
+    <script src="mobile.js"></script>
+  </body>
+</html>
