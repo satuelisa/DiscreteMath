@@ -1,5 +1,9 @@
-peso_permitido = 25
-objetos = ((5, 10), (8, 12), (4, 24), (12, 30), (5, 7), (2, 8), (1, 3))
+peso = input("Introduce el peso que te piden: ")
+valor = input("Introduce el valor que te piden: ")
+limite_peso = input("Introduce el límite de peso de tu mochila: ")
+
+peso_permitido = int(limite_peso) 
+objetos = ((5, 10), (8, 12), (4, 24), (12, 30), (5, 7), (2, 8), (1, 3), (int(peso), int(valor)))
 peso_total = sum([objeto[0] for objeto in objetos])
 valor_total = sum([objeto[1] for objeto in objetos])
 if peso_total < peso_permitido: # cabe todo
